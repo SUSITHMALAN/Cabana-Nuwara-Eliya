@@ -7,39 +7,30 @@ app = Flask(__name__)
 ROOMS = [
     {
         "id": 1,
-        "name": "Deluxe Mountain View Room",
-        "description": "Wake up to breathtaking misty mountain vistas from your private balcony. Featuring king-size bed, flat screen TV, complimentary Wi-Fi, and all modern amenities.",
-        "price": 12500,
-        "image": "room1.jpg",
-        "capacity": 2,
-        "amenities": ["King Bed", "Mountain View", "Balcony", "Free Wi-Fi", "Flat Screen TV", "Mini Bar"]
+        "name": "Grand Family Cabana (Big)",
+        "description": "Our spacious signature family cabana, nestled in the peaceful tea gardens of Nuwara Eliya. Featuring two queen beds, a private viewing deck, and ample room for the family to relax.",
+        "price": 25000,
+        "image": "room4.jpg",
+        "capacity": 4,
+        "amenities": ["2 Queen Beds", "Garden View", "Private Deck", "Free Wi-Fi", "Tea Maker", "Cozy Fireplace"]
     },
     {
         "id": 2,
-        "name": "Cabana Suite",
-        "description": "Our signature suite with a separate living area, kitchenette, and stunning panoramic views of the Nuwara Eliya hills and tea plantations.",
-        "price": 19500,
+        "name": "Classic Cozy Cabana I (Small)",
+        "description": "A private, charming sanctuary designed for couples. Featuring a comfortable king-size bed, private veranda, and stunning views of the surrounding misty hills.",
+        "price": 15000,
         "image": "room2.jpg",
         "capacity": 2,
-        "amenities": ["King Bed", "Kitchenette", "Living Area", "Panoramic View", "Jacuzzi", "Free Wi-Fi"]
+        "amenities": ["1 King Bed", "Veranda", "Mountain View", "Free Wi-Fi", "Tea Maker", "Hot Water"]
     },
     {
         "id": 3,
-        "name": "Family Room",
-        "description": "Spacious family room with two queen beds, perfect for a family getaway in the cool highlands. Includes a cozy seating area and garden view.",
-        "price": 16500,
+        "name": "Classic Cozy Cabana II (Small)",
+        "description": "An elegant, cozy retreat offering comfort and privacy. Perfectly suited for couples or solo travelers wishing to experience the misty mornings of Nuwara Eliya.",
+        "price": 15000,
         "image": "room3.jpg",
-        "capacity": 4,
-        "amenities": ["Two Queen Beds", "Garden View", "Seating Area", "Free Wi-Fi", "TV", "Safe"]
-    },
-    {
-        "id": 4,
-        "name": "Premium Cottage",
-        "description": "A private standalone cottage nestled among the tea gardens. Full kitchen, fireplace, and wraparound veranda for the ultimate highland retreat.",
-        "price": 28000,
-        "image": "room4.jpg",
-        "capacity": 4,
-        "amenities": ["Full Kitchen", "Fireplace", "Private Veranda", "Garden", "Free Wi-Fi", "Two Bedrooms"]
+        "capacity": 2,
+        "amenities": ["1 King Bed", "Veranda", "Garden View", "Free Wi-Fi", "Tea Maker", "Hot Water"]
     }
 ]
 
@@ -47,37 +38,35 @@ TESTIMONIALS = [
     {
         "name": "Ashan & Dilini",
         "location": "Colombo, Sri Lanka",
-        "text": "An absolutely magical stay! The misty mornings, the cozy fireplace, and the impeccable service made our anniversary unforgettable. Cabana Nuwara Eliya exceeded every expectation.",
+        "text": "An absolutely magical stay! The misty mornings, the cozy private veranda, and the warm Ceylon tea made our anniversary unforgettable. Cabana Nuwara Eliya exceeded every expectation.",
         "rating": 5
     },
     {
         "name": "James & Sarah",
         "location": "London, UK",
-        "text": "The most charming hotel we've stayed at in Sri Lanka. The mountain views are spectacular, the rooms are beautifully appointed, and the staff goes above and beyond. We'll be back!",
+        "text": "The most charming wooden cabanas we've stayed at in Sri Lanka. The mountain views are spectacular, the space is beautifully cozy, and the staff is extremely hospitable. We'll be back!",
         "rating": 5
     },
     {
         "name": "Priya & Family",
         "location": "Bangalore, India",
-        "text": "Perfect highland escape for the whole family. The kids loved exploring the tea gardens and we loved the warm hospitality. The food was exceptional — especially the Sri Lankan breakfast!",
+        "text": "Perfect highland escape for the family. The kids loved the tea gardens and we loved the cozy family cabana. The hospitality was exceptional!",
         "rating": 5
     }
 ]
 
 AMENITIES = [
-    {"icon": "🏊", "title": "Heated Pool", "desc": "Enjoy our temperature-controlled pool amidst the cool highland air"},
     {"icon": "🍃", "title": "Tea Garden Tours", "desc": "Guided tours through pristine tea plantations right at your doorstep"},
-    {"icon": "🔥", "title": "Fireplace Lounge", "desc": "Warm up by our grand fireplace in the colonial-style lounge"},
-    {"icon": "🍽️", "title": "Highland Dining", "desc": "Authentic Sri Lankan & international cuisine with mountain views"},
-    {"icon": "🧖", "title": "Spa & Wellness", "desc": "Rejuvenating ayurvedic treatments and wellness therapies"},
-    {"icon": "☕", "title": "Fresh Ceylon Tea", "desc": "Complimentary freshly brewed Ceylon tea served daily"},
-    {"icon": "🚗", "title": "Airport Transfers", "desc": "Comfortable transfers from Colombo, Kandy, and beyond"},
-    {"icon": "🌿", "title": "Garden & Courtyard", "desc": "Lushly landscaped gardens perfect for morning strolls"},
+    {"icon": "🔥", "title": "Cozy Fire Pit", "desc": "Warm up by our outdoor fire pit under the starry highland sky"},
+    {"icon": "☕", "title": "Fresh Ceylon Tea", "desc": "Complimentary freshly brewed Ceylon tea served daily to your cabana"},
+    {"icon": "🌿", "title": "Garden & Courtyard", "desc": "Lushly landscaped gardens perfect for morning strolls and photography"},
+    {"icon": "🌐", "title": "High-Speed Wi-Fi", "desc": "Stay connected with high-speed internet throughout your stay"},
+    {"icon": "🌅", "title": "Panoramic Viewing Deck", "desc": "Take in the stunning misty mountain sunrises and peaceful evening views"},
 ]
 
 @app.route('/')
 def index():
-    return render_template('index.html', rooms=ROOMS[:3], testimonials=TESTIMONIALS, amenities=AMENITIES[:4])
+    return render_template('index.html', rooms=ROOMS, testimonials=TESTIMONIALS, amenities=AMENITIES)
 
 @app.route('/accommodations')
 def accommodations():
@@ -91,10 +80,6 @@ def amenities():
 def gallery():
     return render_template('gallery.html')
 
-@app.route('/dining')
-def dining():
-    return render_template('dining.html')
-
 @app.route('/discover')
 def discover():
     return render_template('discover.html')
@@ -102,23 +87,29 @@ def discover():
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     if request.method == 'POST':
-        data = request.form
-        # Here you'd send email / save to DB
         return jsonify({"success": True, "message": "Thank you! We'll be in touch shortly."})
     return render_template('contact.html')
 
-@app.route('/api/book', methods=['POST'])
+@app.route('/book', methods=['GET', 'POST'])
 def book():
-    data = request.json
-    checkin = data.get('checkin')
-    checkout = data.get('checkout')
-    guests = data.get('guests', 2)
-    # In production, this would check availability and create a booking
-    return jsonify({
-        "success": True,
-        "message": f"Availability confirmed for {checkin} to {checkout}. Redirecting to booking...",
-        "booking_url": "#"
-    })
+    if request.method == 'POST':
+        data = request.json or request.form
+        cabana_id = int(data.get('cabana_id', 1))
+        checkin_date = data.get('checkin')
+        checkout_date = data.get('checkout')
+        checkin_time = data.get('checkin_time')
+        checkout_time = data.get('checkout_time')
+        guests = data.get('guests')
+        days_spent = data.get('days_spent')
+        
+        selected_cabana = next((r for r in ROOMS if r["id"] == cabana_id), ROOMS[0])
+        
+        # Real-time booking logic simulations
+        return jsonify({
+            "success": True,
+            "message": f"Successfully reserved {selected_cabana['name']} for {days_spent} nights ({checkin_date} to {checkout_date}). We look forward to welcoming you!"
+        })
+    return render_template('book.html', rooms=ROOMS)
 
 @app.route('/api/rooms')
 def api_rooms():

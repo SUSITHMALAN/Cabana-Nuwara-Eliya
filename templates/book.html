@@ -1,0 +1,492 @@
+{% extends "base.html" %}
+{% block title %}Book Your Stay | Cabana Nuwara Eliya{% endblock %}
+
+{% block extra_css %}
+<style>
+    .booking-container {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: 48px;
+        align-items: start;
+        margin-top: 40px;
+    }
+    .booking-card {
+        background: var(--white);
+        border-radius: 12px;
+        padding: 40px;
+        box-shadow: var(--shadow-lg);
+    }
+    .summary-card {
+        background: var(--primary-dark);
+        color: var(--white);
+        border-radius: 12px;
+        padding: 36px;
+        box-shadow: var(--shadow-lg);
+        position: sticky;
+        top: 120px;
+    }
+    .summary-title {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.8rem;
+        font-weight: 300;
+        border-bottom: 1px solid rgba(255,255,255,0.15);
+        padding-bottom: 16px;
+        margin-bottom: 24px;
+        color: var(--white);
+    }
+    .summary-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 16px;
+        font-size: 0.9rem;
+        font-weight: 300;
+        color: rgba(255,255,255,0.8);
+    }
+    .summary-row.total {
+        border-top: 1px solid rgba(255,255,255,0.15);
+        padding-top: 20px;
+        margin-top: 20px;
+        font-size: 1.3rem;
+        font-weight: 400;
+        color: var(--white);
+    }
+    .summary-value {
+        font-weight: 500;
+        color: var(--white);
+    }
+    .form-section {
+        margin-bottom: 32px;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 24px;
+    }
+    .form-section:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
+    .form-section-title {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.4rem;
+        color: var(--primary-dark);
+        margin-bottom: 20px;
+        font-weight: 400;
+    }
+    .input-field {
+        width: 100%;
+        padding: 12px 16px;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        font-size: 0.9rem;
+        font-family: 'Jost', sans-serif;
+        outline: none;
+        transition: all 0.3s;
+        background: var(--cream);
+    }
+    .input-field:focus {
+        border-color: var(--primary);
+        background: var(--white);
+    }
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+    .full-width-field {
+        margin-bottom: 20px;
+    }
+    label {
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--gray);
+        display: block;
+        margin-bottom: 8px;
+    }
+    .alert-banner {
+        background: rgba(184, 150, 80, 0.1);
+        border-left: 4px solid var(--gold);
+        padding: 16px;
+        border-radius: 4px;
+        font-size: 0.88rem;
+        color: var(--primary-dark);
+        margin-bottom: 28px;
+        line-height: 1.5;
+    }
+    @media (max-width: 992px) {
+        .booking-container {
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+        .summary-card {
+            position: static;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="page-hero">
+    <div class="page-hero-bg" style="background: linear-gradient(135deg, #152c17 0%, #2c5f2e 100%);"></div>
+    <div class="page-hero-content">
+        <span class="section-tag">Reservations</span>
+        <h1>Book Your Cabana</h1>
+        <div class="breadcrumb"><a href="/">Home</a> › Book</div>
+    </div>
+</div>
+
+<section style="background: var(--cream); padding: 60px 0;">
+    <div class="container">
+        <div class="alert-banner">
+            <strong>🍃 Misty Highland Retreat:</strong> We have only <strong>three exclusive cabanas</strong> on our property—one large family cabana and two cozy small cabanas. Please secure your reservation in advance for an intimate nature experience.
+        </div>
+
+        <div class="booking-container">
+            <!-- Booking Form -->
+            <div class="booking-card reveal-left">
+                <form id="realBookingForm">
+                    <!-- Section 1: Contact Details -->
+                    <div class="form-section">
+                        <h3 class="form-section-title">1. Guest Details</h3>
+                        <div class="form-grid">
+                            <div>
+                                <label for="fname">First Name *</label>
+                                <input type="text" id="fname" name="fname" class="input-field" required placeholder="John">
+                            </div>
+                            <div>
+                                <label for="lname">Last Name *</label>
+                                <input type="text" id="lname" name="lname" class="input-field" required placeholder="Smith">
+                            </div>
+                        </div>
+                        <div class="form-grid">
+                            <div>
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" class="input-field" required placeholder="john@example.com">
+                            </div>
+                            <div>
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" class="input-field" required placeholder="+94 77 123 4567">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 2: Cabana & Dates -->
+                    <div class="form-section">
+                        <h3 class="form-section-title">2. Accommodation Details</h3>
+                        <div class="full-width-field">
+                            <label for="cabana_select">Select Your Cabana *</label>
+                            <select id="cabana_select" name="cabana_id" class="input-field" style="height: 50px;">
+                                {% for room in rooms %}
+                                <option value="{{ room.id }}" data-price="{{ room.price }}" data-capacity="{{ room.capacity }}">
+                                    {{ room.name }} — LKR {{ "{:,}".format(room.price) }} / night (Max {{ room.capacity }} guests)
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-grid">
+                            <div>
+                                <label for="checkin_date">Check-in Date *</label>
+                                <input type="date" id="checkin_date" name="checkin" class="input-field" required>
+                            </div>
+                            <div>
+                                <label for="checkin_time">Check-in Time *</label>
+                                <select id="checkin_time" name="checkin_time" class="input-field">
+                                    <option value="14:00" selected>14:00 (Standard Check-in)</option>
+                                    <option value="15:00">15:00</option>
+                                    <option value="16:00">16:00</option>
+                                    <option value="17:00">17:00</option>
+                                    <option value="18:00">18:00 or later</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <div>
+                                <label for="checkout_date">Check-out Date *</label>
+                                <input type="date" id="checkout_date" name="checkout" class="input-field" required>
+                            </div>
+                            <div>
+                                <label for="checkout_time">Check-out Time *</label>
+                                <select id="checkout_time" name="checkout_time" class="input-field">
+                                    <option value="11:00" selected>11:00 (Standard Check-out)</option>
+                                    <option value="10:00">10:00</option>
+                                    <option value="09:00">09:00</option>
+                                    <option value="08:00">08:00 or earlier</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <div>
+                                <label for="guest_count">Number of Guests *</label>
+                                <select id="guest_count" name="guests" class="input-field">
+                                    <!-- Options populated dynamically by JS based on Selected Cabana capacity -->
+                                </select>
+                            </div>
+                            <div>
+                                <label for="days_spent">Days Spent (Nights)</label>
+                                <input type="text" id="days_spent" name="days_spent" class="input-field" readonly style="background: rgba(0,0,0,0.05); font-weight: 600;" value="1">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 3: Special requests -->
+                    <div class="form-section">
+                        <h3 class="form-section-title">3. Special Requests</h3>
+                        <div class="full-width-field">
+                            <label for="notes">Notes / Special Requirements</label>
+                            <textarea id="notes" name="notes" rows="4" class="input-field" style="resize: vertical;" placeholder="Let us know if you need early check-in, dietary preferences, or specific arrangements..."></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Booking Summary Sidebar -->
+            <div class="summary-card reveal-right">
+                <h3 class="summary-title">Booking Summary</h3>
+                
+                <div class="summary-row">
+                    <span>Cabana</span>
+                    <span class="summary-value" id="sum_cabana">--</span>
+                </div>
+                <div class="summary-row">
+                    <span>Rate / Night</span>
+                    <span class="summary-value" id="sum_rate">LKR 0</span>
+                </div>
+                <div class="summary-row">
+                    <span>Check-in</span>
+                    <span class="summary-value" id="sum_checkin">--</span>
+                </div>
+                <div class="summary-row">
+                    <span>Check-out</span>
+                    <span class="summary-value" id="sum_checkout">--</span>
+                </div>
+                <div class="summary-row">
+                    <span>Nights</span>
+                    <span class="summary-value" id="sum_nights">0</span>
+                </div>
+                <div class="summary-row">
+                    <span>Guests</span>
+                    <span class="summary-value" id="sum_guests">--</span>
+                </div>
+
+                <div class="summary-row total">
+                    <span>Total Cost</span>
+                    <span class="summary-value" id="sum_total" style="color: var(--gold-light); font-weight: 600;">LKR 0</span>
+                </div>
+
+                <button type="submit" form="realBookingForm" class="btn-gold full-width" style="margin-top: 28px; padding: 14px; font-size: 0.9rem;">
+                    Confirm Reservation
+                </button>
+                <div id="bookingResultMsg" style="margin-top: 16px; text-align: center; font-size: 0.9rem; font-weight: 300;"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const cabanaSelect = document.getElementById('cabana_select');
+        const checkinInput = document.getElementById('checkin_date');
+        const checkoutInput = document.getElementById('checkout_date');
+        const checkinTime = document.getElementById('checkin_time');
+        const checkoutTime = document.getElementById('checkout_time');
+        const guestCountSelect = document.getElementById('guest_count');
+        const daysSpentInput = document.getElementById('days_spent');
+
+        // Summary Elements
+        const sumCabana = document.getElementById('sum_cabana');
+        const sumRate = document.getElementById('sum_rate');
+        const sumCheckin = document.getElementById('sum_checkin');
+        const sumCheckout = document.getElementById('sum_checkout');
+        const sumNights = document.getElementById('sum_nights');
+        const sumGuests = document.getElementById('sum_guests');
+        const sumTotal = document.getElementById('sum_total');
+
+        // Set calendar boundaries (min date = today)
+        const today = new Date();
+        const todayStr = today.toISOString().split('T')[0];
+        checkinInput.min = todayStr;
+        
+        const tomorrow = new Date(today);
+        tomorrow.setDate(today.getDate() + 1);
+        const tomorrowStr = tomorrow.toISOString().split('T')[0];
+        checkoutInput.min = tomorrowStr;
+
+        // Default dates
+        checkinInput.value = todayStr;
+        checkoutInput.value = tomorrowStr;
+
+        // Update Guest Options based on selected Cabana
+        function updateGuestCapacity() {
+            const selectedOption = cabanaSelect.options[cabanaSelect.selectedIndex];
+            const maxCapacity = parseInt(selectedOption.dataset.capacity);
+            
+            // Re-populate guest select options
+            guestCountSelect.innerHTML = '';
+            for (let i = 1; i <= maxCapacity; i++) {
+                const opt = document.createElement('option');
+                opt.value = i;
+                opt.textContent = `${i} Guest${i > 1 ? 's' : ''}`;
+                if (i === Math.min(2, maxCapacity)) { // default to 2 if available, else 1
+                    opt.selected = true;
+                }
+                guestCountSelect.appendChild(opt);
+            }
+            updateCalculations();
+        }
+
+        // Calculate nights & prices
+        function updateCalculations() {
+            const selectedOption = cabanaSelect.options[cabanaSelect.selectedIndex];
+            const cabanaName = selectedOption.textContent.split(' — ')[0];
+            const pricePerNight = parseFloat(selectedOption.dataset.price);
+
+            const checkinDate = new Date(checkinInput.value);
+            const checkoutDate = new Date(checkoutInput.value);
+
+            // Ensure checkout is after checkin
+            if (checkoutDate <= checkinDate) {
+                const newCheckout = new Date(checkinDate);
+                newCheckout.setDate(checkinDate.getDate() + 1);
+                checkoutInput.value = newCheckout.toISOString().split('T')[0];
+                return updateCalculations();
+            }
+
+            // Calculate difference in days
+            const diffTime = Math.abs(checkoutDate - checkinDate);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+            daysSpentInput.value = diffDays;
+
+            // Update Summary Card
+            sumCabana.textContent = cabanaName;
+            sumRate.textContent = `LKR ${pricePerNight.toLocaleString()}`;
+            sumCheckin.textContent = `${checkinInput.value} @ ${checkinTime.value}`;
+            sumCheckout.textContent = `${checkoutInput.value} @ ${checkoutTime.value}`;
+            sumNights.textContent = `${diffDays} Night${diffDays > 1 ? 's' : ''}`;
+            
+            const guestsSelected = guestCountSelect.value || 1;
+            sumGuests.textContent = `${guestsSelected} Guest${guestsSelected > 1 ? 's' : ''}`;
+
+            const totalCost = pricePerNight * diffDays;
+            sumTotal.textContent = `LKR ${totalCost.toLocaleString()}`;
+        }
+
+        // Event Listeners
+        cabanaSelect.addEventListener('change', updateGuestCapacity);
+        checkinInput.addEventListener('change', function() {
+            // Adjust minimum checkout date based on checkin date selection
+            const checkinDate = new Date(checkinInput.value);
+            const minCheckout = new Date(checkinDate);
+            minCheckout.setDate(checkinDate.getDate() + 1);
+            checkoutInput.min = minCheckout.toISOString().split('T')[0];
+            
+            updateCalculations();
+        });
+        checkoutInput.addEventListener('change', updateCalculations);
+        checkinTime.addEventListener('change', updateCalculations);
+        checkoutTime.addEventListener('change', updateCalculations);
+        guestCountSelect.addEventListener('change', updateCalculations);
+
+        // Initial setup
+        updateGuestCapacity();
+
+        // Pre-select based on URL param
+        const urlParams = new URLSearchParams(window.location.search);
+        const preselectedId = urlParams.get('cabana_id');
+        if (preselectedId) {
+            cabanaSelect.value = preselectedId;
+        }
+        
+        updateGuestCapacity(); // First capacity setup
+        
+        const precheckin = urlParams.get('checkin');
+        if (precheckin) {
+            checkinInput.value = precheckin;
+            // Adjust minimum checkout date based on checkin date selection
+            const checkinDate = new Date(checkinInput.value);
+            const minCheckout = new Date(checkinDate);
+            minCheckout.setDate(checkinDate.getDate() + 1);
+            checkoutInput.min = minCheckout.toISOString().split('T')[0];
+        }
+
+        const precheckout = urlParams.get('checkout');
+        if (precheckout) {
+            checkoutInput.value = precheckout;
+        }
+
+        const preguests = urlParams.get('guests');
+        if (preguests) {
+            // Check if guests value is valid for current selection
+            if (parseInt(preguests) <= parseInt(guestCountSelect.options[guestCountSelect.options.length - 1].value)) {
+                guestCountSelect.value = preguests;
+            }
+        }
+
+        updateCalculations();
+
+        // Submit form via Ajax
+        const form = document.getElementById('realBookingForm');
+        const submitBtn = document.querySelector('button[form="realBookingForm"]');
+        const resultMsg = document.getElementById('bookingResultMsg');
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Processing Reservation...';
+            resultMsg.style.display = 'block';
+            resultMsg.style.color = '#fff';
+            resultMsg.textContent = 'Checking availability...';
+
+            const payload = {
+                cabana_id: cabanaSelect.value,
+                checkin: checkinInput.value,
+                checkout: checkoutInput.value,
+                checkin_time: checkinTime.value,
+                checkout_time: checkoutTime.value,
+                guests: guestCountSelect.value,
+                days_spent: daysSpentInput.value,
+                fname: document.getElementById('fname').value,
+                lname: document.getElementById('lname').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                notes: document.getElementById('notes').value
+            };
+
+            try {
+                const res = await fetch('/book', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                
+                if (data.success) {
+                    resultMsg.style.color = '#a5d6a7';
+                    resultMsg.innerHTML = `<i class="fas fa-check-circle"></i> ${data.message}`;
+                    form.reset();
+                    // Reset to defaults
+                    checkinInput.value = todayStr;
+                    checkoutInput.value = tomorrowStr;
+                    updateGuestCapacity();
+                } else {
+                    resultMsg.style.color = '#ef9a9a';
+                    resultMsg.textContent = data.message || 'Unable to book. Please try again.';
+                }
+            } catch (err) {
+                resultMsg.style.color = '#ef9a9a';
+                resultMsg.textContent = 'An error occurred. Please try again or contact us directly.';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Confirm Reservation';
+            }
+        });
+    });
+</script>
+{% endblock %}

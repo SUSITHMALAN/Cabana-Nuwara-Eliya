@@ -30,22 +30,10 @@
         </a>
 
         <ul class="nav-links" id="navLinks">
-            <li class="dropdown">
-                <a href="/accommodations">Accommodations <i class="fas fa-chevron-down"></i></a>
-                <ul class="dropdown-menu">
-                    <li><a href="/accommodations">Rooms &amp; Suites</a></li>
-                    <li><a href="/amenities">Amenities</a></li>
-                    <li><a href="/gallery">Gallery</a></li>
-                </ul>
-            </li>
-            <li><a href="/dining">Dining</a></li>
-            <li class="dropdown">
-                <a href="/discover">Discover NE <i class="fas fa-chevron-down"></i></a>
-                <ul class="dropdown-menu">
-                    <li><a href="/discover">Things To Do</a></li>
-                    <li><a href="/discover#map">Local Area Map</a></li>
-                </ul>
-            </li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/accommodations">Our Cabanas</a></li>
+            <li><a href="/amenities">Amenities</a></li>
+            <li><a href="/discover">Discover NE</a></li>
             <li><a href="/gallery">Gallery</a></li>
             <li><a href="/contact">Contact Us</a></li>
         </ul>
@@ -55,7 +43,7 @@
                 <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                 <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             </div>
-            <a href="#booking" class="btn-book" onclick="openBooking()">Book Now</a>
+            <a href="/book" class="btn-book">Book Now</a>
         </div>
 
         <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -63,45 +51,6 @@
         </button>
     </div>
 </nav>
-
-<!-- Booking Modal -->
-<div class="booking-overlay" id="bookingOverlay">
-    <div class="booking-modal">
-        <button class="modal-close" onclick="closeBooking()">&times;</button>
-        <h3>Reserve Your Stay</h3>
-        <p>Experience the magic of the highlands</p>
-        <form class="booking-form" id="bookingForm">
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Check-in Date</label>
-                    <input type="date" name="checkin" id="checkin" required>
-                </div>
-                <div class="form-group">
-                    <label>Check-out Date</label>
-                    <input type="date" name="checkout" id="checkout" required>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Adults</label>
-                    <select name="adults">
-                        <option>1</option><option selected>2</option>
-                        <option>3</option><option>4</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Children</label>
-                    <select name="children">
-                        <option selected>0</option><option>1</option>
-                        <option>2</option><option>3</option>
-                    </select>
-                </div>
-            </div>
-            <button type="submit" class="btn-primary full-width">Check Availability</button>
-        </form>
-        <div class="booking-msg" id="bookingMsg"></div>
-    </div>
-</div>
 
 {% block content %}{% endblock %}
 
@@ -124,9 +73,9 @@
         <div class="footer-col">
             <h4>Quick Links</h4>
             <ul>
-                <li><a href="/accommodations">Rooms &amp; Suites</a></li>
+                <li><a href="/accommodations">Our Cabanas</a></li>
                 <li><a href="/amenities">Amenities</a></li>
-                <li><a href="/dining">Dining</a></li>
+                <li><a href="/book">Book Now</a></li>
                 <li><a href="/gallery">Gallery</a></li>
                 <li><a href="/discover">Discover Nuwara Eliya</a></li>
                 <li><a href="/contact">Contact Us</a></li>

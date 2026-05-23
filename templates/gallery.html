@@ -21,7 +21,7 @@
 
         <!-- Filter buttons -->
         <div style="display:flex;gap:12px;justify-content:center;margin-bottom:40px;flex-wrap:wrap;">
-            {% for cat in ['All','Rooms','Dining','Pool','Gardens','Views'] %}
+            {% for cat in ['All','Cabanas','Gardens','Views'] %}
             <button onclick="filterGallery(this, '{{ cat.lower() }}')"
                 style="padding:10px 24px;border-radius:4px;font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;
                 {% if loop.first %}background:var(--primary);color:white;border:2px solid var(--primary);{% else %}background:transparent;color:var(--dark);border:2px solid var(--border);{% endif %}">
@@ -32,14 +32,14 @@
 
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;" id="galleryGrid">
             {% set items = [
-                ('g1','rooms','Deluxe Mountain View Room'),
-                ('g2','dining','Highland Restaurant'),
-                ('g3','pool','Heated Pool'),
+                ('g1','cabanas','Grand Family Cabana'),
+                ('g2','cabanas','Classic Cozy Cabana I'),
+                ('g3','views','Misty Mountain View'),
                 ('g4','gardens','Tea Garden Path'),
-                ('g5','views','Misty Mountain View'),
-                ('g6','rooms','Cabana Suite'),
-                ('g1','dining','Sri Lankan Breakfast'),
-                ('g2','pool','Pool Deck Sunset'),
+                ('g5','views','Sunset over the Hills'),
+                ('g6','cabanas','Classic Cozy Cabana II'),
+                ('g1','views','Highland Sunrise'),
+                ('g2','gardens','Lush Greenery'),
                 ('g3','gardens','Colonial Courtyard'),
             ] %}
             {% for cls, cat, name in items %}

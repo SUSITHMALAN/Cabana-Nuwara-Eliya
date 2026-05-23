@@ -159,65 +159,11 @@ if (testTrack) {
 
 // ===================== BOOKING MODAL =====================
 function openBooking() {
-    document.getElementById('bookingOverlay').classList.add('active');
-    document.body.style.overflow = 'hidden';
-
-    // Set default dates
-    const today = new Date();
-    const tomorrow = new Date(today);
-    tomorrow.setDate(today.getDate() + 1);
-    const checkin = document.getElementById('checkin');
-    const checkout = document.getElementById('checkout');
-    if (checkin && !checkin.value) checkin.value = today.toISOString().split('T')[0];
-    if (checkout && !checkout.value) checkout.value = tomorrow.toISOString().split('T')[0];
+    window.location.href = '/book';
 }
-
 function closeBooking() {
-    document.getElementById('bookingOverlay').classList.remove('active');
-    document.body.style.overflow = '';
+    // Legacy support
 }
-
-// Close on overlay click
-document.getElementById('bookingOverlay')?.addEventListener('click', (e) => {
-    if (e.target === document.getElementById('bookingOverlay')) closeBooking();
-});
-
-// Close on Escape
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeBooking(); });
-
-// Booking form submit
-document.getElementById('bookingForm')?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const btn = form.querySelector('button[type="submit"]');
-    const msg = document.getElementById('bookingMsg');
-    btn.textContent = 'Checking...';
-    btn.disabled = true;
-
-    try {
-        const res = await fetch('/api/book', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                checkin: form.checkin.value,
-                checkout: form.checkout.value,
-                adults: form.adults.value,
-                children: form.children.value
-            })
-        });
-        const data = await res.json();
-        msg.textContent = data.message;
-        msg.className = 'booking-msg success';
-        setTimeout(closeBooking, 2500);
-    } catch {
-        msg.textContent = 'Something went wrong. Please try again.';
-        msg.className = 'booking-msg';
-        msg.style.display = 'block';
-    } finally {
-        btn.textContent = 'Check Availability';
-        btn.disabled = false;
-    }
-});
 
 // ===================== SCROLL REVEAL =====================
 const revealObserver = new IntersectionObserver((entries) => {
@@ -243,28 +189,12 @@ document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach((el, i
 // ===================== HERO BOOKING BAR =====================
 const heroBookingForm = document.getElementById('heroBookingBar');
 if (heroBookingForm) {
-    heroBookingForm.addEventListener('submit', async (e) => {
+    heroBookingForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const btn = heroBookingForm.querySelector('button');
-        btn.textContent = 'Checking...';
-        try {
-            const res = await fetch('/api/book', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    checkin: heroBookingForm.checkin.value,
-                    checkout: heroBookingForm.checkout.value,
-                    adults: heroBookingForm.adults.value,
-                    children: '0'
-                })
-            });
-            const data = await res.json();
-            alert(data.message);
-        } catch {
-            alert('Please try again.');
-        } finally {
-            btn.textContent = 'Book Now';
-        }
+        const checkin = heroBookingForm.checkin.value;
+        const checkout = heroBookingForm.checkout.value;
+        const adults = heroBookingForm.adults.value;
+        window.location.href = `/book?checkin=${checkin}&checkout=${checkout}&guests=${adults}`;
     });
 }
 
