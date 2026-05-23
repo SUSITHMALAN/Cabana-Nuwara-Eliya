@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Discover Nuwara Eliya | Cabana Nuwara Eliya{% endblock %}
+{% block content %}
+
+<div class="page-hero">
+    <div class="page-hero-bg" style="background:linear-gradient(135deg,#0d1f10 0%,#1e3d22 50%,#3a6840 100%);"></div>
+    <div class="page-hero-content">
+        <span class="section-tag">Sri Lanka's Little England</span>
+        <h1>Discover Nuwara Eliya</h1>
+        <div class="breadcrumb"><a href="/">Home</a> › Discover</div>
+    </div>
+</div>
+
+<section style="background:var(--cream);">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Things To Do</span>
+            <h2 class="section-title">Explore the <em>Highlands</em></h2>
+            <div class="section-divider"><span></span><i class="fas fa-leaf"></i><span></span></div>
+            <p class="section-desc">Nuwara Eliya, perched at 1,868 metres above sea level, is a treasure trove of natural beauty, colonial history, and cultural richness waiting to be discovered.</p>
+        </div>
+
+        {% set attractions = [
+            ('🍃', 'Tea Estate Tours', 'Walk through lush green tea estates that produce some of the world\'s finest Ceylon tea. Watch skilled pluckers at work and taste freshly brewed single-estate teas.', '2–3 hours', '5 min from hotel'),
+            ('🏔️', 'Horton Plains National Park', 'Trek through misty cloud forests to World\'s End — a sheer cliff dropping 870 metres — and Baker\'s Falls. One of Sri Lanka\'s most dramatic landscapes.', 'Full day', '35 km from hotel'),
+            ('🌸', 'Victoria Park', 'Stroll through colonial-era botanical gardens blooming year-round with exotic flowers including rhododendrons, magnolias, and rare orchids.', '1–2 hours', '10 min walk'),
+            ('🏇', 'Nuwara Eliya Race Track', 'The scenic 19th-century horse racing track at the heart of town is a reminder of the British colonial era and hosts races during the April season.', '2 hours', '15 min from hotel'),
+            ('🚂', 'Scenic Train Ride', 'Board one of the world\'s most scenic railways from Nanu Oya and journey through tea gardens, waterfalls, and mountain passes to Ella or Kandy.', '3–5 hours', '10 min to station'),
+            ('🎣', 'Fishing at Castlereagh', 'Cast a line at the reservoir amid gorgeous mountain scenery. Trout fishing is a popular activity in Nuwara Eliya\'s cool highland lakes.', '3–4 hours', '20 km from hotel'),
+        ] %}
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:28px;">
+            {% for icon, name, desc, duration, distance in attractions %}
+            <div class="reveal" style="background:var(--white);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);transition:all 0.3s;"
+                onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='var(--shadow-lg)'"
+                onmouseout="this.style.transform='';this.style.boxShadow='var(--shadow)'">
+                <div style="height:180px;background:linear-gradient(135deg,var(--primary-dark),var(--primary));display:flex;align-items:center;justify-content:center;">
+                    <span style="font-size:4rem;">{{ icon }}</span>
+                </div>
+                <div style="padding:28px;">
+                    <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--primary-dark);margin-bottom:10px;">{{ name }}</h3>
+                    <p style="color:var(--gray);font-size:0.88rem;font-weight:300;line-height:1.7;margin-bottom:20px;">{{ desc }}</p>
+                    <div style="display:flex;gap:16px;font-size:0.78rem;color:var(--gray);border-top:1px solid var(--border);padding-top:16px;">
+                        <span><i class="fas fa-clock" style="color:var(--gold);margin-right:4px;"></i>{{ duration }}</span>
+                        <span><i class="fas fa-map-marker-alt" style="color:var(--gold);margin-right:4px;"></i>{{ distance }}</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Map Section -->
+<div id="map" style="background:var(--primary-dark);padding:80px 40px;text-align:center;color:white;">
+    <span class="section-tag" style="color:var(--gold-light);">Local Area Map</span>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3rem);font-weight:300;margin:12px 0 32px;">Find Your Way Around</h2>
+    <div style="background:rgba(255,255,255,0.06);border-radius:12px;padding:60px;max-width:700px;margin:0 auto;">
+        <i class="fas fa-map-marked-alt" style="font-size:3rem;color:var(--gold-light);margin-bottom:16px;display:block;"></i>
+        <p style="color:rgba(255,255,255,0.7);margin-bottom:24px;">Cabana Nuwara Eliya is located at the heart of town, within walking distance of major attractions.</p>
+        <a href="https://maps.google.com/?q=Nuwara+Eliya+Sri+Lanka" target="_blank" class="btn-gold">Open Google Maps</a>
+    </div>
+</div>
+
+{% endblock %}

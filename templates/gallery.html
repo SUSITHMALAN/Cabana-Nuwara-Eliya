@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title %}Gallery | Cabana Nuwara Eliya{% endblock %}
+{% block content %}
+
+<div class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-content">
+        <span class="section-tag">Visual Journey</span>
+        <h1>Gallery</h1>
+        <div class="breadcrumb"><a href="/">Home</a> › Gallery</div>
+    </div>
+</div>
+
+<section style="background:var(--cream);">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Gallery</span>
+            <h2 class="section-title">See the <em>Magic</em></h2>
+            <div class="section-divider"><span></span><i class="fas fa-leaf"></i><span></span></div>
+        </div>
+
+        <!-- Filter buttons -->
+        <div style="display:flex;gap:12px;justify-content:center;margin-bottom:40px;flex-wrap:wrap;">
+            {% for cat in ['All','Rooms','Dining','Pool','Gardens','Views'] %}
+            <button onclick="filterGallery(this, '{{ cat.lower() }}')"
+                style="padding:10px 24px;border-radius:4px;font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;
+                {% if loop.first %}background:var(--primary);color:white;border:2px solid var(--primary);{% else %}background:transparent;color:var(--dark);border:2px solid var(--border);{% endif %}">
+                {{ cat }}
+            </button>
+            {% endfor %}
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;" id="galleryGrid">
+            {% set items = [
+                ('g1','rooms','Deluxe Mountain View Room'),
+                ('g2','dining','Highland Restaurant'),
+                ('g3','pool','Heated Pool'),
+                ('g4','gardens','Tea Garden Path'),
+                ('g5','views','Misty Mountain View'),
+                ('g6','rooms','Cabana Suite'),
+                ('g1','dining','Sri Lankan Breakfast'),
+                ('g2','pool','Pool Deck Sunset'),
+                ('g3','gardens','Colonial Courtyard'),
+            ] %}
+            {% for cls, cat, name in items %}
+            <div class="gallery-item reveal" data-cat="{{ cat }}" style="height:280px;border-radius:8px;overflow:hidden;position:relative;cursor:pointer;">
+                <div class="gallery-img {{ cls }}" style="width:100%;height:100%;"></div>
+                <div class="gallery-overlay" style="border-radius:8px;">
+                    <div style="text-align:center;color:white;">
+                        <i class="fas fa-search-plus" style="font-size:1.5rem;margin-bottom:8px;display:block;"></i>
+                        <span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;">{{ name }}</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<script>
+function filterGallery(btn, cat) {
+    document.querySelectorAll('[onclick^="filterGallery"]').forEach(b => {
+        b.style.background = 'transparent';
+        b.style.color = 'var(--dark)';
+        b.style.borderColor = 'var(--border)';
+    });
+    btn.style.background = 'var(--primary)';
+    btn.style.color = 'white';
+    btn.style.borderColor = 'var(--primary)';
+
+    document.querySelectorAll('#galleryGrid .gallery-item').forEach(item => {
+        if (cat === 'all' || item.dataset.cat === cat) {
+            item.style.display = '';
+            setTimeout(() => item.style.opacity = '1', 10);
+        } else {
+            item.style.opacity = '0';
+            setTimeout(() => item.style.display = 'none', 300);
+        }
+    });
+}
+</script>
+{% endblock %}

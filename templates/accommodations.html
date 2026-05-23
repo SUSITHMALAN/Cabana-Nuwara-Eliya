@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}Rooms & Suites | Cabana Nuwara Eliya{% endblock %}
+{% block content %}
+
+<div class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-content">
+        <span class="section-tag">Accommodations</span>
+        <h1>Rooms &amp; Suites</h1>
+        <div class="breadcrumb"><a href="/">Home</a> › Accommodations</div>
+    </div>
+</div>
+
+<section style="background:var(--cream);">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Our Rooms</span>
+            <h2 class="section-title">Boutique Chic,<br><em>Highland Comfort</em></h2>
+            <div class="section-divider"><span></span><i class="fas fa-leaf"></i><span></span></div>
+            <p class="section-desc">There's nothing standard about our highland-inspired guest rooms and suites. All rooms are non-smoking and feature complimentary Wi-Fi and flat screen TVs.</p>
+        </div>
+
+        {% for room in rooms %}
+        <div style="display:grid;grid-template-columns:{% if loop.odd %}1fr 1fr{% else %}1fr 1fr{% endif %};gap:0;margin-bottom:48px;border-radius:12px;overflow:hidden;box-shadow:var(--shadow-lg);background:var(--white);" class="reveal">
+            <div style="{% if loop.even %}order:2{% endif %}background:linear-gradient(135deg,{% if loop.index == 1 %}#1a3d1c,#4a8a50{% elif loop.index == 2 %}#152018,#3a6840{% elif loop.index == 3 %}#203828,#509068{% else %}#102010,#306830{% endif %});min-height:400px;display:flex;align-items:center;justify-content:center;position:relative;">
+                <div style="text-align:center;color:rgba(255,255,255,0.1);font-size:8rem;">🏡</div>
+                <div style="position:absolute;top:24px;left:24px;background:var(--gold);color:white;padding:6px 16px;font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;border-radius:2px;">
+                    From LKR {{ "{:,}".format(room.price) }}/night
+                </div>
+                <div style="position:absolute;bottom:24px;left:24px;right:24px;">
+                    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                        <span style="background:rgba(255,255,255,0.15);color:white;padding:4px 10px;border-radius:20px;font-size:0.72rem;backdrop-filter:blur(4px);">👥 Up to {{ room.capacity }} guests</span>
+                    </div>
+                </div>
+            </div>
+            <div style="{% if loop.even %}order:1{% endif %}padding:60px 48px;display:flex;flex-direction:column;justify-content:center;">
+                <span style="font-size:0.72rem;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">Room {{ loop.index }}</span>
+                <h3 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--primary-dark);margin-bottom:16px;">{{ room.name }}</h3>
+                <p style="color:var(--gray);font-weight:300;line-height:1.8;margin-bottom:24px;">{{ room.description }}</p>
+                <div style="margin-bottom:28px;">
+                    <h5 style="font-size:0.72rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);margin-bottom:12px;">Room Amenities</h5>
+                    <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                        {% for a in room.amenities %}
+                        <span style="background:var(--cream);color:var(--primary);padding:6px 14px;border-radius:20px;font-size:0.78rem;font-weight:500;border:1px solid var(--border);">{{ a }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:16px;padding-top:24px;border-top:1px solid var(--border);">
+                    <div>
+                        <span style="font-size:0.72rem;color:var(--gray);display:block;">Starting from</span>
+                        <span style="font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--primary-dark);font-weight:400;">LKR {{ "{:,}".format(room.price) }}</span>
+                        <span style="font-size:0.78rem;color:var(--gray);">/night</span>
+                    </div>
+                    <a href="javascript:void(0)" onclick="openBooking()" class="btn-primary" style="margin-left:auto;">Book This Room</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Policies quick note -->
+<div style="background:var(--primary-dark);padding:48px 40px;">
+    <div class="container" style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;text-align:center;color:white;">
+        <div class="reveal">
+            <div style="font-size:2rem;margin-bottom:12px;">🕐</div>
+            <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;margin-bottom:8px;">Check-in / Check-out</h4>
+            <p style="color:rgba(255,255,255,0.7);font-size:0.88rem;font-weight:300;">Check-in: 2:00 PM<br>Check-out: 11:00 AM</p>
+        </div>
+        <div class="reveal">
+            <div style="font-size:2rem;margin-bottom:12px;">🚭</div>
+            <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;margin-bottom:8px;">Non-Smoking Property</h4>
+            <p style="color:rgba(255,255,255,0.7);font-size:0.88rem;font-weight:300;">All rooms and common areas are strictly non-smoking</p>
+        </div>
+        <div class="reveal">
+            <div style="font-size:2rem;margin-bottom:12px;">🐾</div>
+            <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;margin-bottom:8px;">Pet Policy</h4>
+            <p style="color:rgba(255,255,255,0.7);font-size:0.88rem;font-weight:300;">We are a pet-free property to ensure comfort for all guests</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
