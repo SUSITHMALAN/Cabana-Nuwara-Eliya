@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dining | Eury Nature Cabana</title>
+    <meta name="description" content="Enjoy fresh home-cooked Sri Lankan meals at Eury Nature Cabana. Breakfast, Lunch and Dinner served daily.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+    <style>
+        .meal-section { padding: 80px 40px; }
+        .meal-section:nth-child(even) { background: var(--cream); }
+        .meal-section:nth-child(odd) { background: white; }
+        .meal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1000px; margin: 0 auto; }
+        .meal-grid.reverse { direction: rtl; }
+        .meal-grid.reverse > * { direction: ltr; }
+        .meal-visual { height: 380px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 6rem; }
+        .meal-time-badge { display: inline-block; background: var(--primary); color: white; padding: 6px 18px; border-radius: 20px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; }
+        .menu-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border); }
+        .menu-item:last-child { border-bottom: none; }
+        .menu-item-name { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--dark); }
+        .menu-item-desc { font-size: 0.8rem; color: var(--gray); margin-top: 2px; }
+        .dining-hero-overlay { background: rgba(0,0,0,0.55); }
+    </style>
+</head>
+<body>
+
+<!-- Announcement Bar -->
+<div class="announcement-bar">
+    <p>🍳 Breakfast 7–8:30 AM &nbsp;|&nbsp; 🍛 Lunch 12–2 PM &nbsp;|&nbsp; 🌙 Dinner 6–9 PM &nbsp;|&nbsp; Fresh Home-Cooked Sri Lankan Meals</p>
+</div>
+
+<!-- Navigation -->
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+            <div class="logo-text">
+                <span class="logo-main">EURY NATURE</span>
+                <span class="logo-sub">CABANA</span>
+            </div>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="accommodations.html">Our Cabanas</a></li>
+            <li><a href="dining.html" class="active">Dining</a></li>
+            <li><a href="amenities.html">Amenities</a></li>
+            <li><a href="discover.html">Discover NE</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+            <div class="nav-social">
+                <a href="https://wa.me/94771758395" target="_blank" aria-label="WhatsApp" style="color:#25D366;"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+            <a href="book.html" class="btn-book">Book Now</a>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- Page Hero -->
+<div class="page-hero">
+    <div class="page-hero-bg" style="background:linear-gradient(135deg,#1a2f1a 0%,#2d5a1b 50%,#4a7c25 100%);"></div>
+    <div class="page-hero-content">
+        <span class="section-tag">Food &amp; Dining</span>
+        <h1>Dining at Eury Nature Cabana</h1>
+        <div class="breadcrumb"><a href="index.html">Home</a> › Dining</div>
+    </div>
+</div>
+
+<!-- Intro -->
+<section style="background:var(--cream);padding:60px 40px;text-align:center;">
+    <div class="container" style="max-width:700px;">
+        <span class="section-tag">Home-Cooked Meals</span>
+        <h2 class="section-title">Fresh, Authentic<br><em>Sri Lankan Cuisine</em></h2>
+        <div class="section-divider"><span></span><i class="fas fa-leaf"></i><span></span></div>
+        <p style="color:var(--gray);margin-top:16px;line-height:1.8;">Every meal at Eury Nature Cabana is prepared with love using fresh, locally sourced ingredients. Enjoy traditional Sri Lankan flavours in the peaceful setting of our highland retreat.</p>
+    </div>
+</section>
+
+<!-- Meal Hours Overview -->
+<section style="background:var(--dark);padding:60px 40px;">
+    <div class="container">
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px;max-width:900px;margin:0 auto;">
+            <div style="text-align:center;padding:40px 24px;border:1px solid rgba(255,255,255,0.1);border-radius:12px;background:rgba(255,255,255,0.03);">
+                <div style="font-size:3rem;margin-bottom:16px;">🍳</div>
+                <h3 style="font-family:'Cormorant Garamond',serif;color:var(--gold-light);font-size:1.8rem;font-weight:300;">Breakfast</h3>
+                <div style="width:40px;height:1px;background:var(--gold);margin:12px auto;"></div>
+                <p style="color:white;font-size:1.1rem;font-weight:500;">7:00 AM – 8:30 AM</p>
+                <p style="color:rgba(255,255,255,0.5);font-size:0.82rem;margin-top:8px;">Daily</p>
+            </div>
+            <div style="text-align:center;padding:40px 24px;border:1px solid rgba(255,255,255,0.1);border-radius:12px;background:rgba(255,255,255,0.03);">
+                <div style="font-size:3rem;margin-bottom:16px;">🍛</div>
+                <h3 style="font-family:'Cormorant Garamond',serif;color:var(--gold-light);font-size:1.8rem;font-weight:300;">Lunch</h3>
+                <div style="width:40px;height:1px;background:var(--gold);margin:12px auto;"></div>
+                <p style="color:white;font-size:1.1rem;font-weight:500;">12:00 PM – 2:00 PM</p>
+                <p style="color:rgba(255,255,255,0.5);font-size:0.82rem;margin-top:8px;">Daily</p>
+            </div>
+            <div style="text-align:center;padding:40px 24px;border:1px solid rgba(255,255,255,0.1);border-radius:12px;background:rgba(255,255,255,0.03);">
+                <div style="font-size:3rem;margin-bottom:16px;">🌙</div>
+                <h3 style="font-family:'Cormorant Garamond',serif;color:var(--gold-light);font-size:1.8rem;font-weight:300;">Dinner</h3>
+                <div style="width:40px;height:1px;background:var(--gold);margin:12px auto;"></div>
+                <p style="color:white;font-size:1.1rem;font-weight:500;">6:00 PM – 9:00 PM</p>
+                <p style="color:rgba(255,255,255,0.5);font-size:0.82rem;margin-top:8px;">Daily</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Breakfast Section -->
+<section class="meal-section">
+    <div class="meal-grid">
+        <div>
+            <span class="meal-time-badge">7:00 AM – 8:30 AM</span>
+            <h2 class="section-title" style="margin-bottom:16px;">Morning <em>Breakfast</em></h2>
+            <div class="section-divider" style="justify-content:flex-start;margin:0 0 24px;"><span></span><i class="fas fa-leaf"></i><span></span></div>
+            <p style="color:var(--gray);margin-bottom:24px;line-height:1.8;">Start your highland morning with a warm, freshly prepared Sri Lankan breakfast delivered to your cabana or enjoyed in our garden setting. Wake up to the misty mountain air and a hearty meal.</p>
+            <div class="menu-item"><div><div class="menu-item-name">Sri Lankan Egg Hoppers</div><div class="menu-item-desc">Crispy rice flour hoppers with a soft egg centre</div></div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Pol Roti with Dhal</div><div class="menu-item-desc">Coconut flatbread served with spiced lentil curry</div></div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Fresh Ceylon Tea</div><div class="menu-item-desc">Brewed from local highland tea leaves — complimentary</div></div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Seasonal Tropical Fruits</div><div class="menu-item-desc">Fresh locally sourced fruits of the season</div></div></div>
+            <div class="menu-item"><div><div class="menu-item-name">String Hoppers &amp; Coconut Sambol</div><div class="menu-item-desc">Traditional steamed rice noodles with fresh coconut</div></div></div>
+        </div>
+        <div class="meal-visual" style="background:linear-gradient(135deg,#f59e0b22,#f59e0b55);">🍳</div>
+    </div>
+</section>
+
+<!-- Lunch Section -->
+<section class="meal-section">
+    <div class="meal-grid reverse">
+        <div>
+            <span class="meal-time-badge">12:00 PM – 2:00 PM</span>
+            <h2 class="section-title" style="margin-bottom:16px;">Afternoon <em>Lunch</em></h2>
+            <div class="section-divider" style="justify-content:flex-start;margin:0 0 24px;"><span></span><i class="fas fa-leaf"></i><span></span></div>
+            <p style="color:var(--gray);margin-bottom:24px;line-height:1.8;">After a morning of exploring the tea gardens and highland trails, come back to a hearty authentic Sri Lankan rice and curry spread, made fresh with local produce.</p>
+            <div class="menu-item"><div><div class="menu-item-name">Rice &amp; Curry Plate</div><div class="menu-item-desc">Traditional Sri Lankan meal with multiple curries</div></div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Chicken or Fish Curry</div><div class="menu-item-desc">Slow-cooked in aromatic spices and coconut milk</div></div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Dhal Curry &amp; Papadum</div><div class="menu-item-desc">Creamy lentil curry with crispy papadum</div></div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Fresh Salad &amp; Pickles</div><div class="menu-item-desc">Seasonal vegetables with homemade pickles</div></div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Vegetarian Options Available</div><div class="menu-item-desc">Please inform us in advance</div></div></div>
+        </div>
+        <div class="meal-visual" style="background:linear-gradient(135deg,#f59e0b22,#16a34a33);">🍛</div>
+    </div>
+</section>
+
+<!-- Dinner Section -->
+<section class="meal-section">
+    <div class="meal-grid">
+        <div>
+            <span class="meal-time-badge">6:00 PM – 9:00 PM</span>
+            <h2 class="section-title" style="margin-bottom:16px;">Evening <em>Dinner</em></h2>
+            <div class="section-divider" style="justify-content:flex-start;margin:0 0 24px;"><span></span><i class="fas fa-leaf"></i><span></span></div>
+            <p style="color:var(--gray);margin-bottom:24px;line-height:1.8;">End your day under the starry highland sky with a warm, satisfying dinner. On select evenings, enjoy an outdoor BBQ experience around the fire with your family and friends.</p>
+            <div class="menu-item"><div><div class="menu-item-name">Highland BBQ (on request)</div><div class="menu-item-desc">Grilled meats and vegetables around the outdoor fire pit</div></div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Sri Lankan Kottu Roti</div><div class="menu-item-desc">Chopped flatbread stir-fried with vegetables and egg</div></div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Grilled Chicken &amp; Sides</div><div class="menu-item-desc">Marinated grilled chicken with roasted vegetables</div></div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Noodles &amp; Fried Rice</div><div class="menu-item-desc">Sri Lankan style fried noodles or rice</div></div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Dessert of the Day</div><div class="menu-item-desc">Traditional Sri Lankan sweets or fresh fruit</div></div></div>
+        </div>
+        <div class="meal-visual" style="background:linear-gradient(135deg,#1a2f1a,#2d5a1b);">🌙</div>
+    </div>
+</section>
+
+<!-- Note -->
+<section style="background:var(--primary-dark);padding:60px 40px;text-align:center;">
+    <div class="container" style="max-width:700px;">
+        <h3 style="font-family:'Cormorant Garamond',serif;color:white;font-size:1.8rem;font-weight:300;margin-bottom:16px;">Important Dining Notes</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:32px 0;text-align:left;">
+            <div style="background:rgba(255,255,255,0.05);padding:20px;border-radius:8px;border-left:3px solid var(--gold);">
+                <p style="color:rgba(255,255,255,0.8);font-size:0.9rem;">📋 Please inform us of <strong style="color:white;">dietary requirements or allergies</strong> at the time of booking.</p>
+            </div>
+            <div style="background:rgba(255,255,255,0.05);padding:20px;border-radius:8px;border-left:3px solid var(--gold);">
+                <p style="color:rgba(255,255,255,0.8);font-size:0.9rem;">🔥 <strong style="color:white;">BBQ dinners</strong> can be arranged in advance. Request via WhatsApp when booking.</p>
+            </div>
+            <div style="background:rgba(255,255,255,0.05);padding:20px;border-radius:8px;border-left:3px solid var(--gold);">
+                <p style="color:rgba(255,255,255,0.8);font-size:0.9rem;">🌱 <strong style="color:white;">Vegetarian meals</strong> are available. Please request in advance for preparation.</p>
+            </div>
+            <div style="background:rgba(255,255,255,0.05);padding:20px;border-radius:8px;border-left:3px solid var(--gold);">
+                <p style="color:rgba(255,255,255,0.8);font-size:0.9rem;">☕ <strong style="color:white;">Fresh Ceylon Tea</strong> is complimentary and served daily with every meal.</p>
+            </div>
+        </div>
+        <a href="book.html" class="btn-gold">Book Your Stay &amp; Meals</a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-top">
+        <div class="footer-col">
+            <div class="footer-logo"><span class="logo-main">EURY NATURE</span><span class="logo-sub">CABANA</span></div>
+            <p>A peaceful handcrafted wooden cabana retreat in the misty highlands near Nuwara Eliya, Sri Lanka. Est. 2024.</p>
+            <div class="footer-social">
+                <a href="https://wa.me/94771758395" target="_blank" style="color:#25D366;"><i class="fab fa-whatsapp"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="accommodations.html">Our Cabanas</a></li>
+                <li><a href="dining.html">Dining</a></li>
+                <li><a href="amenities.html">Amenities</a></li>
+                <li><a href="book.html">Book Now</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <p><i class="fas fa-map-marker-alt"></i> 12km from Nuwara Eliya,<br>Near Ambewela Station, Sri Lanka</p>
+            <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/94771758395">+94 77 175 8395</a></p>
+            <p><i class="fas fa-envelope"></i> <a href="mailto:eurynaturecabana26@gmail.com">eurynaturecabana26@gmail.com</a></p>
+        </div>
+        <div class="footer-col">
+            <h4>Dining Hours</h4>
+            <p>🍳 Breakfast: 7:00 AM – 8:30 AM</p>
+            <p>🍛 Lunch: 12:00 PM – 2:00 PM</p>
+            <p>🌙 Dinner: 6:00 PM – 9:00 PM</p>
+            <div style="margin-top:16px;"><a href="admin.html" style="color:rgba(255,255,255,0.3);font-size:0.72rem;"><i class="fas fa-lock" style="margin-right:4px;"></i>Admin Login</a></div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 Eury Nature Cabana. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/94771758395?text=Hello%20Eury%20Nature%20Cabana%2C%20I%20would%20like%20to%20inquire%20about%20dining." target="_blank"
+   style="position:fixed;bottom:90px;right:24px;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:1.6rem;box-shadow:0 4px 20px rgba(37,211,102,0.5);z-index:9999;text-decoration:none;">
+    <i class="fab fa-whatsapp"></i>
+</a>
+<button class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></button>
+<script src="static/js/main.js"></script>
+</body>
+</html>

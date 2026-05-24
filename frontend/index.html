@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eury Nature Cabana | Highland Retreat in Nuwara Eliya, Sri Lanka</title>
+    <meta name="description" content="Eury Nature Cabana — a peaceful, handcrafted wooden cabana retreat nestled in the misty highlands of Nuwara Eliya, Sri Lanka. Est. 2024.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+
+<!-- Announcement Bar -->
+<div class="announcement-bar">
+    <p>🍃 Now Accepting Reservations for 2025 &nbsp;|&nbsp; <a href="contact.html">Contact Us</a> &nbsp;|&nbsp; 12km from Nuwara Eliya &nbsp;|&nbsp; Est. 2024</p>
+</div>
+
+<!-- Navigation -->
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+            <div class="logo-text">
+                <span class="logo-main">EURY NATURE</span>
+                <span class="logo-sub">CABANA</span>
+            </div>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="accommodations.html">Our Cabanas</a></li>
+            <li><a href="dining.html">Dining</a></li>
+            <li><a href="amenities.html">Amenities</a></li>
+            <li><a href="discover.html">Discover NE</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+            <div class="nav-social">
+                <a href="https://wa.me/94771758395" target="_blank" aria-label="WhatsApp" style="color:#25D366;"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+            <a href="book.html" class="btn-book">Book Now</a>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- Page Loader -->
+<div class="page-loader" id="pageLoader">
+    <div class="loader-logo">EURY NATURE</div>
+    <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<!-- ===================== HERO SLIDER ===================== -->
+<section class="hero">
+    <div class="hero-slide slide-1 active">
+        <div class="hero-slide-content">
+            <span class="hero-badge">Nuwara Eliya, Sri Lanka</span>
+            <h1 class="hero-title">A Highland<br><em>Escape Like</em><br>No Other</h1>
+            <p class="hero-sub">Nestled among misty mountains &amp; lush tea gardens — Est. 2024</p>
+            <div class="hero-actions">
+                <a href="accommodations.html" class="btn-outline">Explore Cabanas</a>
+                <a href="book.html" class="btn-gold">Book Your Stay</a>
+            </div>
+        </div>
+    </div>
+    <div class="hero-slide slide-2">
+        <div class="hero-slide-content">
+            <span class="hero-badge">Boutique &amp; Cozy</span>
+            <h1 class="hero-title">Where Serenity<br><em>Meets</em><br>Nature</h1>
+            <p class="hero-sub">Private verandas with breathtaking tea plantation views</p>
+            <div class="hero-actions">
+                <a href="accommodations.html" class="btn-outline">Our Cabanas</a>
+                <a href="book.html" class="btn-gold">Reserve Now</a>
+            </div>
+        </div>
+    </div>
+    <div class="hero-slide slide-3">
+        <div class="hero-slide-content">
+            <span class="hero-badge">Authentic Sri Lanka</span>
+            <h1 class="hero-title">Ceylon Tea<br><em>&amp; Cozy</em><br>Hospitality</h1>
+            <p class="hero-sub">Complimentary fresh Ceylon tea served daily at your door</p>
+            <div class="hero-actions">
+                <a href="dining.html" class="btn-outline">View Dining</a>
+                <a href="book.html" class="btn-gold">Book Now</a>
+            </div>
+        </div>
+    </div>
+    <div class="hero-slide slide-4">
+        <div class="hero-slide-content">
+            <span class="hero-badge">Exclusive Cabanas</span>
+            <h1 class="hero-title">Your Private<br><em>Mountain</em><br>Sanctuary</h1>
+            <p class="hero-sub">Two exclusive handcrafted cabanas — Just 12km from Nuwara Eliya</p>
+            <div class="hero-actions">
+                <a href="accommodations.html" class="btn-outline">View Cabanas</a>
+                <a href="book.html" class="btn-gold">Book Now</a>
+            </div>
+        </div>
+    </div>
+    <div class="slider-arrows">
+        <button class="slider-arrow" id="heroPrev"><i class="fas fa-chevron-left"></i></button>
+        <button class="slider-arrow" id="heroNext"><i class="fas fa-chevron-right"></i></button>
+    </div>
+    <div class="slider-dots">
+        <button class="slider-dot active"></button>
+        <button class="slider-dot"></button>
+        <button class="slider-dot"></button>
+        <button class="slider-dot"></button>
+    </div>
+    <!-- Booking Bar -->
+    <div class="hero-booking-bar">
+        <form id="heroBookingBar" style="display:flex;align-items:flex-end;gap:16px;width:100%;flex-wrap:wrap;">
+            <div class="form-group">
+                <label>Check-in Date</label>
+                <input type="date" name="checkin" id="heroCheckin" required>
+            </div>
+            <div class="form-group">
+                <label>Check-out Date</label>
+                <input type="date" name="checkout" id="heroCheckout" required>
+            </div>
+            <div class="form-group">
+                <label>Guests</label>
+                <select name="guests" id="heroGuests">
+                    <option>1</option><option selected>2</option>
+                    <option>3</option><option>4</option><option>5</option>
+                    <option>6</option><option>7</option><option>8</option><option>9</option>
+                </select>
+            </div>
+            <button type="submit" class="btn-book" style="flex-shrink:0;padding:12px 32px;font-size:0.82rem;">Check Availability</button>
+        </form>
+    </div>
+</section>
+
+<!-- ===================== AWARDS STRIP ===================== -->
+<div class="awards-strip">
+    <div class="award-item">
+        <div class="award-icon">🏡</div>
+        <div class="award-text">2 Exclusive Handcrafted Cabanas</div>
+    </div>
+    <div class="award-item">
+        <div class="award-icon">📍</div>
+        <div class="award-text">12km from Nuwara Eliya</div>
+    </div>
+    <div class="award-item">
+        <div class="award-icon">🚂</div>
+        <div class="award-text">4km from Ambewela Station</div>
+    </div>
+    <div class="award-item">
+        <div class="award-icon">☕</div>
+        <div class="award-text">Free Ceylon Tea Daily</div>
+    </div>
+</div>
+
+<!-- ===================== ABOUT SECTION ===================== -->
+<section class="about-section">
+    <div class="about-grid">
+        <div class="about-image reveal-left">
+            <div style="width:100%;height:100%;background:linear-gradient(135deg,#1a3d1c 0%,#2c5f2e 40%,#5a9a60 70%,#8aba80 100%);min-height:500px;display:flex;align-items:center;justify-content:center;">
+                <div style="text-align:center;color:rgba(255,255,255,0.15);font-family:'Cormorant Garamond',serif;font-size:8rem;font-weight:300;user-select:none;">🏡</div>
+            </div>
+            <div class="about-img-overlay">
+                <div>Est. 2024 &nbsp;·&nbsp; 12km from Nuwara Eliya</div>
+            </div>
+        </div>
+        <div class="about-content reveal-right">
+            <span class="section-tag">About Us</span>
+            <h2 class="section-title">Eury Nature Cabana<br><em>In the Misty Highlands</em></h2>
+            <div class="section-divider" style="justify-content:flex-start;margin:16px 0;">
+                <span></span><i class="fas fa-leaf"></i><span></span>
+            </div>
+            <p>Eury Nature Cabana is a peaceful, handcrafted wooden cabana retreat nestled in Sri Lanka's "Little England." We offer two exclusive cabanas — a spacious Main Cabana and a cozy Little Eury Nature Cabana — surrounded by misty mountains and lush tea gardens.</p>
+            <p>Each cabana is thoughtfully designed to give you privacy, comfort, and a deep connection with nature. Located just 12km from Nuwara Eliya and 4km from Ambewela Station, we are perfectly placed for highland adventures.</p>
+            <p>Our warm team ensures every moment is special — from guided tea estate walks to peaceful evenings around the BBQ under a starry highland sky. 🚫 No pets allowed.</p>
+            <a href="accommodations.html" class="btn-primary" style="margin-top:20px;">Explore Our Cabanas</a>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== STATS ===================== -->
+<div style="background:var(--cream);padding:60px 40px;">
+    <div class="container">
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center;">
+            <div class="reveal">
+                <div style="font-family:'Cormorant Garamond',serif;font-size:3.5rem;color:var(--primary-dark);font-weight:300;line-height:1;">2</div>
+                <div style="font-size:0.78rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);margin-top:8px;">Exclusive Cabanas</div>
+            </div>
+            <div class="reveal">
+                <div style="font-family:'Cormorant Garamond',serif;font-size:3.5rem;color:var(--primary-dark);font-weight:300;line-height:1;">13</div>
+                <div style="font-size:0.78rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);margin-top:8px;">Max Guests</div>
+            </div>
+            <div class="reveal">
+                <div style="font-family:'Cormorant Garamond',serif;font-size:3.5rem;color:var(--primary-dark);font-weight:300;line-height:1;">12km</div>
+                <div style="font-size:0.78rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);margin-top:8px;">From Nuwara Eliya</div>
+            </div>
+            <div class="reveal">
+                <div style="font-family:'Cormorant Garamond',serif;font-size:3.5rem;color:var(--primary-dark);font-weight:300;line-height:1;">2024</div>
+                <div style="font-size:0.78rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);margin-top:8px;">Established</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===================== ROOMS SECTION ===================== -->
+<section class="rooms-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Accommodations</span>
+            <h2 class="section-title">Our Exclusive <em>Cabanas</em></h2>
+            <div class="section-divider"><span></span><i class="fas fa-leaf"></i><span></span></div>
+            <p class="section-desc">Two handcrafted wooden cabanas — one spacious for large groups, one cozy for couples or small families. Nestled in pristine nature, 12km from Nuwara Eliya.</p>
+        </div>
+        <div class="rooms-grid" id="roomsGrid">
+            <!-- Loaded via JS -->
+            <div class="room-card reveal">
+                <div class="room-img"><div class="room-img-bg r1"></div><div class="room-badge">From LKR 25,000</div></div>
+                <div class="room-body">
+                    <h3 class="room-name">Main Cabana (Eury Nature Cabana)</h3>
+                    <p class="room-desc">Our spacious signature cabana with 3 triple beds. Capacity up to 9 guests. Perfect for families and larger groups.</p>
+                    <div class="room-amenities">
+                        <span class="room-amenity">3x Triple Beds</span>
+                        <span class="room-amenity">Capacity: 9</span>
+                        <span class="room-amenity">TV Support</span>
+                        <span class="room-amenity">Free Wi-Fi</span>
+                    </div>
+                    <div class="room-footer">
+                        <div class="room-price">
+                            <span class="room-price-from">From</span>
+                            <span class="room-price-amount">LKR 25,000</span>
+                            <span class="room-price-night">/ night</span>
+                        </div>
+                        <a href="book.html?cabana_id=1" class="btn-primary dark" style="padding:10px 20px;font-size:0.72rem;">Book Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="room-card reveal">
+                <div class="room-img"><div class="room-img-bg r2"></div><div class="room-badge">From LKR 15,000</div></div>
+                <div class="room-body">
+                    <h3 class="room-name">Little Eury Nature Cabana</h3>
+                    <p class="room-desc">A private sanctuary with 2 double beds. Capacity up to 4 guests. Stunning views of the surrounding misty hills.</p>
+                    <div class="room-amenities">
+                        <span class="room-amenity">2x Double Beds</span>
+                        <span class="room-amenity">Capacity: 4</span>
+                        <span class="room-amenity">TV Support</span>
+                        <span class="room-amenity">Free Wi-Fi</span>
+                    </div>
+                    <div class="room-footer">
+                        <div class="room-price">
+                            <span class="room-price-from">From</span>
+                            <span class="room-price-amount">LKR 15,000</span>
+                            <span class="room-price-night">/ night</span>
+                        </div>
+                        <a href="book.html?cabana_id=2" class="btn-primary dark" style="padding:10px 20px;font-size:0.72rem;">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="text-align:center;margin-top:48px;">
+            <a href="accommodations.html" class="btn-primary">View All Details</a>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== DINING TEASER ===================== -->
+<section style="background:var(--dark);padding:80px 40px;text-align:center;">
+    <div class="container">
+        <span class="section-tag" style="color:var(--gold-light);">Dining</span>
+        <h2 class="section-title" style="color:white;margin:12px 0;">Fresh Home-Cooked<br><em>Sri Lankan Meals</em></h2>
+        <div class="section-divider"><span style="background:rgba(255,255,255,0.2);"></span><i class="fas fa-leaf" style="color:var(--gold-light);"></i><span style="background:rgba(255,255,255,0.2);"></span></div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin:48px 0;max-width:700px;margin-left:auto;margin-right:auto;">
+            <div style="color:white;">
+                <div style="font-size:2.5rem;margin-bottom:8px;">🍳</div>
+                <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--gold-light);margin-bottom:4px;">Breakfast</h4>
+                <p style="color:rgba(255,255,255,0.6);font-size:0.85rem;">7:00 AM – 8:30 AM</p>
+            </div>
+            <div style="color:white;">
+                <div style="font-size:2.5rem;margin-bottom:8px;">🍛</div>
+                <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--gold-light);margin-bottom:4px;">Lunch</h4>
+                <p style="color:rgba(255,255,255,0.6);font-size:0.85rem;">12:00 PM – 2:00 PM</p>
+            </div>
+            <div style="color:white;">
+                <div style="font-size:2.5rem;margin-bottom:8px;">🌙</div>
+                <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--gold-light);margin-bottom:4px;">Dinner</h4>
+                <p style="color:rgba(255,255,255,0.6);font-size:0.85rem;">6:00 PM – 9:00 PM</p>
+            </div>
+        </div>
+        <a href="dining.html" class="btn-gold">See Full Menu Details</a>
+    </div>
+</section>
+
+<!-- ===================== AMENITIES SECTION ===================== -->
+<section class="amenities-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">The Amenities</span>
+            <h2 class="section-title">Everything at Your<br><em>Fingertips</em></h2>
+            <div class="section-divider"><span></span><i class="fas fa-leaf"></i><span></span></div>
+            <p class="section-desc">At Eury Nature Cabana, everything you need is right here. From BBQ evenings to indoor games, every detail has been crafted for your comfort.</p>
+        </div>
+        <div class="amenities-grid">
+            <div class="amenity-card reveal"><div class="amenity-icon">🎮</div><h4 class="amenity-name">Indoor Games</h4><p class="amenity-desc">Carrom, Chess &amp; Card Games available</p></div>
+            <div class="amenity-card reveal"><div class="amenity-icon">🔥</div><h4 class="amenity-name">BBQ Facilities</h4><p class="amenity-desc">Outdoor BBQ setup for evening cookouts</p></div>
+            <div class="amenity-card reveal"><div class="amenity-icon">📺</div><h4 class="amenity-name">TV Support</h4><p class="amenity-desc">Entertainment with TV support in cabanas</p></div>
+            <div class="amenity-card reveal"><div class="amenity-icon">🚗</div><h4 class="amenity-name">Parking Space</h4><p class="amenity-desc">Secure parking available for guests</p></div>
+            <div class="amenity-card reveal"><div class="amenity-icon">🌐</div><h4 class="amenity-name">High-Speed Wi-Fi</h4><p class="amenity-desc">Stay connected throughout your stay</p></div>
+            <div class="amenity-card reveal"><div class="amenity-icon">🌅</div><h4 class="amenity-name">Scenic Deck</h4><p class="amenity-desc">Panoramic views of misty mountains</p></div>
+        </div>
+        <div style="text-align:center;margin-top:24px;">
+            <p style="color:var(--gray);font-size:0.85rem;margin-bottom:16px;">🚫 No pets allowed on the property.</p>
+            <a href="amenities.html" class="btn-primary">All Amenities</a>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== GALLERY SECTION ===================== -->
+<section class="gallery-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Gallery</span>
+            <h2 class="section-title">A Glimpse of<br><em>Cabana Life</em></h2>
+            <div class="section-divider"><span></span><i class="fas fa-leaf"></i><span></span></div>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item reveal"><div class="gallery-img g1" style="height:452px;"></div><div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
+            <div class="gallery-item reveal"><div class="gallery-img g2"></div><div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
+            <div class="gallery-item reveal"><div class="gallery-img g3"></div><div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
+            <div class="gallery-item reveal"><div class="gallery-img g4"></div><div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
+            <div class="gallery-item reveal"><div class="gallery-img g5" style="height:220px;"></div><div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
+            <div class="gallery-item reveal"><div class="gallery-img g6"></div><div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
+        </div>
+        <div style="text-align:center;margin-top:48px;">
+            <a href="gallery.html" class="btn-primary">View Full Gallery</a>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== TESTIMONIALS ===================== -->
+<section class="testimonials-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Our Guests</span>
+            <h2 class="section-title">What They <em>Say</em></h2>
+            <div class="section-divider"><span></span><i class="fas fa-leaf"></i><span></span></div>
+        </div>
+        <div class="testimonials-slider">
+            <div class="testimonials-track" id="testimonialsTrack">
+                <div class="testimonial-slide">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"An absolutely magical stay! The misty mornings, the cozy private veranda, and the warm Ceylon tea made our anniversary unforgettable. Eury Nature Cabana exceeded every expectation."</p>
+                    <div class="testimonial-author">— Ashan &amp; Dilini</div>
+                    <div class="testimonial-location">Colombo, Sri Lanka</div>
+                </div>
+                <div class="testimonial-slide">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"The most charming wooden cabanas we've stayed at in Sri Lanka. The mountain views are spectacular, the space is beautifully cozy, and the staff is extremely hospitable."</p>
+                    <div class="testimonial-author">— James &amp; Sarah</div>
+                    <div class="testimonial-location">London, UK</div>
+                </div>
+                <div class="testimonial-slide">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Perfect highland escape for the family. The kids loved the tea gardens and the BBQ evenings. The hospitality was exceptional and we'll definitely be back!"</p>
+                    <div class="testimonial-author">— Priya &amp; Family</div>
+                    <div class="testimonial-location">Bangalore, India</div>
+                </div>
+            </div>
+        </div>
+        <div class="test-controls">
+            <button class="test-dot active"></button>
+            <button class="test-dot"></button>
+            <button class="test-dot"></button>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== LOCATION SECTION ===================== -->
+<section class="location-section">
+    <div class="location-grid">
+        <div class="location-map reveal-left">
+            <div class="map-placeholder">
+                <i class="fas fa-map-marked-alt"></i>
+                <p>Eury Nature Cabana<br>12km from Nuwara Eliya</p>
+                <a href="https://maps.google.com/?q=Ambewela+Nuwara+Eliya+Sri+Lanka" target="_blank" class="btn-primary" style="margin-top:20px;display:inline-block;">Open in Maps</a>
+            </div>
+        </div>
+        <div class="location-content reveal-right">
+            <span class="section-tag">The Location</span>
+            <h2 class="section-title" style="color:white;">In the Heart of<br><em>Sri Lanka's Highlands</em></h2>
+            <div class="section-divider" style="justify-content:flex-start;margin:16px 0 28px;">
+                <span style="background:rgba(255,255,255,0.2);"></span><i class="fas fa-leaf" style="color:var(--gold-light);"></i><span style="background:rgba(255,255,255,0.2);"></span>
+            </div>
+            <div class="location-detail">
+                <i class="fas fa-map-marker-alt"></i>
+                <div class="location-detail-text">
+                    <h5>Distance</h5>
+                    <p>12 km from Nuwara Eliya &nbsp;·&nbsp; 4 km from Ambewela Station</p>
+                </div>
+            </div>
+            <div class="location-detail">
+                <i class="fas fa-car"></i>
+                <div class="location-detail-text">
+                    <h5>From Colombo</h5>
+                    <p>Approx. 3.5 hours by road (168 km)</p>
+                </div>
+            </div>
+            <div class="location-detail">
+                <i class="fas fa-phone"></i>
+                <div class="location-detail-text">
+                    <h5>WhatsApp / Phone</h5>
+                    <p><a href="https://wa.me/94771758395" target="_blank" style="color:var(--gold-light);">+94 77 175 8395</a></p>
+                </div>
+            </div>
+            <div class="location-detail">
+                <i class="fas fa-envelope"></i>
+                <div class="location-detail-text">
+                    <h5>Email</h5>
+                    <p><a href="mailto:eurynaturecabana26@gmail.com" style="color:var(--gold-light);">eurynaturecabana26@gmail.com</a></p>
+                </div>
+            </div>
+            <a href="contact.html" class="btn-gold" style="margin-top:12px;">Contact Us</a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-top">
+        <div class="footer-col">
+            <div class="footer-logo">
+                <span class="logo-main">EURY NATURE</span>
+                <span class="logo-sub">CABANA</span>
+            </div>
+            <p>A peaceful handcrafted wooden cabana retreat in the misty highlands near Nuwara Eliya, Sri Lanka. Est. 2024.</p>
+            <div class="footer-social">
+                <a href="https://wa.me/94771758395" target="_blank" style="color:#25D366;" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="accommodations.html">Our Cabanas</a></li>
+                <li><a href="dining.html">Dining</a></li>
+                <li><a href="amenities.html">Amenities</a></li>
+                <li><a href="book.html">Book Now</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="discover.html">Discover Nuwara Eliya</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <p><i class="fas fa-map-marker-alt"></i> 12km from Nuwara Eliya,<br>Near Ambewela Station,<br>Sri Lanka</p>
+            <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/94771758395" target="_blank">+94 77 175 8395</a></p>
+            <p><i class="fas fa-envelope"></i> <a href="mailto:eurynaturecabana26@gmail.com">eurynaturecabana26@gmail.com</a></p>
+            <p><i class="fas fa-globe"></i> <a href="http://eurynaturecabana.hotel.lk">eurynaturecabana.hotel.lk</a></p>
+        </div>
+        <div class="footer-col">
+            <h4>Dining Hours</h4>
+            <p>🍳 Breakfast: 7:00 AM – 8:30 AM</p>
+            <p>🍛 Lunch: 12:00 PM – 2:00 PM</p>
+            <p>🌙 Dinner: 6:00 PM – 9:00 PM</p>
+            <br>
+            <p style="font-size:0.8rem;color:var(--gold-light);">🚫 No pets allowed</p>
+            <div style="margin-top:16px;">
+                <a href="admin.html" style="color:rgba(255,255,255,0.3);font-size:0.72rem;letter-spacing:0.1em;">
+                    <i class="fas fa-lock" style="margin-right:4px;"></i>Admin Login
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 Eury Nature Cabana. All Rights Reserved.</p>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms &amp; Conditions</a>
+            <a href="sitemap.html">Sitemap</a>
+        </div>
+    </div>
+</footer>
+
+<!-- WhatsApp Float Button -->
+<a href="https://wa.me/94771758395?text=Hello%20Eury%20Nature%20Cabana%2C%20I%20would%20like%20to%20inquire%20about%20a%20booking."
+   target="_blank"
+   style="position:fixed;bottom:90px;right:24px;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:1.6rem;box-shadow:0 4px 20px rgba(37,211,102,0.5);z-index:9999;text-decoration:none;transition:transform 0.2s;"
+   title="Chat on WhatsApp"
+   onmouseover="this.style.transform='scale(1.1)'"
+   onmouseout="this.style.transform='scale(1)'">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- Back to Top -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+</button>
+
+<script src="static/js/main.js"></script>
+<script>
+    // Hero Booking Bar redirect
+    document.getElementById('heroBookingBar').addEventListener('submit', function(e){
+        e.preventDefault();
+        const checkin = document.getElementById('heroCheckin').value;
+        const checkout = document.getElementById('heroCheckout').value;
+        const guests = document.getElementById('heroGuests').value;
+        window.location.href = `book.html?checkin=${checkin}&checkout=${checkout}&guests=${guests}`;
+    });
+</script>
+</body>
+</html>

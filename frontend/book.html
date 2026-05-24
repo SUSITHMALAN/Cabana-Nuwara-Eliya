@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Eury Nature Cabana | Luxury Highland Hotel Sri Lanka{% endblock %}</title>
+    <meta name="description" content="Experience luxury in the misty highlands of Nuwara Eliya. Cabana Hotel offers boutique chic rooms, tea garden views, and world-class Sri Lankan hospitality.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+<!-- Announcement Bar -->
+<div class="announcement-bar">
+    <p>🍃 Now Accepting Reservations for 2025 &nbsp;|&nbsp; <a href="/contact">Contact Us</a> &nbsp;|&nbsp; Free Ceylon Tea Daily</p>
+</div>
+
+<!-- Navigation -->
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <a href="/" class="nav-logo">
+            <div class="logo-text">
+                <span class="logo-main">CABANA</span>
+                <span class="logo-sub">NUWARA ELIYA</span>
+            </div>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="/">Home</a></li>
+            <li><a href="/accommodations">Our Cabanas</a></li>
+            <li><a href="/amenities">Amenities</a></li>
+            <li><a href="/discover">Discover NE</a></li>
+            <li><a href="/gallery">Gallery</a></li>
+            <li><a href="/contact">Contact Us</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <div class="nav-social">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+            <a href="/book" class="btn-book">Book Now</a>
+        </div>
+
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<div class="page-hero">
+    <div class="page-hero-bg" style="background: linear-gradient(135deg, #152c17 0%, #2c5f2e 100%);"></div>
+    <div class="page-hero-content">
+        <span class="section-tag">Reservations</span>
+        <h1>Book Your Cabana</h1>
+        <div class="breadcrumb"><a href="/">Home</a> › Book</div>
+    </div>
+</div>
+
+<section style="background: var(--cream); padding: 60px 0;">
+    <div class="container">
+        <div class="alert-banner">
+            <strong>🍃 Misty Highland Retreat:</strong> We have only <strong>three exclusive cabanas</strong> on our property—one large family cabana and two cozy small cabanas. Please secure your reservation in advance for an intimate nature experience.
+        </div>
+
+        <div class="booking-container">
+            <!-- Booking Form -->
+            <div class="booking-card reveal-left">
+                <form id="realBookingForm">
+                    <!-- Section 1: Contact Details -->
+                    <div class="form-section">
+                        <h3 class="form-section-title">1. Guest Details</h3>
+                        <div class="form-grid">
+                            <div>
+                                <label for="fname">First Name *</label>
+                                <input type="text" id="fname" name="fname" class="input-field" required placeholder="John">
+                            </div>
+                            <div>
+                                <label for="lname">Last Name *</label>
+                                <input type="text" id="lname" name="lname" class="input-field" required placeholder="Smith">
+                            </div>
+                        </div>
+                        <div class="form-grid">
+                            <div>
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" class="input-field" required placeholder="john@example.com">
+                            </div>
+                            <div>
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" class="input-field" required placeholder="+94 77 175 8395">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 2: Cabana & Dates -->
+                    <div class="form-section">
+                        <h3 class="form-section-title">2. Accommodation Details</h3>
+                        <div class="full-width-field">
+                            <label for="cabana_select">Select Your Cabana *</label>
+                            <select id="cabana_select" name="cabana_id" class="input-field" style="height: 50px;">
+                                {% for room in rooms %}
+                                <option value="{{ room.id }}" data-price="{{ room.price }}" data-capacity="{{ room.capacity }}">
+                                    {{ room.name }} — LKR {{ "{:,}".format(room.price) }} / night (Max {{ room.capacity }} guests)
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-grid">
+                            <div>
+                                <label for="checkin_date">Check-in Date *</label>
+                                <input type="date" id="checkin_date" name="checkin" class="input-field" required>
+                            </div>
+                            <div>
+                                <label for="checkin_time">Check-in Time *</label>
+                                <select id="checkin_time" name="checkin_time" class="input-field">
+                                    <option value="14:00" selected>14:00 (Standard Check-in)</option>
+                                    <option value="15:00">15:00</option>
+                                    <option value="16:00">16:00</option>
+                                    <option value="17:00">17:00</option>
+                                    <option value="18:00">18:00 or later</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <div>
+                                <label for="checkout_date">Check-out Date *</label>
+                                <input type="date" id="checkout_date" name="checkout" class="input-field" required>
+                            </div>
+                            <div>
+                                <label for="checkout_time">Check-out Time *</label>
+                                <select id="checkout_time" name="checkout_time" class="input-field">
+                                    <option value="11:00" selected>11:00 (Standard Check-out)</option>
+                                    <option value="10:00">10:00</option>
+                                    <option value="09:00">09:00</option>
+                                    <option value="08:00">08:00 or earlier</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <div>
+                                <label for="guest_count">Number of Guests *</label>
+                                <select id="guest_count" name="guests" class="input-field">
+                                    <!-- Options populated dynamically by JS based on Selected Cabana capacity -->
+                                </select>
+                            </div>
+                            <div>
+                                <label for="days_spent">Days Spent (Nights)</label>
+                                <input type="text" id="days_spent" name="days_spent" class="input-field" readonly style="background: rgba(0,0,0,0.05); font-weight: 600;" value="1">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 3: Special requests -->
+                    <div class="form-section">
+                        <h3 class="form-section-title">3. Special Requests</h3>
+                        <div class="full-width-field">
+                            <label for="notes">Notes / Special Requirements</label>
+                            <textarea id="notes" name="notes" rows="4" class="input-field" style="resize: vertical;" placeholder="Let us know if you need early check-in, dietary preferences, or specific arrangements..."></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Booking Summary Sidebar -->
+            <div class="summary-card reveal-right">
+                <h3 class="summary-title">Booking Summary</h3>
+                
+                <div class="summary-row">
+                    <span>Cabana</span>
+                    <span class="summary-value" id="sum_cabana">--</span>
+                </div>
+                <div class="summary-row">
+                    <span>Rate / Night</span>
+                    <span class="summary-value" id="sum_rate">LKR 0</span>
+                </div>
+                <div class="summary-row">
+                    <span>Check-in</span>
+                    <span class="summary-value" id="sum_checkin">--</span>
+                </div>
+                <div class="summary-row">
+                    <span>Check-out</span>
+                    <span class="summary-value" id="sum_checkout">--</span>
+                </div>
+                <div class="summary-row">
+                    <span>Nights</span>
+                    <span class="summary-value" id="sum_nights">0</span>
+                </div>
+                <div class="summary-row">
+                    <span>Guests</span>
+                    <span class="summary-value" id="sum_guests">--</span>
+                </div>
+
+                <div class="summary-row total">
+                    <span>Total Cost</span>
+                    <span class="summary-value" id="sum_total" style="color: var(--gold-light); font-weight: 600;">LKR 0</span>
+                </div>
+
+                <button type="submit" form="realBookingForm" class="btn-gold full-width" style="margin-top: 28px; padding: 14px; font-size: 0.9rem;">
+                    Confirm Reservation
+                </button>
+                <div id="bookingResultMsg" style="margin-top: 16px; text-align: center; font-size: 0.9rem; font-weight: 300;"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-top">
+        <div class="footer-col">
+            <div class="footer-logo">
+                <span class="logo-main">CABANA</span>
+                <span class="logo-sub">NUWARA ELIYA</span>
+            </div>
+            <p>A boutique highland retreat nestled in the misty mountains of Nuwara Eliya, Sri Lanka. Where luxury meets nature.</p>
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="/accommodations">Our Cabanas</a></li>
+                <li><a href="/amenities">Amenities</a></li>
+                <li><a href="/book">Book Now</a></li>
+                <li><a href="/gallery">Gallery</a></li>
+                <li><a href="/discover">Discover Nuwara Eliya</a></li>
+                <li><a href="/contact">Contact Us</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <p><i class="fas fa-map-marker-alt"></i> 45 Grand Hotel Road,<br>Nuwara Eliya 22200,<br>Sri Lanka</p>
+            <p><i class="fas fa-phone"></i> <a href="tel:+94522222222">+94 52 222 2222</a></p>
+            <p><i class="fas fa-envelope"></i> <a href="mailto:info@cabananuwaraeliya.lk">info@cabananuwaraeliya.lk</a></p>
+        </div>
+        <div class="footer-col">
+            <h4>Weather</h4>
+            <div class="weather-widget">
+                <div class="weather-icon">⛅</div>
+                <div class="weather-info">
+                    <span class="temp" id="footerTemp">18°C</span>
+                    <span class="weather-desc">Nuwara Eliya, LK</span>
+                    <span class="weather-sub">Cool &amp; Misty</span>
+                </div>
+            </div>
+            <div class="footer-awards">
+                <span class="award-badge">⭐ TripAdvisor Choice</span>
+                <span class="award-badge">🏆 Best Boutique Hotel 2024</span>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 Eury Nature Cabana. All Rights Reserved.</p>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Cookie Policy</a>
+            <a href="#">Accessibility</a>
+            <a href="#">Sitemap</a>
+        </div>
+    </div>
+</footer>
+
+<!-- Back to Top -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+</button>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>

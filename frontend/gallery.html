@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Eury Nature Cabana | Luxury Highland Hotel Sri Lanka{% endblock %}</title>
+    <meta name="description" content="Experience luxury in the misty highlands of Nuwara Eliya. Cabana Hotel offers boutique chic rooms, tea garden views, and world-class Sri Lankan hospitality.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+<!-- Announcement Bar -->
+<div class="announcement-bar">
+    <p>🍃 Now Accepting Reservations for 2025 &nbsp;|&nbsp; <a href="/contact">Contact Us</a> &nbsp;|&nbsp; Free Ceylon Tea Daily</p>
+</div>
+
+<!-- Navigation -->
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <a href="/" class="nav-logo">
+            <div class="logo-text">
+                <span class="logo-main">CABANA</span>
+                <span class="logo-sub">NUWARA ELIYA</span>
+            </div>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="/">Home</a></li>
+            <li><a href="/accommodations">Our Cabanas</a></li>
+            <li><a href="/amenities">Amenities</a></li>
+            <li><a href="/discover">Discover NE</a></li>
+            <li><a href="/gallery">Gallery</a></li>
+            <li><a href="/contact">Contact Us</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <div class="nav-social">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+            <a href="/book" class="btn-book">Book Now</a>
+        </div>
+
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<div class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-content">
+        <span class="section-tag">Visual Journey</span>
+        <h1>Gallery</h1>
+        <div class="breadcrumb"><a href="/">Home</a> › Gallery</div>
+    </div>
+</div>
+
+<section style="background:var(--cream);">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Gallery</span>
+            <h2 class="section-title">See the <em>Magic</em></h2>
+            <div class="section-divider"><span></span><i class="fas fa-leaf"></i><span></span></div>
+        </div>
+
+        <!-- Filter buttons -->
+        <div style="display:flex;gap:12px;justify-content:center;margin-bottom:40px;flex-wrap:wrap;">
+            {% for cat in ['All','Cabanas','Gardens','Views'] %}
+            <button onclick="filterGallery(this, '{{ cat.lower() }}')"
+                style="padding:10px 24px;border-radius:4px;font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;
+                {% if loop.first %}background:var(--primary);color:white;border:2px solid var(--primary);{% else %}background:transparent;color:var(--dark);border:2px solid var(--border);{% endif %}">
+                {{ cat }}
+            </button>
+            {% endfor %}
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;" id="galleryGrid">
+            {% set items = [
+                ('g1','cabanas','Grand Family Cabana'),
+                ('g2','cabanas','Classic Cozy Cabana I'),
+                ('g3','views','Misty Mountain View'),
+                ('g4','gardens','Tea Garden Path'),
+                ('g5','views','Sunset over the Hills'),
+                ('g6','cabanas','Classic Cozy Cabana II'),
+                ('g1','views','Highland Sunrise'),
+                ('g2','gardens','Lush Greenery'),
+                ('g3','gardens','Colonial Courtyard'),
+            ] %}
+            {% for cls, cat, name in items %}
+            <div class="gallery-item reveal" data-cat="{{ cat }}" style="height:280px;border-radius:8px;overflow:hidden;position:relative;cursor:pointer;">
+                <div class="gallery-img {{ cls }}" style="width:100%;height:100%;"></div>
+                <div class="gallery-overlay" style="border-radius:8px;">
+                    <div style="text-align:center;color:white;">
+                        <i class="fas fa-search-plus" style="font-size:1.5rem;margin-bottom:8px;display:block;"></i>
+                        <span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;">{{ name }}</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<script>
+function filterGallery(btn, cat) {
+    document.querySelectorAll('[onclick^="filterGallery"]').forEach(b => {
+        b.style.background = 'transparent';
+        b.style.color = 'var(--dark)';
+        b.style.borderColor = 'var(--border)';
+    });
+    btn.style.background = 'var(--primary)';
+    btn.style.color = 'white';
+    btn.style.borderColor = 'var(--primary)';
+
+    document.querySelectorAll('#galleryGrid .gallery-item').forEach(item => {
+        if (cat === 'all' || item.dataset.cat === cat) {
+            item.style.display = '';
+            setTimeout(() => item.style.opacity = '1', 10);
+        } else {
+            item.style.opacity = '0';
+            setTimeout(() => item.style.display = 'none', 300);
+        }
+    });
+}
+</script>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-top">
+        <div class="footer-col">
+            <div class="footer-logo">
+                <span class="logo-main">CABANA</span>
+                <span class="logo-sub">NUWARA ELIYA</span>
+            </div>
+            <p>A boutique highland retreat nestled in the misty mountains of Nuwara Eliya, Sri Lanka. Where luxury meets nature.</p>
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="/accommodations">Our Cabanas</a></li>
+                <li><a href="/amenities">Amenities</a></li>
+                <li><a href="/book">Book Now</a></li>
+                <li><a href="/gallery">Gallery</a></li>
+                <li><a href="/discover">Discover Nuwara Eliya</a></li>
+                <li><a href="/contact">Contact Us</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <p><i class="fas fa-map-marker-alt"></i> 45 Grand Hotel Road,<br>Nuwara Eliya 22200,<br>Sri Lanka</p>
+            <p><i class="fas fa-phone"></i> <a href="tel:+94522222222">+94 52 222 2222</a></p>
+            <p><i class="fas fa-envelope"></i> <a href="mailto:info@cabananuwaraeliya.lk">info@cabananuwaraeliya.lk</a></p>
+        </div>
+        <div class="footer-col">
+            <h4>Weather</h4>
+            <div class="weather-widget">
+                <div class="weather-icon">⛅</div>
+                <div class="weather-info">
+                    <span class="temp" id="footerTemp">18°C</span>
+                    <span class="weather-desc">Nuwara Eliya, LK</span>
+                    <span class="weather-sub">Cool &amp; Misty</span>
+                </div>
+            </div>
+            <div class="footer-awards">
+                <span class="award-badge">⭐ TripAdvisor Choice</span>
+                <span class="award-badge">🏆 Best Boutique Hotel 2024</span>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 Eury Nature Cabana. All Rights Reserved.</p>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Cookie Policy</a>
+            <a href="#">Accessibility</a>
+            <a href="#">Sitemap</a>
+        </div>
+    </div>
+</footer>
+
+<!-- Back to Top -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+</button>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>

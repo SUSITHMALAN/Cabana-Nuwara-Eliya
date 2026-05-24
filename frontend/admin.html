@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Eury Nature Cabana</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2d6a4f;
+            --primary-dark: #1a3d2e;
+            --gold: #c9a84c;
+            --gold-light: #e8c97a;
+            --dark: #1a1a1a;
+            --gray: #6b7280;
+            --cream: #f9f5ef;
+            --border: #e5e7eb;
+            --danger: #dc2626;
+            --success: #16a34a;
+            --warning: #d97706;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Jost', sans-serif; background: #f0f2f5; min-height: 100vh; }
+
+        /* Login Screen */
+        #loginScreen {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #2d6a4f 60%, #4a7c25 100%);
+        }
+        .login-card {
+            background: white;
+            border-radius: 16px;
+            padding: 48px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .login-logo { text-align: center; margin-bottom: 32px; }
+        .login-logo .logo-main { display: block; font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--primary-dark); letter-spacing: 0.2em; }
+        .login-logo .logo-sub { display: block; font-size: 0.7rem; letter-spacing: 0.3em; color: var(--gray); text-transform: uppercase; margin-top: 4px; }
+        .login-logo .admin-badge { display: inline-block; background: var(--gold); color: var(--dark); font-size: 0.65rem; padding: 3px 12px; border-radius: 20px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; margin-top: 12px; }
+        .login-input { width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; font-family: 'Jost', sans-serif; outline: none; margin-bottom: 16px; transition: border-color 0.2s; }
+        .login-input:focus { border-color: var(--primary); }
+        .login-btn { width: 100%; padding: 14px; background: var(--primary); color: white; border: none; border-radius: 8px; font-size: 0.9rem; font-family: 'Jost', sans-serif; font-weight: 600; cursor: pointer; letter-spacing: 0.1em; text-transform: uppercase; transition: background 0.2s; }
+        .login-btn:hover { background: var(--primary-dark); }
+        .login-error { background: #fee2e2; border: 1px solid #fca5a5; color: var(--danger); padding: 10px 16px; border-radius: 8px; font-size: 0.85rem; margin-bottom: 16px; display: none; }
+
+        /* Dashboard */
+        #dashboard { display: none; }
+        .admin-header { background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.1); padding: 0 32px; display: flex; align-items: center; justify-content: space-between; height: 64px; position: sticky; top: 0; z-index: 100; }
+        .admin-header-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--primary-dark); letter-spacing: 0.15em; }
+        .admin-header-logo span { font-size: 0.65rem; display: block; letter-spacing: 0.3em; color: var(--gray); text-transform: uppercase; }
+        .admin-nav { display: flex; gap: 4px; }
+        .admin-nav-btn { padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; font-family: 'Jost', sans-serif; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.05em; transition: all 0.2s; background: transparent; color: var(--gray); }
+        .admin-nav-btn.active { background: var(--primary); color: white; }
+        .admin-nav-btn:hover:not(.active) { background: var(--cream); color: var(--dark); }
+        .logout-btn { padding: 8px 16px; background: #fee2e2; color: var(--danger); border: none; border-radius: 6px; cursor: pointer; font-family: 'Jost', sans-serif; font-size: 0.82rem; font-weight: 600; }
+
+        .admin-content { padding: 32px; max-width: 1400px; margin: 0 auto; }
+
+        /* Stats Cards */
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 32px; }
+        .stat-card { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+        .stat-card .stat-icon { width: 48px; height: 48px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 12px; }
+        .stat-card .stat-value { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--dark); font-weight: 300; line-height: 1; }
+        .stat-card .stat-label { font-size: 0.78rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px; }
+
+        /* Table */
+        .card { background: white; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); overflow: hidden; margin-bottom: 24px; }
+        .card-header { padding: 20px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+        .card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--dark); }
+        table { width: 100%; border-collapse: collapse; }
+        th { text-align: left; padding: 12px 16px; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray); background: #f9fafb; border-bottom: 1px solid var(--border); }
+        td { padding: 14px 16px; font-size: 0.85rem; color: var(--dark); border-bottom: 1px solid #f3f4f6; vertical-align: middle; }
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background: #f9fafb; }
+
+        /* Status Badges */
+        .badge { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
+        .badge-pending { background: #fef3c7; color: #92400e; }
+        .badge-confirmed { background: #d1fae5; color: #065f46; }
+        .badge-cancelled { background: #fee2e2; color: #991b1b; }
+
+        /* Action Buttons */
+        .action-btn { padding: 6px 12px; border-radius: 6px; border: none; cursor: pointer; font-size: 0.75rem; font-family: 'Jost', sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; transition: all 0.2s; margin-right: 4px; }
+        .btn-confirm { background: #d1fae5; color: #065f46; }
+        .btn-confirm:hover { background: var(--success); color: white; }
+        .btn-cancel { background: #fee2e2; color: var(--danger); }
+        .btn-cancel:hover { background: var(--danger); color: white; }
+        .btn-wa { background: #dcfce7; color: #15803d; }
+        .btn-wa:hover { background: #25D366; color: white; }
+
+        /* Tabs */
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Filter bar */
+        .filter-bar { display: flex; gap: 8px; }
+        .filter-btn { padding: 6px 14px; border: 1px solid var(--border); border-radius: 20px; background: white; cursor: pointer; font-size: 0.78rem; font-family: 'Jost', sans-serif; color: var(--gray); transition: all 0.2s; }
+        .filter-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+
+        /* Modal */
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1000; display: none; align-items: center; justify-content: center; }
+        .modal-overlay.show { display: flex; }
+        .modal { background: white; border-radius: 16px; padding: 40px; max-width: 520px; width: 90%; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; margin-bottom: 20px; }
+        .modal-detail { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 0.88rem; display: flex; gap: 16px; }
+        .modal-detail:last-of-type { border-bottom: none; }
+        .modal-label { color: var(--gray); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; width: 100px; flex-shrink: 0; }
+        .modal-value { color: var(--dark); font-weight: 500; }
+
+        .loading { text-align: center; padding: 60px; color: var(--gray); }
+        .empty-state { text-align: center; padding: 60px; color: var(--gray); }
+        .empty-state i { font-size: 3rem; margin-bottom: 16px; display: block; opacity: 0.3; }
+
+        @media (max-width: 768px) {
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .admin-header { padding: 0 16px; }
+            .admin-content { padding: 16px; }
+            td, th { padding: 10px; font-size: 0.78rem; }
+            .admin-nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Login Screen -->
+<div id="loginScreen">
+    <div class="login-card">
+        <div class="login-logo">
+            <span class="logo-main">EURY NATURE</span>
+            <span class="logo-sub">CABANA</span>
+            <span class="admin-badge"><i class="fas fa-lock" style="margin-right:4px;"></i>Admin Portal</span>
+        </div>
+        <div class="login-error" id="loginError">Invalid username or password.</div>
+        <input type="text" class="login-input" id="loginUsername" placeholder="Username" autocomplete="username">
+        <input type="password" class="login-input" id="loginPassword" placeholder="Password" autocomplete="current-password" onkeypress="if(event.key==='Enter')doLogin()">
+        <button class="login-btn" onclick="doLogin()"><i class="fas fa-sign-in-alt" style="margin-right:8px;"></i>Sign In</button>
+        <p style="text-align:center;margin-top:24px;font-size:0.78rem;color:var(--gray);">
+            <a href="index.html" style="color:var(--primary);">← Back to Website</a>
+        </p>
+    </div>
+</div>
+
+<!-- Dashboard -->
+<div id="dashboard">
+    <header class="admin-header">
+        <div>
+            <div class="admin-header-logo">EURY NATURE CABANA <span>Admin Dashboard</span></div>
+        </div>
+        <nav class="admin-nav">
+            <button class="admin-nav-btn active" onclick="showTab('bookings', this)"><i class="fas fa-calendar-check" style="margin-right:6px;"></i>Bookings</button>
+            <button class="admin-nav-btn" onclick="showTab('contacts', this)"><i class="fas fa-envelope" style="margin-right:6px;"></i>Messages</button>
+        </nav>
+        <div style="display:flex;align-items:center;gap:12px;">
+            <span style="font-size:0.82rem;color:var(--gray);">Welcome, Admin</span>
+            <button class="logout-btn" onclick="doLogout()"><i class="fas fa-sign-out-alt" style="margin-right:4px;"></i>Logout</button>
+        </div>
+    </header>
+
+    <div class="admin-content">
+
+        <!-- Stats Row -->
+        <div class="stats-grid" id="statsGrid">
+            <div class="stat-card">
+                <div class="stat-icon" style="background:#d1fae5;">📅</div>
+                <div class="stat-value" id="statTotal">–</div>
+                <div class="stat-label">Total Bookings</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="background:#fef3c7;">⏳</div>
+                <div class="stat-value" id="statPending">–</div>
+                <div class="stat-label">Pending</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="background:#d1fae5;">✅</div>
+                <div class="stat-value" id="statConfirmed">–</div>
+                <div class="stat-label">Confirmed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="background:#fee2e2;">❌</div>
+                <div class="stat-value" id="statCancelled">–</div>
+                <div class="stat-label">Cancelled</div>
+            </div>
+        </div>
+
+        <!-- Bookings Tab -->
+        <div class="tab-content active" id="tab-bookings">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">All Bookings</div>
+                    <div class="filter-bar">
+                        <button class="filter-btn active" onclick="filterBookings('all', this)">All</button>
+                        <button class="filter-btn" onclick="filterBookings('pending', this)">Pending</button>
+                        <button class="filter-btn" onclick="filterBookings('confirmed', this)">Confirmed</button>
+                        <button class="filter-btn" onclick="filterBookings('cancelled', this)">Cancelled</button>
+                    </div>
+                    <button onclick="loadBookings()" style="padding:8px 16px;background:var(--cream);border:1px solid var(--border);border-radius:6px;cursor:pointer;font-family:'Jost',sans-serif;font-size:0.82rem;"><i class="fas fa-sync" style="margin-right:4px;"></i>Refresh</button>
+                </div>
+                <div id="bookingsLoading" class="loading"><i class="fas fa-spinner fa-spin" style="font-size:2rem;margin-bottom:12px;display:block;"></i>Loading bookings...</div>
+                <div id="bookingsEmpty" class="empty-state" style="display:none;"><i class="fas fa-calendar-times"></i>No bookings yet.</div>
+                <div style="overflow-x:auto;">
+                    <table id="bookingsTable" style="display:none;">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Status</th>
+                                <th>Guest</th>
+                                <th>Cabana</th>
+                                <th>Check-in</th>
+                                <th>Check-out</th>
+                                <th>Guests</th>
+                                <th>Phone</th>
+                                <th>Booked On</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bookingsBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contacts Tab -->
+        <div class="tab-content" id="tab-contacts">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Contact Messages</div>
+                    <button onclick="loadContacts()" style="padding:8px 16px;background:var(--cream);border:1px solid var(--border);border-radius:6px;cursor:pointer;font-family:'Jost',sans-serif;font-size:0.82rem;"><i class="fas fa-sync" style="margin-right:4px;"></i>Refresh</button>
+                </div>
+                <div id="contactsLoading" class="loading"><i class="fas fa-spinner fa-spin" style="font-size:2rem;margin-bottom:12px;display:block;"></i>Loading messages...</div>
+                <div id="contactsEmpty" class="empty-state" style="display:none;"><i class="fas fa-inbox"></i>No messages yet.</div>
+                <div style="overflow-x:auto;">
+                    <table id="contactsTable" style="display:none;">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Subject</th>
+                                <th>Message</th>
+                                <th>Received</th>
+                                <th>Reply</th>
+                            </tr>
+                        </thead>
+                        <tbody id="contactsBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Booking Detail Modal -->
+<div class="modal-overlay" id="bookingModal">
+    <div class="modal">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+            <h2 class="modal-title">Booking Details</h2>
+            <button onclick="closeModal()" style="background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--gray);">&times;</button>
+        </div>
+        <div id="modalContent"></div>
+        <div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;" id="modalActions"></div>
+    </div>
+</div>
+
+<script>
+    const API_BASE = 'http://127.0.0.1:5000'; // Change to your Render URL in production
+    let token = '';
+    let allBookings = [];
+    let currentFilter = 'all';
+
+    // --- AUTH ---
+    async function doLogin() {
+        const username = document.getElementById('loginUsername').value.trim();
+        const password = document.getElementById('loginPassword').value;
+        const errEl = document.getElementById('loginError');
+        errEl.style.display = 'none';
+
+        try {
+            const res = await fetch(`${API_BASE}/api/admin/login`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({username, password})
+            });
+            const data = await res.json();
+            if (data.success) {
+                token = data.token;
+                sessionStorage.setItem('adminToken', token);
+                showDashboard();
+            } else {
+                errEl.textContent = data.message || 'Invalid credentials.';
+                errEl.style.display = 'block';
+            }
+        } catch(e) {
+            errEl.textContent = 'Could not connect to server. Make sure the backend is running.';
+            errEl.style.display = 'block';
+        }
+    }
+
+    function doLogout() {
+        sessionStorage.removeItem('adminToken');
+        token = '';
+        document.getElementById('dashboard').style.display = 'none';
+        document.getElementById('loginScreen').style.display = 'flex';
+    }
+
+    function showDashboard() {
+        document.getElementById('loginScreen').style.display = 'none';
+        document.getElementById('dashboard').style.display = 'block';
+        loadBookings();
+    }
+
+    // Auto-login if token exists
+    window.onload = function() {
+        const saved = sessionStorage.getItem('adminToken');
+        if (saved) { token = saved; showDashboard(); }
+    };
+
+    // --- TABS ---
+    function showTab(tab, btn) {
+        document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.admin-nav-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(`tab-${tab}`).classList.add('active');
+        btn.classList.add('active');
+        if (tab === 'contacts') loadContacts();
+    }
+
+    // --- BOOKINGS ---
+    async function loadBookings() {
+        document.getElementById('bookingsLoading').style.display = 'block';
+        document.getElementById('bookingsTable').style.display = 'none';
+        document.getElementById('bookingsEmpty').style.display = 'none';
+
+        try {
+            const res = await fetch(`${API_BASE}/api/admin/bookings`, {
+                headers: {'Authorization': `Bearer ${token}`}
+            });
+            const data = await res.json();
+            allBookings = data;
+            updateStats(data);
+            renderBookings(data);
+        } catch(e) {
+            document.getElementById('bookingsLoading').innerHTML = '<i class="fas fa-exclamation-triangle" style="color:#dc2626;margin-right:8px;"></i>Error loading bookings. Is the backend running?';
+        }
+    }
+
+    function updateStats(bookings) {
+        document.getElementById('statTotal').textContent = bookings.length;
+        document.getElementById('statPending').textContent = bookings.filter(b => b.status === 'pending').length;
+        document.getElementById('statConfirmed').textContent = bookings.filter(b => b.status === 'confirmed').length;
+        document.getElementById('statCancelled').textContent = bookings.filter(b => b.status === 'cancelled').length;
+    }
+
+    function filterBookings(filter, btn) {
+        currentFilter = filter;
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filtered = filter === 'all' ? allBookings : allBookings.filter(b => b.status === filter);
+        renderBookings(filtered);
+    }
+
+    function renderBookings(bookings) {
+        document.getElementById('bookingsLoading').style.display = 'none';
+        if (!bookings.length) {
+            document.getElementById('bookingsEmpty').style.display = 'block';
+            document.getElementById('bookingsTable').style.display = 'none';
+            return;
+        }
+        document.getElementById('bookingsEmpty').style.display = 'none';
+        document.getElementById('bookingsTable').style.display = 'table';
+
+        const cabanaNames = {1: 'Main Cabana', 2: 'Little Eury Nature Cabana'};
+        const body = document.getElementById('bookingsBody');
+        body.innerHTML = bookings.map(b => `
+            <tr>
+                <td style="color:var(--gray);font-size:0.75rem;">#${b.id}</td>
+                <td><span class="badge badge-${b.status}">${b.status}</span></td>
+                <td><strong>${b.fname} ${b.lname}</strong><br><span style="color:var(--gray);font-size:0.75rem;">${b.email}</span></td>
+                <td>${b.rooms ? b.rooms.name : (cabanaNames[b.cabana_id] || 'Cabana #'+b.cabana_id)}</td>
+                <td>${b.checkin}${b.checkin_time ? '<br><small style="color:var(--gray);">'+b.checkin_time+'</small>' : ''}</td>
+                <td>${b.checkout}${b.checkout_time ? '<br><small style="color:var(--gray);">'+b.checkout_time+'</small>' : ''}</td>
+                <td>${b.guests}</td>
+                <td><a href="https://wa.me/${formatPhone(b.phone)}" target="_blank" style="color:var(--primary);">${b.phone}</a></td>
+                <td style="font-size:0.78rem;color:var(--gray);">${new Date(b.created_at).toLocaleDateString()}</td>
+                <td>
+                    <button class="action-btn" onclick="viewBooking(${b.id})" style="background:var(--cream);color:var(--dark);" title="View Details"><i class="fas fa-eye"></i></button>
+                    ${b.status === 'pending' ? `
+                        <button class="action-btn btn-confirm" onclick="updateStatus(${b.id}, 'confirmed')" title="Confirm"><i class="fas fa-check"></i></button>
+                        <button class="action-btn btn-cancel" onclick="updateStatus(${b.id}, 'cancelled')" title="Cancel"><i class="fas fa-times"></i></button>
+                    ` : ''}
+                    ${b.status === 'confirmed' ? `<button class="action-btn btn-wa" onclick="sendWAConfirmation(${b.id})" title="Send WhatsApp"><i class="fab fa-whatsapp"></i></button>` : ''}
+                </td>
+            </tr>
+        `).join('');
+    }
+
+    async function updateStatus(id, status) {
+        if (!confirm(`Are you sure you want to ${status === 'confirmed' ? 'CONFIRM' : 'CANCEL'} this booking?`)) return;
+        try {
+            const res = await fetch(`${API_BASE}/api/admin/bookings/${id}/status`, {
+                method: 'PUT',
+                headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`},
+                body: JSON.stringify({status})
+            });
+            const data = await res.json();
+            if (data.success) {
+                if (data.whatsapp_url) {
+                    if (confirm('Booking confirmed! Click OK to open WhatsApp to notify the guest.')) {
+                        window.open(data.whatsapp_url, '_blank');
+                    }
+                }
+                loadBookings();
+            }
+        } catch(e) { alert('Error updating booking.'); }
+    }
+
+    function sendWAConfirmation(id) {
+        const b = allBookings.find(bk => bk.id === id);
+        if (!b) return;
+        const phone = formatPhone(b.phone);
+        const msg = `Hello ${b.fname}, your booking at Eury Nature Cabana from ${b.checkin} to ${b.checkout} is CONFIRMED. We look forward to welcoming you! For any queries, call +94 77 175 8395.`;
+        window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    function viewBooking(id) {
+        const b = allBookings.find(bk => bk.id === id);
+        if (!b) return;
+        const cabanaNames = {1: 'Main Cabana (Eury Nature Cabana)', 2: 'Little Eury Nature Cabana'};
+        const cabanName = b.rooms ? b.rooms.name : (cabanaNames[b.cabana_id] || 'Cabana');
+        document.getElementById('modalContent').innerHTML = `
+            <div class="modal-detail"><span class="modal-label">Status</span><span class="modal-value"><span class="badge badge-${b.status}">${b.status}</span></span></div>
+            <div class="modal-detail"><span class="modal-label">Guest</span><span class="modal-value">${b.fname} ${b.lname}</span></div>
+            <div class="modal-detail"><span class="modal-label">Email</span><span class="modal-value"><a href="mailto:${b.email}">${b.email}</a></span></div>
+            <div class="modal-detail"><span class="modal-label">Phone</span><span class="modal-value"><a href="https://wa.me/${formatPhone(b.phone)}" target="_blank">${b.phone}</a></span></div>
+            <div class="modal-detail"><span class="modal-label">Cabana</span><span class="modal-value">${cabanName}</span></div>
+            <div class="modal-detail"><span class="modal-label">Check-in</span><span class="modal-value">${b.checkin} ${b.checkin_time || ''}</span></div>
+            <div class="modal-detail"><span class="modal-label">Check-out</span><span class="modal-value">${b.checkout} ${b.checkout_time || ''}</span></div>
+            <div class="modal-detail"><span class="modal-label">Nights</span><span class="modal-value">${b.days_spent || '–'}</span></div>
+            <div class="modal-detail"><span class="modal-label">Guests</span><span class="modal-value">${b.guests}</span></div>
+            ${b.notes ? `<div class="modal-detail"><span class="modal-label">Notes</span><span class="modal-value">${b.notes}</span></div>` : ''}
+            <div class="modal-detail"><span class="modal-label">Booked On</span><span class="modal-value">${new Date(b.created_at).toLocaleString()}</span></div>
+        `;
+        const actions = document.getElementById('modalActions');
+        actions.innerHTML = `
+            <button class="action-btn btn-wa" onclick="sendWAConfirmation(${b.id});closeModal();" style="padding:10px 18px;font-size:0.82rem;">
+                <i class="fab fa-whatsapp" style="margin-right:6px;"></i>WhatsApp Guest
+            </button>
+            ${b.status === 'pending' ? `
+                <button class="action-btn btn-confirm" onclick="updateStatus(${b.id},'confirmed');closeModal();" style="padding:10px 18px;font-size:0.82rem;"><i class="fas fa-check" style="margin-right:6px;"></i>Confirm</button>
+                <button class="action-btn btn-cancel" onclick="updateStatus(${b.id},'cancelled');closeModal();" style="padding:10px 18px;font-size:0.82rem;"><i class="fas fa-times" style="margin-right:6px;"></i>Cancel</button>
+            ` : ''}
+            <button onclick="closeModal()" style="padding:10px 18px;background:var(--cream);border:1px solid var(--border);border-radius:6px;cursor:pointer;font-family:'Jost',sans-serif;font-size:0.82rem;">Close</button>
+        `;
+        document.getElementById('bookingModal').classList.add('show');
+    }
+
+    function closeModal() {
+        document.getElementById('bookingModal').classList.remove('show');
+    }
+
+    // --- CONTACTS ---
+    async function loadContacts() {
+        document.getElementById('contactsLoading').style.display = 'block';
+        document.getElementById('contactsTable').style.display = 'none';
+        document.getElementById('contactsEmpty').style.display = 'none';
+
+        try {
+            const res = await fetch(`${API_BASE}/api/admin/contacts`, {
+                headers: {'Authorization': `Bearer ${token}`}
+            });
+            const data = await res.json();
+            renderContacts(data);
+        } catch(e) {
+            document.getElementById('contactsLoading').innerHTML = '<i class="fas fa-exclamation-triangle" style="color:#dc2626;margin-right:8px;"></i>Error loading messages.';
+        }
+    }
+
+    function renderContacts(contacts) {
+        document.getElementById('contactsLoading').style.display = 'none';
+        if (!contacts.length) {
+            document.getElementById('contactsEmpty').style.display = 'block';
+            return;
+        }
+        document.getElementById('contactsTable').style.display = 'table';
+        document.getElementById('contactsBody').innerHTML = contacts.map(c => `
+            <tr>
+                <td style="color:var(--gray);font-size:0.75rem;">#${c.id}</td>
+                <td><strong>${c.fname} ${c.lname}</strong></td>
+                <td><a href="mailto:${c.email}">${c.email}</a></td>
+                <td>${c.phone || '–'}</td>
+                <td>${c.subject || '–'}</td>
+                <td style="max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${c.message}</td>
+                <td style="font-size:0.78rem;color:var(--gray);">${new Date(c.created_at).toLocaleDateString()}</td>
+                <td>
+                    <a href="mailto:${c.email}" class="action-btn" style="background:var(--cream);color:var(--dark);text-decoration:none;"><i class="fas fa-envelope"></i></a>
+                    ${c.phone ? `<a href="https://wa.me/${formatPhone(c.phone)}" target="_blank" class="action-btn btn-wa"><i class="fab fa-whatsapp"></i></a>` : ''}
+                </td>
+            </tr>
+        `).join('');
+    }
+
+    // --- HELPERS ---
+    function formatPhone(phone) {
+        if (!phone) return '';
+        phone = phone.replace(/\s/g, '');
+        if (phone.startsWith('0')) return '94' + phone.slice(1);
+        if (!phone.startsWith('+')) return '94' + phone;
+        return phone.replace('+', '');
+    }
+
+    document.getElementById('bookingModal').addEventListener('click', function(e) {
+        if (e.target === this) closeModal();
+    });
+</script>
+</body>
+</html>
