@@ -102,6 +102,12 @@
                 background:transparent;color:var(--dark);border:2px solid var(--border);">
                 Dining
             </button>
+
+            <button onclick="filterGallery(this, 'videos')"
+                style="padding:10px 24px;border-radius:4px;font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;
+                background:transparent;color:var(--dark);border:2px solid var(--border);">
+                <i class="fas fa-play-circle" style="margin-right:6px;"></i>Videos
+            </button>
             
         </div>
 
@@ -236,6 +242,24 @@
                         <i class="fas fa-search-plus" style="font-size:1.5rem;margin-bottom:8px;display:block;"></i>
                         <span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;">Panoramic Patio Overlook</span>
                     </div>
+                </div>
+            </div>
+
+            <!-- Item 13: Videos -->
+            <div class="gallery-item reveal" data-cat="videos" style="height:280px;border-radius:8px;overflow:hidden;position:relative;">
+                <video src="static/videos/cabana_tour_1.mp4" controls preload="metadata" poster="static/images/cabanas_landscape.jpg"
+                    style="width:100%;height:100%;object-fit:cover;display:block;background:#000;"></video>
+                <div style="position:absolute;top:10px;left:10px;background:rgba(0,0,0,0.6);color:white;padding:4px 10px;border-radius:20px;font-size:0.72rem;font-weight:600;letter-spacing:0.08em;backdrop-filter:blur(4px);">
+                    <i class="fas fa-play" style="margin-right:4px;"></i> Highland Mist Tour
+                </div>
+            </div>
+
+            <!-- Item 14: Videos -->
+            <div class="gallery-item reveal" data-cat="videos" style="height:280px;border-radius:8px;overflow:hidden;position:relative;">
+                <video src="static/videos/cabana_tour_2.mp4" controls preload="metadata" poster="static/images/little_eury_exterior.jpg"
+                    style="width:100%;height:100%;object-fit:cover;display:block;background:#000;"></video>
+                <div style="position:absolute;top:10px;left:10px;background:rgba(0,0,0,0.6);color:white;padding:4px 10px;border-radius:20px;font-size:0.72rem;font-weight:600;letter-spacing:0.08em;backdrop-filter:blur(4px);">
+                    <i class="fas fa-play" style="margin-right:4px;"></i> Cabana & Garden Walk
                 </div>
             </div>
             
