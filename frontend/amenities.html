@@ -3,47 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Eury Nature Cabana | Luxury Highland Hotel Sri Lanka{% endblock %}</title>
-    <meta name="description" content="Experience luxury in the misty highlands of Nuwara Eliya. Cabana Hotel offers boutique chic rooms, tea garden views, and world-class Sri Lankan hospitality.">
+    <title>Eury Nature Cabana | Luxury Highland Hotel Sri Lanka</title>
+    <meta name="description" content="Experience luxury in the misty highlands of Nuwara Eliya. Eury Nature Cabana offers boutique chic rooms, tea garden views, and world-class Sri Lankan hospitality.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    {% block extra_css %}{% endblock %}
+    <link rel="stylesheet" href="static/css/style.css">
+    
 </head>
 <body>
 
 <!-- Announcement Bar -->
 <div class="announcement-bar">
-    <p>🍃 Now Accepting Reservations for 2025 &nbsp;|&nbsp; <a href="/contact">Contact Us</a> &nbsp;|&nbsp; Free Ceylon Tea Daily</p>
+    <p>🍃 Now Accepting Reservations for 2025 &nbsp;|&nbsp; <a href="contact.html">Contact Us</a> &nbsp;|&nbsp; Free Ceylon Tea Daily</p>
 </div>
 
 <!-- Navigation -->
 <nav class="navbar" id="navbar">
     <div class="nav-container">
-        <a href="/" class="nav-logo">
+        <a href="index.html" class="nav-logo">
             <div class="logo-text">
-                <span class="logo-main">CABANA</span>
-                <span class="logo-sub">NUWARA ELIYA</span>
+                <span class="logo-main">EURY NATURE</span>
+                <span class="logo-sub">CABANA</span>
             </div>
         </a>
 
         <ul class="nav-links" id="navLinks">
-            <li><a href="/">Home</a></li>
-            <li><a href="/accommodations">Our Cabanas</a></li>
-            <li><a href="/amenities">Amenities</a></li>
-            <li><a href="/discover">Discover NE</a></li>
-            <li><a href="/gallery">Gallery</a></li>
-            <li><a href="/contact">Contact Us</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="accommodations.html">Our Cabanas</a></li>
+            <li><a href="dining.html">Dining</a></li>
+            <li><a href="amenities.html">Amenities</a></li>
+            <li><a href="discover.html">Discover NE</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
         </ul>
 
         <div class="nav-actions">
             <div class="nav-social">
+                <a href="https://wa.me/94771758395" target="_blank" aria-label="WhatsApp" style="color:#25D366;"><i class="fab fa-whatsapp"></i></a>
                 <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                 <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             </div>
-            <a href="/book" class="btn-book">Book Now</a>
+            <a href="book.html" class="btn-book">Book Now</a>
         </div>
 
         <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -57,7 +59,7 @@
     <div class="page-hero-content">
         <span class="section-tag">Hotel Facilities</span>
         <h1>Amenities</h1>
-        <div class="breadcrumb"><a href="/">Home</a> › Amenities</div>
+        <div class="breadcrumb"><a href="index.html">Home</a> › Amenities</div>
     </div>
 </div>
 
@@ -70,15 +72,15 @@
             <p class="section-desc">Every detail at Eury Nature Cabana has been thoughtfully curated to ensure your highland escape is comfortable, luxurious, and unforgettable.</p>
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;">
-            {% for a in amenities %}
+            
             <div class="reveal" style="background:var(--white);border-radius:10px;padding:40px 32px;box-shadow:var(--shadow);transition:all 0.3s;cursor:default;"
                 onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='var(--shadow-lg)'"
                 onmouseout="this.style.transform='';this.style.boxShadow='var(--shadow)'">
-                <div style="font-size:3rem;margin-bottom:20px;">{{ a.icon }}</div>
-                <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--primary-dark);margin-bottom:10px;">{{ a.title }}</h3>
-                <p style="color:var(--gray);font-size:0.9rem;font-weight:300;line-height:1.8;">{{ a.desc }}</p>
+                <div style="font-size:3rem;margin-bottom:20px;"></div>
+                <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--primary-dark);margin-bottom:10px;"></h3>
+                <p style="color:var(--gray);font-size:0.9rem;font-weight:300;line-height:1.8;"></p>
             </div>
-            {% endfor %}
+            
         </div>
     </div>
 </section>
@@ -95,8 +97,8 @@
     <div class="footer-top">
         <div class="footer-col">
             <div class="footer-logo">
-                <span class="logo-main">CABANA</span>
-                <span class="logo-sub">NUWARA ELIYA</span>
+                <span class="logo-main">EURY NATURE</span>
+                <span class="logo-sub">CABANA</span>
             </div>
             <p>A boutique highland retreat nestled in the misty mountains of Nuwara Eliya, Sri Lanka. Where luxury meets nature.</p>
             <div class="footer-social">
@@ -109,19 +111,20 @@
         <div class="footer-col">
             <h4>Quick Links</h4>
             <ul>
-                <li><a href="/accommodations">Our Cabanas</a></li>
-                <li><a href="/amenities">Amenities</a></li>
-                <li><a href="/book">Book Now</a></li>
-                <li><a href="/gallery">Gallery</a></li>
-                <li><a href="/discover">Discover Nuwara Eliya</a></li>
-                <li><a href="/contact">Contact Us</a></li>
+                <li><a href="accommodations.html">Our Cabanas</a></li>
+                <li><a href="dining.html">Dining</a></li>
+                <li><a href="amenities.html">Amenities</a></li>
+                <li><a href="book.html">Book Now</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="discover.html">Discover NE</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
             </ul>
         </div>
         <div class="footer-col">
             <h4>Contact</h4>
-            <p><i class="fas fa-map-marker-alt"></i> 45 Grand Hotel Road,<br>Nuwara Eliya 22200,<br>Sri Lanka</p>
-            <p><i class="fas fa-phone"></i> <a href="tel:+94522222222">+94 52 222 2222</a></p>
-            <p><i class="fas fa-envelope"></i> <a href="mailto:info@cabananuwaraeliya.lk">info@cabananuwaraeliya.lk</a></p>
+            <p><i class="fas fa-map-marker-alt"></i> 12 km from Nuwara Eliya,<br>4km from Ambewela Station,<br>Sri Lanka</p>
+            <p><i class="fas fa-phone"></i> <a href="tel:+94771758395">+94 77 175 8395</a></p>
+            <p><i class="fas fa-envelope"></i> <a href="mailto:eurynaturecabana26@gmail.com">eurynaturecabana26@gmail.com</a></p>
         </div>
         <div class="footer-col">
             <h4>Weather</h4>
@@ -129,7 +132,7 @@
                 <div class="weather-icon">⛅</div>
                 <div class="weather-info">
                     <span class="temp" id="footerTemp">18°C</span>
-                    <span class="weather-desc">Nuwara Eliya, LK</span>
+                    <span class="weather-desc">Nuwara Eliya</span>
                     <span class="weather-sub">Cool &amp; Misty</span>
                 </div>
             </div>
@@ -155,7 +158,7 @@
     <i class="fas fa-chevron-up"></i>
 </button>
 
-<script src="{{ url_for('static', filename='js/main.js') }}"></script>
-{% block extra_js %}{% endblock %}
+<script src="static/js/main.js"></script>
+
 </body>
 </html>

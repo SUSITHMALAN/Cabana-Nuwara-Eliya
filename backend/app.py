@@ -1,8 +1,10 @@
 import os
+import urllib.parse
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from supabase import create_client, Client
 from dotenv import load_dotenv
+import psycopg2
+from psycopg2.extras import RealDictCursor
 
 # Load environment variables from .env file
 load_dotenv()
@@ -11,56 +13,64 @@ app = Flask(__name__)
 # Enable CORS for the frontend to communicate with the backend
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 
-# Initialize Supabase client
-SUPABASE_URL = os.getenv("SUPABASE_URL")
-SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+DATABASE_URL = os.getenv("DATABASE_URL")
 
-supabase: Client = None
-if SUPABASE_URL and SUPABASE_KEY:
-    supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
-else:
-    print("Warning: Supabase credentials not found. Ensure SUPABASE_URL and SUPABASE_KEY are set.")
+def get_db_connection():
+    if not DATABASE_URL:
+        raise ValueError("DATABASE_URL environment variable is not configured. Please set it in your .env file.")
+    
+    # Strip query parameters that psycopg2 does not support (like pgbouncer)
+    cleaned_url = DATABASE_URL
+    if '?' in cleaned_url:
+        cleaned_url = cleaned_url.split('?')[0]
+        
+    return psycopg2.connect(cleaned_url)
 
 @app.route('/api/health')
 def health_check():
-    return jsonify({"status": "ok", "message": "Backend API is running."})
+    return jsonify({"status": "ok", "message": "Backend API is running with direct PostgreSQL connection."})
 
 @app.route('/api/rooms', methods=['GET'])
 def get_rooms():
-    if not supabase:
-        return jsonify({"error": "Database connection not configured"}), 500
     try:
-        # Fetch all rooms, ordering by id
-        response = supabase.table("rooms").select("*").order("id").execute()
-        return jsonify(response.data)
+        conn = get_db_connection()
+        cur = conn.cursor(cursor_factory=RealDictCursor)
+        cur.execute("SELECT id, name, description, price, image, capacity, amenities FROM rooms ORDER BY id")
+        rooms = cur.fetchall()
+        cur.close()
+        conn.close()
+        return jsonify(rooms)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
 @app.route('/api/testimonials', methods=['GET'])
 def get_testimonials():
-    if not supabase:
-        return jsonify({"error": "Database connection not configured"}), 500
     try:
-        response = supabase.table("testimonials").select("*").execute()
-        return jsonify(response.data)
+        conn = get_db_connection()
+        cur = conn.cursor(cursor_factory=RealDictCursor)
+        cur.execute("SELECT id, name, location, text, rating FROM testimonials")
+        testimonials = cur.fetchall()
+        cur.close()
+        conn.close()
+        return jsonify(testimonials)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
 @app.route('/api/amenities', methods=['GET'])
 def get_amenities():
-    if not supabase:
-        return jsonify({"error": "Database connection not configured"}), 500
     try:
-        response = supabase.table("amenities").select("*").execute()
-        return jsonify(response.data)
+        conn = get_db_connection()
+        cur = conn.cursor(cursor_factory=RealDictCursor)
+        cur.execute('SELECT id, icon, title, "desc" FROM amenities')
+        amenities = cur.fetchall()
+        cur.close()
+        conn.close()
+        return jsonify(amenities)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
 @app.route('/api/book', methods=['POST'])
 def book():
-    if not supabase:
-        return jsonify({"error": "Database connection not configured"}), 500
-    
     data = request.json
     required_fields = ['cabana_id', 'checkin', 'checkout', 'guests', 'fname', 'lname', 'email', 'phone']
     for field in required_fields:
@@ -68,7 +78,6 @@ def book():
             return jsonify({"success": False, "message": f"Missing required field: {field}"}), 400
 
     try:
-        # Insert booking into the database
         booking_data = {
             "cabana_id": int(data.get('cabana_id')),
             "checkin": data.get('checkin'),
@@ -85,13 +94,27 @@ def book():
             "status": "pending"
         }
         
-        response = supabase.table("bookings").insert(booking_data).execute()
+        conn = get_db_connection()
+        cur = conn.cursor(cursor_factory=RealDictCursor)
+        cur.execute("""
+            INSERT INTO bookings (cabana_id, checkin, checkout, checkin_time, checkout_time, guests, days_spent, fname, lname, email, phone, notes, status)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            RETURNING id
+        """, (
+            booking_data['cabana_id'], booking_data['checkin'], booking_data['checkout'],
+            booking_data['checkin_time'], booking_data['checkout_time'], booking_data['guests'],
+            booking_data['days_spent'], booking_data['fname'], booking_data['lname'],
+            booking_data['email'], booking_data['phone'], booking_data['notes'], booking_data['status']
+        ))
+        booking_id = cur.fetchone()['id']
+        conn.commit()
+        cur.close()
+        conn.close()
         
         # WhatsApp logic
         admin_number = "94771758395"
         cabana_name = "Main Cabana" if booking_data['cabana_id'] == 1 else "Little Eury Nature Cabana"
         msg = f"Hello Admin! I would like to book {cabana_name} for {booking_data['guests']} guests from {booking_data['checkin']} to {booking_data['checkout']} ({booking_data['days_spent']} nights). My name is {booking_data['fname']} {booking_data['lname']}."
-        import urllib.parse
         wa_url = f"https://wa.me/{admin_number}?text={urllib.parse.quote(msg)}"
         
         return jsonify({
@@ -104,9 +127,6 @@ def book():
 
 @app.route('/api/contact', methods=['POST'])
 def contact():
-    if not supabase:
-        return jsonify({"error": "Database connection not configured"}), 500
-    
     data = request.json
     required_fields = ['fname', 'lname', 'email', 'message']
     for field in required_fields:
@@ -114,16 +134,18 @@ def contact():
             return jsonify({"success": False, "message": f"Missing required field: {field}"}), 400
 
     try:
-        contact_data = {
-            "fname": data.get('fname'),
-            "lname": data.get('lname'),
-            "email": data.get('email'),
-            "phone": data.get('phone'),
-            "subject": data.get('subject'),
-            "message": data.get('message')
-        }
-        
-        response = supabase.table("contacts").insert(contact_data).execute()
+        conn = get_db_connection()
+        cur = conn.cursor(cursor_factory=RealDictCursor)
+        cur.execute("""
+            INSERT INTO contacts (fname, lname, email, phone, subject, message)
+            VALUES (%s, %s, %s, %s, %s, %s)
+        """, (
+            data.get('fname'), data.get('lname'), data.get('email'),
+            data.get('phone'), data.get('subject'), data.get('message')
+        ))
+        conn.commit()
+        cur.close()
+        conn.close()
         return jsonify({"success": True, "message": "Thank you! We'll be in touch shortly."})
     except Exception as e:
         return jsonify({"success": False, "message": f"An error occurred: {str(e)}"}), 500
@@ -148,11 +170,37 @@ def check_auth():
 def get_bookings():
     if not check_auth():
         return jsonify({"error": "Unauthorized"}), 401
-    if not supabase:
-        return jsonify({"error": "Database connection not configured"}), 500
     try:
-        response = supabase.table("bookings").select("*, rooms(name)").order("created_at", desc=True).execute()
-        return jsonify(response.data)
+        conn = get_db_connection()
+        cur = conn.cursor(cursor_factory=RealDictCursor)
+        cur.execute("""
+            SELECT b.*, r.name as room_name 
+            FROM bookings b
+            LEFT JOIN rooms r ON b.cabana_id = r.id
+            ORDER BY b.created_at DESC
+        """)
+        bookings = cur.fetchall()
+        cur.close()
+        conn.close()
+        
+        # Format bookings for frontend serialization compatibility
+        formatted_bookings = []
+        for b in bookings:
+            if b.get('created_at'):
+                b['created_at'] = b['created_at'].isoformat()
+            if b.get('checkin'):
+                b['checkin'] = b['checkin'].isoformat()
+            if b.get('checkout'):
+                b['checkout'] = b['checkout'].isoformat()
+            if b.get('checkin_time'):
+                b['checkin_time'] = b['checkin_time'].isoformat() if hasattr(b['checkin_time'], 'isoformat') else str(b['checkin_time'])
+            if b.get('checkout_time'):
+                b['checkout_time'] = b['checkout_time'].isoformat() if hasattr(b['checkout_time'], 'isoformat') else str(b['checkout_time'])
+            
+            b['rooms'] = {"name": b.get('room_name')}
+            formatted_bookings.append(b)
+            
+        return jsonify(formatted_bookings)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
@@ -160,8 +208,6 @@ def get_bookings():
 def update_booking_status(id):
     if not check_auth():
         return jsonify({"error": "Unauthorized"}), 401
-    if not supabase:
-        return jsonify({"error": "Database connection not configured"}), 500
     
     data = request.json
     status = data.get('status')
@@ -169,23 +215,45 @@ def update_booking_status(id):
         return jsonify({"error": "Status is required"}), 400
 
     try:
-        response = supabase.table("bookings").update({"status": status}).eq("id", id).execute()
-        if not response.data:
+        conn = get_db_connection()
+        cur = conn.cursor(cursor_factory=RealDictCursor)
+        cur.execute("""
+            UPDATE bookings 
+            SET status = %s 
+            WHERE id = %s 
+            RETURNING *
+        """, (status, id))
+        updated_row = cur.fetchone()
+        conn.commit()
+        
+        if not updated_row:
+            cur.close()
+            conn.close()
             return jsonify({"error": "Booking not found"}), 404
+            
+        # Get room name for custom wa message formatting
+        cur.execute("SELECT name FROM rooms WHERE id = %s", (updated_row['cabana_id'],))
+        room_row = cur.fetchone()
+        cur.close()
+        conn.close()
         
-        booking = response.data[0]
-        
+        # Serialize fields for JSON compatibility
+        for key, val in updated_row.items():
+            if hasattr(val, 'isoformat'):
+                updated_row[key] = val.isoformat()
+            elif val is not None and not isinstance(val, (int, float, str, bool, list, dict)):
+                updated_row[key] = str(val)
+
         # If confirmed, generate whatsapp URL for guest
         wa_url = None
         if status == 'confirmed':
-            # Format phone number for whatsapp (remove leading 0 and add 94, assuming SL number)
-            phone = booking.get('phone', '')
+            phone = updated_row.get('phone', '')
             formatted_phone = "94" + phone[1:] if phone.startswith('0') else phone
-            msg = f"Hello {booking.get('fname')}, your booking for Cabana from {booking.get('checkin')} to {booking.get('checkout')} is CONFIRMED. Thank you for choosing Eury Nature Cabana!"
-            import urllib.parse
+            room_name = room_row['name'] if room_row else "Cabana"
+            msg = f"Hello {updated_row.get('fname')}, your booking for {room_name} from {updated_row.get('checkin')} to {updated_row.get('checkout')} is CONFIRMED. Thank you for choosing Eury Nature Cabana!"
             wa_url = f"https://wa.me/{formatted_phone}?text={urllib.parse.quote(msg)}"
 
-        return jsonify({"success": True, "booking": booking, "whatsapp_url": wa_url})
+        return jsonify({"success": True, "booking": updated_row, "whatsapp_url": wa_url})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
@@ -193,11 +261,19 @@ def update_booking_status(id):
 def get_contacts():
     if not check_auth():
         return jsonify({"error": "Unauthorized"}), 401
-    if not supabase:
-        return jsonify({"error": "Database connection not configured"}), 500
     try:
-        response = supabase.table("contacts").select("*").order("created_at", desc=True).execute()
-        return jsonify(response.data)
+        conn = get_db_connection()
+        cur = conn.cursor(cursor_factory=RealDictCursor)
+        cur.execute("SELECT * FROM contacts ORDER BY created_at DESC")
+        contacts = cur.fetchall()
+        cur.close()
+        conn.close()
+        
+        for c in contacts:
+            if c.get('created_at'):
+                c['created_at'] = c['created_at'].isoformat()
+                
+        return jsonify(contacts)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 

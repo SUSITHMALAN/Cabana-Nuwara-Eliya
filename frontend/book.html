@@ -3,47 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Eury Nature Cabana | Luxury Highland Hotel Sri Lanka{% endblock %}</title>
-    <meta name="description" content="Experience luxury in the misty highlands of Nuwara Eliya. Cabana Hotel offers boutique chic rooms, tea garden views, and world-class Sri Lankan hospitality.">
+    <title>Eury Nature Cabana | Luxury Highland Hotel Sri Lanka</title>
+    <meta name="description" content="Experience luxury in the misty highlands of Nuwara Eliya. Eury Nature Cabana offers boutique chic rooms, tea garden views, and world-class Sri Lankan hospitality.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    {% block extra_css %}{% endblock %}
+    <link rel="stylesheet" href="static/css/style.css">
+    
 </head>
 <body>
 
 <!-- Announcement Bar -->
 <div class="announcement-bar">
-    <p>🍃 Now Accepting Reservations for 2025 &nbsp;|&nbsp; <a href="/contact">Contact Us</a> &nbsp;|&nbsp; Free Ceylon Tea Daily</p>
+    <p>🍃 Now Accepting Reservations for 2025 &nbsp;|&nbsp; <a href="contact.html">Contact Us</a> &nbsp;|&nbsp; 12km from Nuwara Eliya &nbsp;|&nbsp; Est. 2024</p>
 </div>
 
 <!-- Navigation -->
 <nav class="navbar" id="navbar">
     <div class="nav-container">
-        <a href="/" class="nav-logo">
+        <a href="index.html" class="nav-logo">
             <div class="logo-text">
-                <span class="logo-main">CABANA</span>
-                <span class="logo-sub">NUWARA ELIYA</span>
+                <span class="logo-main">EURY NATURE</span>
+                <span class="logo-sub">CABANA</span>
             </div>
         </a>
 
         <ul class="nav-links" id="navLinks">
-            <li><a href="/">Home</a></li>
-            <li><a href="/accommodations">Our Cabanas</a></li>
-            <li><a href="/amenities">Amenities</a></li>
-            <li><a href="/discover">Discover NE</a></li>
-            <li><a href="/gallery">Gallery</a></li>
-            <li><a href="/contact">Contact Us</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="accommodations.html">Our Cabanas</a></li>
+            <li><a href="dining.html">Dining</a></li>
+            <li><a href="amenities.html">Amenities</a></li>
+            <li><a href="discover.html">Discover NE</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
         </ul>
 
         <div class="nav-actions">
             <div class="nav-social">
+                <a href="https://wa.me/94771758395" target="_blank" aria-label="WhatsApp" style="color:#25D366;"><i class="fab fa-whatsapp"></i></a>
                 <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                 <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             </div>
-            <a href="/book" class="btn-book">Book Now</a>
+            <a href="book.html" class="btn-book">Book Now</a>
         </div>
 
         <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -57,14 +59,14 @@
     <div class="page-hero-content">
         <span class="section-tag">Reservations</span>
         <h1>Book Your Cabana</h1>
-        <div class="breadcrumb"><a href="/">Home</a> › Book</div>
+        <div class="breadcrumb"><a href="index.html">Home</a> › Book</div>
     </div>
 </div>
 
 <section style="background: var(--cream); padding: 60px 0;">
     <div class="container">
         <div class="alert-banner">
-            <strong>🍃 Misty Highland Retreat:</strong> We have only <strong>three exclusive cabanas</strong> on our property—one large family cabana and two cozy small cabanas. Please secure your reservation in advance for an intimate nature experience.
+            <strong>🍃 Misty Highland Retreat:</strong> We have only <strong>two exclusive cabanas</strong> on our property. Please secure your reservation in advance for an intimate nature experience.
         </div>
 
         <div class="booking-container">
@@ -102,11 +104,8 @@
                         <div class="full-width-field">
                             <label for="cabana_select">Select Your Cabana *</label>
                             <select id="cabana_select" name="cabana_id" class="input-field" style="height: 50px;">
-                                {% for room in rooms %}
-                                <option value="{{ room.id }}" data-price="{{ room.price }}" data-capacity="{{ room.capacity }}">
-                                    {{ room.name }} — LKR {{ "{:,}".format(room.price) }} / night (Max {{ room.capacity }} guests)
-                                </option>
-                                {% endfor %}
+                                <option value="1" data-price="25000" data-capacity="9">Main Cabana (Eury Nature Cabana) — LKR 25,000 / night (Max 9 guests)</option>
+                                <option value="2" data-price="15000" data-capacity="4">Little Eury Nature Cabana — LKR 15,000 / night (Max 4 guests)</option>
                             </select>
                         </div>
 
@@ -216,8 +215,8 @@
     <div class="footer-top">
         <div class="footer-col">
             <div class="footer-logo">
-                <span class="logo-main">CABANA</span>
-                <span class="logo-sub">NUWARA ELIYA</span>
+                <span class="logo-main">EURY NATURE</span>
+                <span class="logo-sub">CABANA</span>
             </div>
             <p>A boutique highland retreat nestled in the misty mountains of Nuwara Eliya, Sri Lanka. Where luxury meets nature.</p>
             <div class="footer-social">
@@ -230,19 +229,20 @@
         <div class="footer-col">
             <h4>Quick Links</h4>
             <ul>
-                <li><a href="/accommodations">Our Cabanas</a></li>
-                <li><a href="/amenities">Amenities</a></li>
-                <li><a href="/book">Book Now</a></li>
-                <li><a href="/gallery">Gallery</a></li>
-                <li><a href="/discover">Discover Nuwara Eliya</a></li>
-                <li><a href="/contact">Contact Us</a></li>
+                <li><a href="accommodations.html">Our Cabanas</a></li>
+                <li><a href="dining.html">Dining</a></li>
+                <li><a href="amenities.html">Amenities</a></li>
+                <li><a href="book.html">Book Now</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="discover.html">Discover NE</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
             </ul>
         </div>
         <div class="footer-col">
             <h4>Contact</h4>
-            <p><i class="fas fa-map-marker-alt"></i> 45 Grand Hotel Road,<br>Nuwara Eliya 22200,<br>Sri Lanka</p>
-            <p><i class="fas fa-phone"></i> <a href="tel:+94522222222">+94 52 222 2222</a></p>
-            <p><i class="fas fa-envelope"></i> <a href="mailto:info@cabananuwaraeliya.lk">info@cabananuwaraeliya.lk</a></p>
+            <p><i class="fas fa-map-marker-alt"></i> 12 km from Nuwara Eliya,<br>4km from Ambewela Station,<br>Sri Lanka</p>
+            <p><i class="fas fa-phone"></i> <a href="tel:+94771758395">+94 77 175 8395</a></p>
+            <p><i class="fas fa-envelope"></i> <a href="mailto:eurynaturecabana26@gmail.com">eurynaturecabana26@gmail.com</a></p>
         </div>
         <div class="footer-col">
             <h4>Weather</h4>
@@ -250,7 +250,7 @@
                 <div class="weather-icon">⛅</div>
                 <div class="weather-info">
                     <span class="temp" id="footerTemp">18°C</span>
-                    <span class="weather-desc">Nuwara Eliya, LK</span>
+                    <span class="weather-desc">Nuwara Eliya</span>
                     <span class="weather-sub">Cool &amp; Misty</span>
                 </div>
             </div>
@@ -276,7 +276,210 @@
     <i class="fas fa-chevron-up"></i>
 </button>
 
-<script src="{{ url_for('static', filename='js/main.js') }}"></script>
-{% block extra_js %}{% endblock %}
+<script src="static/js/main.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const API_BASE = 'https://cabana-backend.onrender.com'; // Render deployed backend URL
+
+        const cabanaSelect = document.getElementById('cabana_select');
+        const checkinInput = document.getElementById('checkin_date');
+        const checkoutInput = document.getElementById('checkout_date');
+        const checkinTime = document.getElementById('checkin_time');
+        const checkoutTime = document.getElementById('checkout_time');
+        const guestCountSelect = document.getElementById('guest_count');
+        const daysSpentInput = document.getElementById('days_spent');
+
+        const sumCabana = document.getElementById('sum_cabana');
+        const sumRate = document.getElementById('sum_rate');
+        const sumCheckin = document.getElementById('sum_checkin');
+        const sumCheckout = document.getElementById('sum_checkout');
+        const sumNights = document.getElementById('sum_nights');
+        const sumGuests = document.getElementById('sum_guests');
+        const sumTotal = document.getElementById('sum_total');
+
+        // Set calendar boundaries (min date = today)
+        const today = new Date();
+        const todayStr = today.toISOString().split('T')[0];
+        checkinInput.min = todayStr;
+        
+        const tomorrow = new Date(today);
+        tomorrow.setDate(today.getDate() + 1);
+        const tomorrowStr = tomorrow.toISOString().split('T')[0];
+        checkoutInput.min = tomorrowStr;
+
+        // Default dates
+        checkinInput.value = todayStr;
+        checkoutInput.value = tomorrowStr;
+
+        // Update Guest Options based on selected Cabana
+        function updateGuestCapacity() {
+            const selectedOption = cabanaSelect.options[cabanaSelect.selectedIndex];
+            if (!selectedOption) return;
+            const maxCapacity = parseInt(selectedOption.dataset.capacity) || 1;
+            
+            // Re-populate guest select options
+            guestCountSelect.innerHTML = '';
+            for (let i = 1; i <= maxCapacity; i++) {
+                const opt = document.createElement('option');
+                opt.value = i;
+                opt.textContent = `${i} Guest${i > 1 ? 's' : ''}`;
+                if (i === Math.min(2, maxCapacity)) { // default to 2 if available, else 1
+                    opt.selected = true;
+                }
+                guestCountSelect.appendChild(opt);
+            }
+            updateCalculations();
+        }
+
+        // Calculate nights & prices
+        function updateCalculations() {
+            const selectedOption = cabanaSelect.options[cabanaSelect.selectedIndex];
+            if (!selectedOption) return;
+            const cabanaName = selectedOption.textContent.split(' — ')[0];
+            const pricePerNight = parseFloat(selectedOption.dataset.price) || 0;
+
+            const checkinDate = new Date(checkinInput.value);
+            const checkoutDate = new Date(checkoutInput.value);
+
+            // Ensure checkout is after checkin
+            if (checkoutDate <= checkinDate) {
+                const newCheckout = new Date(checkinDate);
+                newCheckout.setDate(checkinDate.getDate() + 1);
+                checkoutInput.value = newCheckout.toISOString().split('T')[0];
+                return updateCalculations();
+            }
+
+            // Calculate difference in days
+            const diffTime = Math.abs(checkoutDate - checkinDate);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+            daysSpentInput.value = diffDays;
+
+            // Update Summary Card
+            sumCabana.textContent = cabanaName;
+            sumRate.textContent = `LKR ${pricePerNight.toLocaleString()}`;
+            sumCheckin.textContent = `${checkinInput.value} @ ${checkinTime.value}`;
+            sumCheckout.textContent = `${checkoutInput.value} @ ${checkoutTime.value}`;
+            sumNights.textContent = `${diffDays} Night${diffDays > 1 ? 's' : ''}`;
+            
+            const guestsSelected = guestCountSelect.value || 1;
+            sumGuests.textContent = `${guestsSelected} Guest${guestsSelected > 1 ? 's' : ''}`;
+
+            const totalCost = pricePerNight * diffDays;
+            sumTotal.textContent = `LKR ${totalCost.toLocaleString()}`;
+        }
+
+        // Event Listeners
+        cabanaSelect.addEventListener('change', updateGuestCapacity);
+        checkinInput.addEventListener('change', function() {
+            const checkinDate = new Date(checkinInput.value);
+            const minCheckout = new Date(checkinDate);
+            minCheckout.setDate(checkinDate.getDate() + 1);
+            checkoutInput.min = minCheckout.toISOString().split('T')[0];
+            updateCalculations();
+        });
+        checkoutInput.addEventListener('change', updateCalculations);
+        checkinTime.addEventListener('change', updateCalculations);
+        checkoutTime.addEventListener('change', updateCalculations);
+        guestCountSelect.addEventListener('change', updateCalculations);
+
+        // Pre-select based on URL params
+        const urlParams = new URLSearchParams(window.location.search);
+        const preselectedId = urlParams.get('cabana_id');
+        if (preselectedId) {
+            cabanaSelect.value = preselectedId;
+        }
+        
+        updateGuestCapacity(); // First capacity setup
+        
+        const precheckin = urlParams.get('checkin');
+        if (precheckin) {
+            checkinInput.value = precheckin;
+            const checkinDate = new Date(checkinInput.value);
+            const minCheckout = new Date(checkinDate);
+            minCheckout.setDate(checkinDate.getDate() + 1);
+            checkoutInput.min = minCheckout.toISOString().split('T')[0];
+        }
+
+        const precheckout = urlParams.get('checkout');
+        if (precheckout) {
+            checkoutInput.value = precheckout;
+        }
+
+        const preguests = urlParams.get('guests');
+        if (preguests) {
+            if (parseInt(preguests) <= parseInt(guestCountSelect.options[guestCountSelect.options.length - 1]?.value || 1)) {
+                guestCountSelect.value = preguests;
+            }
+        }
+
+        updateCalculations();
+
+        // Submit form via Ajax
+        const form = document.getElementById('realBookingForm');
+        const submitBtn = document.querySelector('button[form="realBookingForm"]');
+        const resultMsg = document.getElementById('bookingResultMsg');
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Processing Reservation...';
+            resultMsg.style.display = 'block';
+            resultMsg.style.color = '#fff';
+            resultMsg.textContent = 'Checking availability...';
+
+            const payload = {
+                cabana_id: cabanaSelect.value,
+                checkin: checkinInput.value,
+                checkout: checkoutInput.value,
+                checkin_time: checkinTime.value,
+                checkout_time: checkoutTime.value,
+                guests: guestCountSelect.value,
+                days_spent: daysSpentInput.value,
+                fname: document.getElementById('fname').value,
+                lname: document.getElementById('lname').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                notes: document.getElementById('notes').value
+            };
+
+            try {
+                const res = await fetch(`${API_BASE}/api/book`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                
+                if (data.success) {
+                    resultMsg.style.color = '#a5d6a7';
+                    resultMsg.innerHTML = `<i class="fas fa-check-circle"></i> ${data.message}`;
+                    form.reset();
+                    
+                    // Reset calendar
+                    checkinInput.value = todayStr;
+                    checkoutInput.value = tomorrowStr;
+                    updateGuestCapacity();
+
+                    // Redirect to WhatsApp after 2 seconds
+                    setTimeout(() => {
+                        if (data.whatsapp_url) {
+                            window.open(data.whatsapp_url, '_blank');
+                        }
+                    }, 2000);
+                } else {
+                    resultMsg.style.color = '#ef9a9a';
+                    resultMsg.textContent = data.message || 'Unable to book. Please try again.';
+                }
+            } catch (err) {
+                resultMsg.style.color = '#ef9a9a';
+                resultMsg.textContent = 'An error occurred. Please try again or contact us directly.';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Confirm Reservation';
+            }
+        });
+    });
+</script>
 </body>
 </html>
