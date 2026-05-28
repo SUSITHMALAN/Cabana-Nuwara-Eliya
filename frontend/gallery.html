@@ -96,98 +96,134 @@
                 background:transparent;color:var(--dark);border:2px solid var(--border);">
                 Views
             </button>
+
+            <button onclick="filterGallery(this, 'dining')"
+                style="padding:10px 24px;border-radius:4px;font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;
+                background:transparent;color:var(--dark);border:2px solid var(--border);">
+                Dining
+            </button>
             
         </div>
 
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;" id="galleryGrid">
             
-            
+            <!-- Item 1: Cabanas -->
             <div class="gallery-item reveal" data-cat="cabanas" style="height:280px;border-radius:8px;overflow:hidden;position:relative;cursor:pointer;">
                 <div class="gallery-img" style="background:url('static/images/cabana_interior_1.jpg') center/cover; width:100%; height:100%;"></div>
                 <div class="gallery-overlay" style="border-radius:8px;">
                     <div style="text-align:center;color:white;">
                         <i class="fas fa-search-plus" style="font-size:1.5rem;margin-bottom:8px;display:block;"></i>
-                        <span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;">Grand Family Cabana</span>
+                        <span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;">Grand Family Cabana Room</span>
                     </div>
                 </div>
             </div>
             
+            <!-- Item 2: Cabanas -->
             <div class="gallery-item reveal" data-cat="cabanas" style="height:280px;border-radius:8px;overflow:hidden;position:relative;cursor:pointer;">
                 <div class="gallery-img" style="background:url('static/images/cabana_interior_2.jpg') center/cover; width:100%; height:100%;"></div>
                 <div class="gallery-overlay" style="border-radius:8px;">
                     <div style="text-align:center;color:white;">
                         <i class="fas fa-search-plus" style="font-size:1.5rem;margin-bottom:8px;display:block;"></i>
-                        <span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;">Classic Cozy Cabana I</span>
+                        <span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;">Main Cabana Kitchen Area</span>
                     </div>
                 </div>
             </div>
             
+            <!-- Item 3: Views -->
             <div class="gallery-item reveal" data-cat="views" style="height:280px;border-radius:8px;overflow:hidden;position:relative;cursor:pointer;">
                 <div class="gallery-img" style="background:url('static/images/sunrise.jpg') center/cover; width:100%; height:100%;"></div>
                 <div class="gallery-overlay" style="border-radius:8px;">
                     <div style="text-align:center;color:white;">
                         <i class="fas fa-search-plus" style="font-size:1.5rem;margin-bottom:8px;display:block;"></i>
-                        <span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;">Misty Mountain View</span>
+                        <span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;">Misty Mountain Sunrise</span>
                     </div>
                 </div>
             </div>
             
-            <div class="gallery-item reveal" data-cat="gardens" style="height:280px;border-radius:8px;overflow:hidden;position:relative;cursor:pointer;">
-                <div class="gallery-img" style="background:url('static/images/cabana_interior_4.jpg') center/cover; width:100%; height:100%;"></div>
-                <div class="gallery-overlay" style="border-radius:8px;">
-                    <div style="text-align:center;color:white;">
-                        <i class="fas fa-search-plus" style="font-size:1.5rem;margin-bottom:8px;display:block;"></i>
-                        <span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;">Tea Garden Path</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="gallery-item reveal" data-cat="views" style="height:280px;border-radius:8px;overflow:hidden;position:relative;cursor:pointer;">
-                <div class="gallery-img" style="background:url('static/images/sunrise.jpg') center/cover; width:100%; height:100%;"></div>
-                <div class="gallery-overlay" style="border-radius:8px;">
-                    <div style="text-align:center;color:white;">
-                        <i class="fas fa-search-plus" style="font-size:1.5rem;margin-bottom:8px;display:block;"></i>
-                        <span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;">Sunset over the Hills</span>
-                    </div>
-                </div>
-            </div>
-            
+            <!-- Item 4: Cabanas (Lounge) -->
             <div class="gallery-item reveal" data-cat="cabanas" style="height:280px;border-radius:8px;overflow:hidden;position:relative;cursor:pointer;">
+                <div class="gallery-img" style="background:url('static/images/cabana_interior_5.jpg') center/cover; width:100%; height:100%;"></div>
+                <div class="gallery-overlay" style="border-radius:8px;">
+                    <div style="text-align:center;color:white;">
+                        <i class="fas fa-search-plus" style="font-size:1.5rem;margin-bottom:8px;display:block;"></i>
+                        <span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;">Cozy Cabana Living Lounge</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Item 5: Views (Exterior 1) -->
+            <div class="gallery-item reveal" data-cat="views" style="height:280px;border-radius:8px;overflow:hidden;position:relative;cursor:pointer;">
+                <div class="gallery-img" style="background:url('static/images/cabana_exterior_1.png') center/cover; width:100%; height:100%;"></div>
+                <div class="gallery-overlay" style="border-radius:8px;">
+                    <div style="text-align:center;color:white;">
+                        <i class="fas fa-search-plus" style="font-size:1.5rem;margin-bottom:8px;display:block;"></i>
+                        <span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;">A-Frame Wooden Cabana</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Item 6: Cabanas (Interior 6) -->
+            <div class="gallery-item reveal" data-cat="cabanas" style="height:280px;border-radius:8px;overflow:hidden;position:relative;cursor:pointer;">
+                <div class="gallery-img" style="background:url('static/images/cabana_interior_6.jpg') center/cover; width:100%; height:100%;"></div>
+                <div class="gallery-overlay" style="border-radius:8px;">
+                    <div style="text-align:center;color:white;">
+                        <i class="fas fa-search-plus" style="font-size:1.5rem;margin-bottom:8px;display:block;"></i>
+                        <span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;">Little Eury Cozy Bedroom</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Item 7: Views (Exterior 2) -->
+            <div class="gallery-item reveal" data-cat="views" style="height:280px;border-radius:8px;overflow:hidden;position:relative;cursor:pointer;">
+                <div class="gallery-img" style="background:url('static/images/cabana_exterior_2.jpg') center/cover; width:100%; height:100%;"></div>
+                <div class="gallery-overlay" style="border-radius:8px;">
+                    <div style="text-align:center;color:white;">
+                        <i class="fas fa-search-plus" style="font-size:1.5rem;margin-bottom:8px;display:block;"></i>
+                        <span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;">Misty Highland Escape</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Item 8: Dining (Dining 1) -->
+            <div class="gallery-item reveal" data-cat="dining" style="height:280px;border-radius:8px;overflow:hidden;position:relative;cursor:pointer;">
+                <div class="gallery-img" style="background:url('static/images/dining_1.jpg') center/cover; width:100%; height:100%;"></div>
+                <div class="gallery-overlay" style="border-radius:8px;">
+                    <div style="text-align:center;color:white;">
+                        <i class="fas fa-search-plus" style="font-size:1.5rem;margin-bottom:8px;display:block;"></i>
+                        <span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;">Cozy Dining Setup</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Item 9: Dining (Interior 3) -->
+            <div class="gallery-item reveal" data-cat="dining" style="height:280px;border-radius:8px;overflow:hidden;position:relative;cursor:pointer;">
                 <div class="gallery-img" style="background:url('static/images/cabana_interior_3.jpg') center/cover; width:100%; height:100%;"></div>
                 <div class="gallery-overlay" style="border-radius:8px;">
                     <div style="text-align:center;color:white;">
                         <i class="fas fa-search-plus" style="font-size:1.5rem;margin-bottom:8px;display:block;"></i>
-                        <span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;">Classic Cozy Cabana II</span>
+                        <span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;">Ceylon Tea close-up</span>
                     </div>
                 </div>
             </div>
-            
-            <div class="gallery-item reveal" data-cat="views" style="height:280px;border-radius:8px;overflow:hidden;position:relative;cursor:pointer;">
-                <div class="gallery-img" style="background:url('static/images/cabana_interior_1.jpg') center/cover; width:100%; height:100%;"></div>
-                <div class="gallery-overlay" style="border-radius:8px;">
-                    <div style="text-align:center;color:white;">
-                        <i class="fas fa-search-plus" style="font-size:1.5rem;margin-bottom:8px;display:block;"></i>
-                        <span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;">Highland Sunrise</span>
-                    </div>
-                </div>
-            </div>
-            
+
+            <!-- Item 10: Gardens (Exterior 1) -->
             <div class="gallery-item reveal" data-cat="gardens" style="height:280px;border-radius:8px;overflow:hidden;position:relative;cursor:pointer;">
-                <div class="gallery-img" style="background:url('static/images/cabana_interior_2.jpg') center/cover; width:100%; height:100%;"></div>
+                <div class="gallery-img" style="background:url('static/images/cabana_exterior_1.png') center/cover; width:100%; height:100%;"></div>
                 <div class="gallery-overlay" style="border-radius:8px;">
                     <div style="text-align:center;color:white;">
                         <i class="fas fa-search-plus" style="font-size:1.5rem;margin-bottom:8px;display:block;"></i>
-                        <span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;">Lush Greenery</span>
+                        <span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;">Tea Garden & Cabana</span>
                     </div>
                 </div>
             </div>
-            
+
+            <!-- Item 11: Gardens (Exterior 2) -->
             <div class="gallery-item reveal" data-cat="gardens" style="height:280px;border-radius:8px;overflow:hidden;position:relative;cursor:pointer;">
-                <div class="gallery-img" style="background:url('static/images/sunrise.jpg') center/cover; width:100%; height:100%;"></div>
+                <div class="gallery-img" style="background:url('static/images/cabana_exterior_2.jpg') center/cover; width:100%; height:100%;"></div>
                 <div class="gallery-overlay" style="border-radius:8px;">
                     <div style="text-align:center;color:white;">
                         <i class="fas fa-search-plus" style="font-size:1.5rem;margin-bottom:8px;display:block;"></i>
-                        <span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;">Colonial Courtyard</span>
+                        <span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;">Misty Garden Courtyard</span>
                     </div>
                 </div>
             </div>

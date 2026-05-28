@@ -293,11 +293,11 @@ img { max-width: 100%; display: block; }
     );
 }
 
-/* Demo gradient backgrounds for slides (replaces real images) */
-.slide-1 { background: linear-gradient(135deg, #1a3d1c 0%, #2c5f2e 40%, #3d7a40 60%, #5a9e5d 100%); }
-.slide-2 { background: linear-gradient(135deg, #1a2a1c 0%, #2e4830 40%, #4a7a50 60%, #6aaa70 100%); }
-.slide-3 { background: linear-gradient(135deg, #0d1f10 0%, #1e3d22 40%, #2c6030 60%, #4a8a50 100%); }
-.slide-4 { background: linear-gradient(160deg, #152018 0%, #264030 40%, #3a6845 60%, #5a9860 100%); }
+/* Premium backgrounds for slides using real images */
+.slide-1 { background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../images/cabana_exterior_1.png') center/cover; }
+.slide-2 { background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../images/cabana_interior_5.jpg') center/cover; }
+.slide-3 { background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../images/dining_1.jpg') center/cover; }
+.slide-4 { background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../images/cabana_exterior_2.jpg') center/cover; }
 
 .hero-slide-content {
     position: absolute;
@@ -575,8 +575,8 @@ section { padding: 90px 24px; }
 }
 .room-card:hover .room-img-bg { transform: scale(1.06); }
 
-.room-img-bg.r1 { background: linear-gradient(135deg, #2c4a2e 0%, #3d6a40 50%, #5a9a5e 100%); }
-.room-img-bg.r2 { background: linear-gradient(135deg, #1a3020 0%, #2d5535 50%, #4a8055 100%); }
+.room-img-bg.r1 { background: url('../images/cabana_interior_3.jpg') center/cover; }
+.room-img-bg.r2 { background: url('../images/cabana_interior_4.jpg') center/cover; }
 .room-img-bg.r3 { background: linear-gradient(135deg, #203828 0%, #346048 50%, #509068 100%); }
 .room-img-bg.r4 { background: linear-gradient(135deg, #152018 0%, #264038 50%, #3a6858 100%); }
 
