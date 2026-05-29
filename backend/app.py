@@ -93,9 +93,38 @@ def book():
             "notes": data.get('notes'),
             "status": "pending"
         }
+
+        # Date validations: backdate and chronological order check
+        from datetime import datetime, date
+        try:
+            checkin_d = datetime.strptime(booking_data['checkin'], '%Y-%m-%d').date()
+            checkout_d = datetime.strptime(booking_data['checkout'], '%Y-%m-%d').date()
+        except ValueError:
+            return jsonify({"success": False, "message": "Invalid date format. Use YYYY-MM-DD."}), 400
+
+        if checkin_d < date.today():
+            return jsonify({"success": False, "message": "Check-in date cannot be in the past."}), 400
+
+        if checkout_d <= checkin_d:
+            return jsonify({"success": False, "message": "Check-out date must be after check-in date."}), 400
         
         conn = get_db_connection()
         cur = conn.cursor(cursor_factory=RealDictCursor)
+
+        # Overlap Check: any pending/confirmed booking for the same cabana where checkin < checkout_d AND checkout > checkin_d
+        cur.execute("""
+            SELECT id FROM bookings
+            WHERE cabana_id = %s
+              AND status != 'cancelled'
+              AND checkin < %s
+              AND checkout > %s
+        """, (booking_data['cabana_id'], booking_data['checkout'], booking_data['checkin']))
+        overlap = cur.fetchone()
+        if overlap:
+            cur.close()
+            conn.close()
+            return jsonify({"success": False, "message": "This cabana is already booked for the selected dates. Please choose different dates."}), 400
+
         cur.execute("""
             INSERT INTO bookings (cabana_id, checkin, checkout, checkin_time, checkout_time, guests, days_spent, fname, lname, email, phone, notes, status)
             VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
@@ -277,7 +306,222 @@ def get_contacts():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+# --- Edit Booking Endpoint ---
+@app.route('/api/admin/bookings/<int:id>', methods=['PUT'])
+def edit_booking(id):
+    if not check_auth():
+        return jsonify({"error": "Unauthorized"}), 401
+    data = request.json
+    
+    try:
+        conn = get_db_connection()
+        cur = conn.cursor(cursor_factory=RealDictCursor)
+        
+        # Get existing booking
+        cur.execute("SELECT cabana_id, checkin, checkout FROM bookings WHERE id = %s", (id,))
+        existing = cur.fetchone()
+        if not existing:
+            cur.close()
+            conn.close()
+            return jsonify({"success": False, "message": "Booking not found"}), 404
+            
+        cabana_id = int(data.get('cabana_id', existing['cabana_id']))
+        checkin = data.get('checkin', str(existing['checkin']))
+        checkout = data.get('checkout', str(existing['checkout']))
+        status = data.get('status', 'pending')
+        
+        # Check overlaps (excluding this booking itself)
+        if status != 'cancelled':
+            cur.execute("""
+                SELECT id FROM bookings
+                WHERE cabana_id = %s
+                  AND id != %s
+                  AND status != 'cancelled'
+                  AND checkin < %s
+                  AND checkout > %s
+            """, (cabana_id, id, checkout, checkin))
+            overlap = cur.fetchone()
+            if overlap:
+                cur.close()
+                conn.close()
+                return jsonify({"success": False, "message": "The selected dates overlap with an existing booking."}), 400
+
+        cur.execute("""
+            UPDATE bookings
+            SET cabana_id = %s, checkin = %s, checkout = %s, checkin_time = %s, checkout_time = %s,
+                guests = %s, fname = %s, lname = %s, email = %s, phone = %s, notes = %s, status = %s
+            WHERE id = %s
+            RETURNING *
+        """, (
+            cabana_id, checkin, checkout, data.get('checkin_time'), data.get('checkout_time'),
+            int(data.get('guests')), data.get('fname'), data.get('lname'),
+            data.get('email'), data.get('phone'), data.get('notes'), status, id
+        ))
+        updated_row = cur.fetchone()
+        conn.commit()
+        cur.close()
+        conn.close()
+        
+        # Serialize fields for JSON compatibility
+        for key, val in updated_row.items():
+            if hasattr(val, 'isoformat'):
+                updated_row[key] = val.isoformat()
+            elif val is not None and not isinstance(val, (int, float, str, bool, list, dict)):
+                updated_row[key] = str(val)
+                
+        return jsonify({"success": True, "booking": updated_row})
+    except Exception as e:
+        return jsonify({"success": False, "message": str(e)}), 500
+
+# --- Menu Endpoints ---
+@app.route('/api/menu', methods=['GET'])
+def get_menu():
+    try:
+        conn = get_db_connection()
+        cur = conn.cursor(cursor_factory=RealDictCursor)
+        cur.execute("SELECT id, category, name, description, price FROM menu_items ORDER BY id")
+        menu_items = cur.fetchall()
+        cur.close()
+        conn.close()
+        return jsonify(menu_items)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/api/admin/menu', methods=['POST'])
+def add_menu_item():
+    if not check_auth():
+        return jsonify({"error": "Unauthorized"}), 401
+    data = request.json
+    category = data.get('category')
+    name = data.get('name')
+    description = data.get('description', '')
+    price = data.get('price')
+    if not category or not name or not price:
+        return jsonify({"success": False, "message": "Missing required fields"}), 400
+    try:
+        conn = get_db_connection()
+        cur = conn.cursor(cursor_factory=RealDictCursor)
+        cur.execute("""
+            INSERT INTO menu_items (category, name, description, price)
+            VALUES (%s, %s, %s, %s)
+            RETURNING *
+        """, (category, name, description, price))
+        item = cur.fetchone()
+        conn.commit()
+        cur.close()
+        conn.close()
+        return jsonify({"success": True, "item": item})
+    except Exception as e:
+        return jsonify({"success": False, "message": str(e)}), 500
+
+@app.route('/api/admin/menu/<int:id>', methods=['PUT'])
+def update_menu_item(id):
+    if not check_auth():
+        return jsonify({"error": "Unauthorized"}), 401
+    data = request.json
+    category = data.get('category')
+    name = data.get('name')
+    description = data.get('description', '')
+    price = data.get('price')
+    if not category or not name or not price:
+        return jsonify({"success": False, "message": "Missing required fields"}), 400
+    try:
+        conn = get_db_connection()
+        cur = conn.cursor(cursor_factory=RealDictCursor)
+        cur.execute("""
+            UPDATE menu_items
+            SET category = %s, name = %s, description = %s, price = %s
+            WHERE id = %s
+            RETURNING *
+        """, (category, name, description, price, id))
+        item = cur.fetchone()
+        conn.commit()
+        cur.close()
+        conn.close()
+        if not item:
+            return jsonify({"success": False, "message": "Item not found"}), 404
+        return jsonify({"success": True, "item": item})
+    except Exception as e:
+        return jsonify({"success": False, "message": str(e)}), 500
+
+@app.route('/api/admin/menu/<int:id>', methods=['DELETE'])
+def delete_menu_item(id):
+    if not check_auth():
+        return jsonify({"error": "Unauthorized"}), 401
+    try:
+        conn = get_db_connection()
+        cur = conn.cursor(cursor_factory=RealDictCursor)
+        cur.execute("DELETE FROM menu_items WHERE id = %s RETURNING id", (id,))
+        deleted = cur.fetchone()
+        conn.commit()
+        cur.close()
+        conn.close()
+        if not deleted:
+            return jsonify({"success": False, "message": "Item not found"}), 404
+        return jsonify({"success": True, "message": "Menu item deleted successfully"})
+    except Exception as e:
+        return jsonify({"success": False, "message": str(e)}), 500
+
+# --- Gallery Endpoints ---
+@app.route('/api/gallery', methods=['GET'])
+def get_gallery():
+    try:
+        conn = get_db_connection()
+        cur = conn.cursor(cursor_factory=RealDictCursor)
+        cur.execute("SELECT id, url, caption, category FROM gallery_items ORDER BY id")
+        gallery_items = cur.fetchall()
+        cur.close()
+        conn.close()
+        return jsonify(gallery_items)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/api/admin/gallery', methods=['POST'])
+def add_gallery_item():
+    if not check_auth():
+        return jsonify({"error": "Unauthorized"}), 401
+    data = request.json
+    url = data.get('url')
+    caption = data.get('caption')
+    category = data.get('category')
+    if not url or not caption or not category:
+        return jsonify({"success": False, "message": "Missing required fields"}), 400
+    try:
+        conn = get_db_connection()
+        cur = conn.cursor(cursor_factory=RealDictCursor)
+        cur.execute("""
+            INSERT INTO gallery_items (url, caption, category)
+            VALUES (%s, %s, %s)
+            RETURNING *
+        """, (url, caption, category))
+        item = cur.fetchone()
+        conn.commit()
+        cur.close()
+        conn.close()
+        return jsonify({"success": True, "item": item})
+    except Exception as e:
+        return jsonify({"success": False, "message": str(e)}), 500
+
+@app.route('/api/admin/gallery/<int:id>', methods=['DELETE'])
+def delete_gallery_item(id):
+    if not check_auth():
+        return jsonify({"error": "Unauthorized"}), 401
+    try:
+        conn = get_db_connection()
+        cur = conn.cursor(cursor_factory=RealDictCursor)
+        cur.execute("DELETE FROM gallery_items WHERE id = %s RETURNING id", (id,))
+        deleted = cur.fetchone()
+        conn.commit()
+        cur.close()
+        conn.close()
+        if not deleted:
+            return jsonify({"success": False, "message": "Gallery item not found"}), 404
+        return jsonify({"success": True, "message": "Gallery item deleted successfully"})
+    except Exception as e:
+        return jsonify({"success": False, "message": str(e)}), 500
+
 if __name__ == '__main__':
     # Run the Flask app on port 5000 by default
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port, debug=True)
+

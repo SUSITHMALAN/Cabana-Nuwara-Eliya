@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/style.css?v=2">
     
 </head>
 <body>
@@ -40,6 +40,7 @@
 
         <div class="nav-actions">
             <div class="nav-social">
+                <a href="admin.html" aria-label="Admin Login" title="Admin Login" style="color:var(--gold);"><i class="fas fa-lock"></i></a>
                 <a href="https://wa.me/94771758395" target="_blank" aria-label="WhatsApp" style="color:#25D366;"><i class="fab fa-whatsapp"></i></a>
                 <a href="https://www.facebook.com/share/1aDeTHcHs5/" aria-label="Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
                 <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -277,7 +278,7 @@
 <script src="static/js/main.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const API_BASE = 'https://cabana-backend.onrender.com'; // Render deployed backend URL
+        const API_BASE = 'http://127.0.0.1:5000'; // Render deployed backend URL
 
         const cabanaSelect = document.getElementById('cabana_select');
         const checkinInput = document.getElementById('checkin_date');

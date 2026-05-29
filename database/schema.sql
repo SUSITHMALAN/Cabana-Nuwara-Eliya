@@ -83,3 +83,54 @@ INSERT INTO amenities (icon, title, "desc") VALUES
 ('🚗', 'Parking Space', 'Secure parking space available for guests'),
 ('🌐', 'High-Speed Wi-Fi', 'Stay connected with high-speed internet throughout your stay'),
 ('🌅', 'Panoramic Viewing Deck', 'Take in the stunning misty mountain sunrises and peaceful evening views');
+
+-- 6. Menu Items Table
+CREATE TABLE IF NOT EXISTS menu_items (
+    id SERIAL PRIMARY KEY,
+    category VARCHAR(50) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    price VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Seed Menu Items
+INSERT INTO menu_items (category, name, description, price) VALUES
+('breakfast', 'Rice & Curry', 'Red or White Rice Dhal Curry, Pol Sambol, Chicken Curry', 'Rs.600.00'),
+('breakfast', 'String Hoppers', '10 String Hoppers, Dhal or Egg Curry, Pol Sambol', 'Rs.550.00'),
+('lunch', 'Set Menu', 'Sliced Fried Rice, Devilled Chicken, Chicken Curry, Fresh Salad, Papadam, & Dessert', 'Rs.1,000.00'),
+('dinner', 'Chicken Fried Rice', '', 'Rs.950.00'),
+('dinner', 'Egg Fried Rice', '', 'Rs.950.00'),
+('dinner', 'Chicken Noodles', '', 'Rs.950.00'),
+('dinner', 'Egg Noodles', '', 'Rs.900.00'),
+('dinner', 'Chicken Kottu', '', 'Rs.950.00'),
+('dinner', 'Egg Kottu', '', 'Rs.950.00'),
+('dinner', 'Devilled Chicken (Spicy)', '', 'Rs.1,500.00'),
+('dinner', 'Egg Omelette', '', 'Rs.550.00');
+
+-- 7. Gallery Items Table
+CREATE TABLE IF NOT EXISTS gallery_items (
+    id SERIAL PRIMARY KEY,
+    url VARCHAR(500) NOT NULL,
+    caption VARCHAR(255) NOT NULL,
+    category VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Seed Gallery Items
+INSERT INTO gallery_items (url, caption, category) VALUES
+('static/images/cabana_interior_1.jpg', 'Grand Family Cabana Room', 'cabanas'),
+('static/images/cabana_interior_2.jpg', 'Main Cabana Kitchen Area', 'cabanas'),
+('static/images/sunrise.jpg', 'Misty Mountain Sunrise', 'views'),
+('static/images/cabana_interior_5.jpg', 'Cozy Cabana Living Lounge', 'cabanas'),
+('static/images/cabanas_landscape.jpg', 'Eury Nature Cabana Landscape', 'views'),
+('static/images/cabana_interior_6.jpg', 'Little Eury Cozy Bedroom', 'cabanas'),
+('static/images/cabana_view_balcony.jpg', 'Misty Highland Balcony View', 'views'),
+('static/images/dining_1.jpg', 'Cozy Dining Setup', 'dining'),
+('static/images/cabana_interior_3.jpg', 'Ceylon Tea close-up', 'dining'),
+('static/images/fields_terraced.jpg', 'Terraced Green Fields', 'gardens'),
+('static/images/little_eury_exterior.jpg', 'Little Eury Picnic Area', 'gardens'),
+('static/images/cabana_view_patio.jpg', 'Panoramic Patio Overlook', 'views'),
+('static/videos/cabana_tour_1.mp4', 'Highland Mist Tour', 'videos'),
+('static/videos/cabana_tour_2.mp4', 'Cabana & Garden Walk', 'videos');
+
