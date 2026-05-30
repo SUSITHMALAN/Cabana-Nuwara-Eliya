@@ -265,6 +265,7 @@ document.querySelectorAll('.gallery-item').forEach(item => {
 // ===================== COOKIE NOTICE =====================
 if (!localStorage.getItem('cabana_cookie_accepted')) {
     const cookie = document.createElement('div');
+    cookie.className = 'cookie-notice';
     cookie.style.cssText = `
         position:fixed;bottom:0;left:0;right:0;background:#1a1a1a;color:#ccc;
         padding:16px 32px;display:flex;align-items:center;justify-content:space-between;
