@@ -59,9 +59,9 @@
     </div>
 </div>
 
-<section style="background:var(--cream); padding: 80px 0;">
+<section class="contact-section" style="background:var(--cream); padding: 80px 0;">
     <div class="container">
-        <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:64px;align-items:start;">
+        <div class="contact-grid" style="display:grid;grid-template-columns:1fr 1.4fr;gap:64px;align-items:start;">
 
             <!-- Contact Info -->
             <div class="reveal-left">
@@ -139,12 +139,12 @@
             </div>
 
             <!-- Contact Form -->
-            <div class="reveal-right" style="background:var(--white);border-radius:12px;padding:48px;box-shadow:var(--shadow-lg);">
+            <div class="contact-form-card reveal-right" style="background:var(--white);border-radius:12px;padding:48px;box-shadow:var(--shadow-lg);">
                 <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--primary-dark);margin-bottom:8px;">Send a Message</h3>
                 <p style="color:var(--gray);font-size:0.88rem;margin-bottom:32px;">We'll get back to you within 24 hours</p>
 
                 <form id="contactForm">
-                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+                    <div class="contact-name-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
                         <div>
                             <label style="font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray);display:block;margin-bottom:6px;">First Name *</label>
                             <input id="c_fname" name="fname" required type="text" placeholder="John"

@@ -1403,6 +1403,28 @@ section { padding: 90px 24px; }
         grid-template-columns: 1fr !important;
         gap: 24px !important;
     }
+    .contact-section {
+        padding: 56px 20px !important;
+    }
+    .contact-grid {
+        grid-template-columns: 1fr !important;
+        gap: 36px !important;
+    }
+    .contact-form-card {
+        padding: 28px 20px !important;
+        width: 100%;
+        max-width: 100%;
+    }
+    .contact-name-grid {
+        grid-template-columns: 1fr !important;
+    }
+    .contact-section .section-title {
+        font-size: clamp(2rem, 10vw, 2.8rem);
+    }
+    .contact-section a[href^="mailto:"] {
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
     .cookie-notice {
         padding: 14px 16px !important;
         gap: 12px !important;
