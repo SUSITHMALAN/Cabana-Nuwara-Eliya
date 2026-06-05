@@ -18,8 +18,6 @@
         .meal-grid.reverse { direction: rtl; }
         .meal-grid.reverse > * { direction: ltr; }
         .meal-visual { height: 380px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 6rem; overflow: hidden; }
-        .meal-visual-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; background: var(--primary-dark); padding: 10px; }
-        .meal-visual-duo div { width: 100%; height: 100%; border-radius: 8px; background-size: cover; background-position: center; }
         .meal-time-badge { display: inline-block; background: var(--primary); color: white; padding: 6px 18px; border-radius: 20px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; }
         .menu-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border); }
         .menu-item:last-child { border-bottom: none; }
@@ -38,9 +36,6 @@
             .meal-hours-grid {
                 grid-template-columns: 1fr !important;
                 gap: 20px !important;
-            }
-            .meal-visual-duo {
-                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -143,7 +138,7 @@
             <div class="menu-item"><div><div class="menu-item-name">Rice &amp; Curry</div><div class="menu-item-desc">Red or White Rice Dhal Curry, Pol Sambol, Chicken Curry</div></div><div style="font-weight:600;color:var(--primary-dark);">Rs.600.00</div></div>
             <div class="menu-item"><div><div class="menu-item-name">String Hoppers</div><div class="menu-item-desc">10 String Hoppers, Dhal or Egg Curry, Pol Sambol</div></div><div style="font-weight:600;color:var(--primary-dark);">Rs.550.00</div></div>
         </div>
-        <div class="meal-visual" style="background:url('static/images/dining_1.jpg') center/cover;"></div>
+        <div class="meal-visual" style="background:url('static/images/afternoon-lunch-string-hoppers.jpg') center/cover;"></div>
     </div>
 </section>
 
@@ -157,10 +152,7 @@
             <p style="color:var(--gray);margin-bottom:24px;line-height:1.8;">After a morning of exploring the tea gardens and highland trails, come back to a hearty authentic Sri Lankan rice and curry spread, made fresh with local produce.</p>
             <div class="menu-item"><div><div class="menu-item-name">Set Menu</div><div class="menu-item-desc">Sliced Fried Rice, Devilled Chicken, Chicken Curry, Fresh Salad, Papadam, &amp; Dessert</div></div><div style="font-weight:600;color:var(--primary-dark);">Rs.1,000.00</div></div>
         </div>
-        <div class="meal-visual meal-visual-duo" aria-label="Afternoon lunch dishes">
-            <div style="background-image:url('static/images/afternoon-lunch-fried-rice.jpg');"></div>
-            <div style="background-image:url('static/images/afternoon-lunch-string-hoppers.jpg');"></div>
-        </div>
+        <div class="meal-visual" style="background:url('static/images/afternoon-lunch-fried-rice.jpg') center/cover;"></div>
     </div>
 </section>
 
