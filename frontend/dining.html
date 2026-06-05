@@ -17,13 +17,32 @@
         .meal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1000px; margin: 0 auto; }
         .meal-grid.reverse { direction: rtl; }
         .meal-grid.reverse > * { direction: ltr; }
-        .meal-visual { height: 380px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 6rem; }
+        .meal-visual { height: 380px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 6rem; overflow: hidden; }
+        .meal-visual-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; background: var(--primary-dark); padding: 10px; }
+        .meal-visual-duo div { width: 100%; height: 100%; border-radius: 8px; background-size: cover; background-position: center; }
         .meal-time-badge { display: inline-block; background: var(--primary); color: white; padding: 6px 18px; border-radius: 20px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; }
         .menu-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border); }
         .menu-item:last-child { border-bottom: none; }
         .menu-item-name { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--dark); }
         .menu-item-desc { font-size: 0.8rem; color: var(--gray); margin-top: 2px; }
         .dining-hero-overlay { background: rgba(0,0,0,0.55); }
+        @media (max-width: 768px) {
+            .meal-section { padding: 56px 20px; }
+            .meal-grid,
+            .meal-grid.reverse {
+                direction: ltr;
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .meal-visual { height: 280px; }
+            .meal-hours-grid {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+            }
+            .meal-visual-duo {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -87,7 +106,7 @@
 <!-- Meal Hours Overview -->
 <section style="background:var(--dark);padding:60px 40px;">
     <div class="container">
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px;max-width:900px;margin:0 auto;">
+        <div class="meal-hours-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px;max-width:900px;margin:0 auto;">
             <div style="text-align:center;padding:40px 24px;border:1px solid rgba(255,255,255,0.1);border-radius:12px;background:rgba(255,255,255,0.03);">
                 <div style="font-size:3rem;margin-bottom:16px;">🍳</div>
                 <h3 style="font-family:'Cormorant Garamond',serif;color:var(--gold-light);font-size:1.8rem;font-weight:300;">Breakfast</h3>
@@ -138,7 +157,10 @@
             <p style="color:var(--gray);margin-bottom:24px;line-height:1.8;">After a morning of exploring the tea gardens and highland trails, come back to a hearty authentic Sri Lankan rice and curry spread, made fresh with local produce.</p>
             <div class="menu-item"><div><div class="menu-item-name">Set Menu</div><div class="menu-item-desc">Sliced Fried Rice, Devilled Chicken, Chicken Curry, Fresh Salad, Papadam, &amp; Dessert</div></div><div style="font-weight:600;color:var(--primary-dark);">Rs.1,000.00</div></div>
         </div>
-        <div class="meal-visual" style="background:url('static/images/cabana_interior_3.jpg') center/cover;"></div>
+        <div class="meal-visual meal-visual-duo" aria-label="Afternoon lunch dishes">
+            <div style="background-image:url('static/images/afternoon-lunch-fried-rice.jpg');"></div>
+            <div style="background-image:url('static/images/afternoon-lunch-string-hoppers.jpg');"></div>
+        </div>
     </div>
 </section>
 
@@ -159,7 +181,7 @@
             <div class="menu-item"><div><div class="menu-item-name">Devilled Chicken (Spicy)</div><div class="menu-item-desc"></div></div><div style="font-weight:600;color:var(--primary-dark);">Rs.1,500.00</div></div>
             <div class="menu-item"><div><div class="menu-item-name">Egg Omelette</div><div class="menu-item-desc"></div></div><div style="font-weight:600;color:var(--primary-dark);">Rs.550.00</div></div>
         </div>
-        <div class="meal-visual" style="background:url('static/images/cabana_interior_5.jpg') center/cover;"></div>
+        <div class="meal-visual" style="background:url('static/images/evening-dinner-kottu.jpg') center/cover;"></div>
     </div>
 </section>
 
