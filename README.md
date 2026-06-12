@@ -1,12 +1,8 @@
-# 🏡 Cabana Nuwara Eliya — Hotel Website
+# 🏡 Eury Nature Cabana Nuwara Eliya — Hotel Website
 
-A full-stack hotel website for **Cabana Nuwara Eliya**, built with:
-- **Backend**: Python (Flask)
-- **Frontend**: HTML5, CSS3, Vanilla JavaScript
+Live URL: [https://www.eurynature.com.lk](https://www.eurynature.com.lk)
 
-Inspired by Hotel Cabana Clearwater Beach — featuring a hero image slider,
-animated scroll reveals, testimonials carousel, booking modal, gallery
-with filter, and a full multi-page layout.
+A full-stack, responsive booking and content management website for **Eury Nature Cabana Nuwara Eliya**, Sri Lanka.
 
 ---
 
@@ -14,125 +10,102 @@ with filter, and a full multi-page layout.
 
 ```
 cabana_nuwaraeliya/
-├── app.py                  # Flask application (routes + data)
-├── requirements.txt        # Python dependencies
-├── static/
-│   ├── css/
-│   │   └── style.css       # Main stylesheet (all pages)
-│   └── js/
-│       └── main.js         # All animations & interactions
-└── templates/
-    ├── base.html           # Base layout (navbar + footer)
-    ├── index.html          # Homepage (hero, rooms, gallery, etc.)
-    ├── accommodations.html # Rooms & Suites page
-    ├── amenities.html      # Amenities page
-    ├── gallery.html        # Gallery with filter
-    ├── dining.html         # Dining page
-    ├── discover.html       # Discover Nuwara Eliya page
-    └── contact.html        # Contact form page
+├── backend/                # Flask application (API server)
+│   ├── app.py              # Main backend logic & API routes
+│   ├── requirements.txt    # Python dependencies
+│   ├── render.yaml         # Render deployment blueprint
+│   └── .env                # Backend environment variables
+├── frontend/               # Static frontend website files
+│   ├── index.html          # Homepage
+│   ├── accommodations.html # Cabanas details & booking page
+│   ├── amenities.html      # Amenities listing
+│   ├── gallery.html        # Dynamic media gallery
+│   ├── dining.html         # Dynamic restaurant menu
+│   ├── discover.html       # Nuwara Eliya attractions
+│   ├── contact.html        # Contact form
+│   ├── admin.html          # Admin panel
+│   ├── book.html           # Booking details form
+│   ├── static/             # Frontend assets (CSS, JS, images)
+│   └── vercel.json         # Vercel deployment configuration
+└── database/               # Database schemas & migrations
+    └── schema.sql          # PostgreSQL database schema
 ```
 
 ---
 
-## 🚀 Setup & Run
+## 🚀 Setup & Run Locally
 
-### 1. Install Python 3.8+
-Make sure Python is installed on your machine.
+### 1. Backend API (Flask)
+The backend requires Python 3.8+ and a PostgreSQL database.
 
-### 2. Create a virtual environment (optional but recommended)
 ```bash
-python -m venv venv
+# Navigate to backend folder
+cd backend
 
+# Create and activate a virtual environment
+python -m venv venv
 # On Windows:
 venv\Scripts\activate
-
 # On Mac/Linux:
 source venv/bin/activate
-```
 
-### 3. Install dependencies
-```bash
+# Install dependencies
 pip install -r requirements.txt
-```
 
-### 4. Run the server
-```bash
+# Create a .env file (use .env.example as a template)
+# Run the flask server
 python app.py
 ```
+By default, the backend will run at `http://localhost:5000`.
 
-### 5. Open your browser
+### 2. Frontend
+You can serve the `frontend/` folder using any static file server (e.g., Live Server in VS Code, Python's http.server, or Node's serve).
+
+```bash
+# Serve frontend using Python
+cd frontend
+python -m http.server 8000
 ```
-http://localhost:5000
-```
+Open `http://localhost:8000` in your web browser.
 
 ---
 
-## 🌐 Pages
+## 🌐 API Endpoints
 
-| URL              | Description                        |
-|------------------|------------------------------------|
-| `/`              | Homepage with hero slider          |
-| `/accommodations`| Rooms & Suites                     |
-| `/amenities`     | Hotel amenities                    |
-| `/gallery`       | Photo gallery with filter tabs     |
-| `/dining`        | Restaurant & Bar                   |
-| `/discover`      | Discover Nuwara Eliya              |
-| `/contact`       | Contact form                       |
-| `/api/book`      | Booking API (POST, JSON)           |
+| URL | Method | Description |
+|---|---|---|
+| `/api/health` | GET | Health check status |
+| `/api/rooms` | GET | List available cabanas |
+| `/api/testimonials` | GET | Get client testimonials |
+| `/api/amenities` | GET | List hotel amenities |
+| `/api/book` | POST | Submit booking reservation |
+| `/api/bookings` | GET/POST/PUT | Admin view and update bookings |
+| `/api/menu` | GET/POST/PUT/DELETE | Admin CRUD for dining menu |
+| `/api/gallery` | GET/POST/DELETE | Admin CRUD for gallery media |
 
 ---
 
 ## ✨ Features
 
-- 🎠 **Auto-advancing Hero Slider** with 4 slides, swipe support, arrows & dots
-- 📅 **Booking Modal** with check-in/check-out date picker
-- 📊 **Animated Counters** (guests, rooms, ratings)
-- 🎭 **Scroll Reveal Animations** on all sections (fade up, left, right)
-- 🖼️ **Gallery** with category filter (All / Rooms / Dining / Pool / Gardens / Views)
-- 💬 **Testimonials Carousel** with auto-advance
-- 📱 **Fully Responsive** — mobile hamburger menu, stacked layouts
-- 🍪 **Cookie Notice** (GDPR-friendly, localStorage)
-- 📈 **Scroll Progress Bar** at the top
-- 🔝 **Back-to-Top Button**
-- 🌙 **Page Loader** animation on first load
-- 🖼️ **Lightbox** for gallery images
+- 🎠 **Auto-advancing Hero Slider** with property photos, swipe support, arrows & dots.
+- 📅 **Booking Modal & Calendar** with check-in/check-out date picker.
+- 🛡️ **Overlap Prevention**: Restricts room double-booking on overlapping dates.
+- 🚫 **Past Date Validation**: Prevents reserving dates in the past.
+- 📱 **Direct WhatsApp Redirection**: Automatically opens WhatsApp on guest confirmation, pre-populating reservation details for immediate booking contact.
+- 🔐 **Secure Admin Portal** (`admin.html`) with login authentication to manage:
+  - **Reservations**: View, confirm, cancel, and WhatsApp guests directly.
+  - **Dining Menu**: Dynamically add, edit, or delete items shown on the site.
+  - **Gallery**: Real-time gallery content updates (photos/videos).
+- 🍪 **Cookie Notice** (GDPR-friendly, localStorage).
+- 🔝 **Back-to-Top Button** & **Scroll Progress Indicator**.
+- 🎨 **Responsive Design** optimized for all screens (mobiles, tablets, desktops).
 
 ---
 
-## 🛠️ Customisation
+## 📧 Deployment Details
 
-### Replace demo gradient backgrounds with real images
-In `style.css`, find `.slide-1`, `.slide-2`, etc. and replace with:
-```css
-.slide-1 {
-    background-image: url('/static/images/hero1.jpg');
-}
-```
+- **Frontend**: Hosted on Vercel
+- **Backend API**: Hosted on Render
+- **Database**: PostgreSQL (e.g., Neon or Supabase)
 
-Do the same for `.r1`, `.r2` (room cards) and `.g1`, `.g2` (gallery items).
-
-### Update hotel info
-Edit `app.py` — the `ROOMS`, `TESTIMONIALS`, and `AMENITIES` lists at the top.
-
-### Change colours
-Edit the CSS variables in `style.css`:
-```css
-:root {
-    --primary: #2c5f2e;   /* main green */
-    --gold: #b89650;       /* gold accent */
-    --cream: #faf6f0;      /* background */
-}
-```
-
----
-
-## 📧 Email Integration (Production)
-In `app.py`, the `/contact` route currently just returns JSON.
-To send real emails, install Flask-Mail:
-```bash
-pip install Flask-Mail
-```
-
----
-
-*Built with ❤️ for Cabana Nuwara Eliya, Sri Lanka*
+*Built with ❤️ for Eury Nature Cabana, Nuwara Eliya, Sri Lanka*
