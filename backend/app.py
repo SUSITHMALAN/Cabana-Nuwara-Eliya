@@ -144,7 +144,7 @@ def book():
         admin_number = "94701731443"
         cabana_name = "Main Cabana" if booking_data['cabana_id'] == 1 else "Little Eury Nature Cabana"
         msg = f"Hello Admin! I would like to book {cabana_name} for {booking_data['guests']} guests from {booking_data['checkin']} to {booking_data['checkout']} ({booking_data['days_spent']} nights). My name is {booking_data['fname']} {booking_data['lname']}."
-        wa_url = f"https://wa.me/{admin_number}?text={urllib.parse.quote(msg)}"
+        wa_url = f"https://api.whatsapp.com/send?phone={admin_number}&text={urllib.parse.quote(msg)}"
         
         return jsonify({
             "success": True,
@@ -280,7 +280,7 @@ def update_booking_status(id):
             formatted_phone = "94" + phone[1:] if phone.startswith('0') else phone
             room_name = room_row['name'] if room_row else "Cabana"
             msg = f"Hello {updated_row.get('fname')}, your booking for {room_name} from {updated_row.get('checkin')} to {updated_row.get('checkout')} is CONFIRMED. Thank you for choosing Eury Nature Cabana!"
-            wa_url = f"https://wa.me/{formatted_phone}?text={urllib.parse.quote(msg)}"
+            wa_url = f"https://api.whatsapp.com/send?phone={formatted_phone}&text={urllib.parse.quote(msg)}"
 
         return jsonify({"success": True, "booking": updated_row, "whatsapp_url": wa_url})
     except Exception as e:
