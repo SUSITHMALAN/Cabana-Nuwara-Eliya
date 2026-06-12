@@ -425,7 +425,7 @@
         const b = allBookings.find(bk => bk.id === id);
         if (!b) return;
         const phone = formatPhone(b.phone);
-        const msg = `Hello ${b.fname}, your booking at Eury Nature Cabana from ${b.checkin} to ${b.checkout} is CONFIRMED. We look forward to welcoming you! For any queries, call +94 77 175 8395.`;
+        const msg = `Hello ${b.fname}, your booking at Eury Nature Cabana from ${b.checkin} to ${b.checkout} is CONFIRMED. We look forward to welcoming you! For any queries, call +94 70 173 1443.`;
         window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
     }
 

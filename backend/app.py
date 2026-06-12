@@ -141,7 +141,7 @@ def book():
         conn.close()
         
         # WhatsApp logic
-        admin_number = "94771758395"
+        admin_number = "94701731443"
         cabana_name = "Main Cabana" if booking_data['cabana_id'] == 1 else "Little Eury Nature Cabana"
         msg = f"Hello Admin! I would like to book {cabana_name} for {booking_data['guests']} guests from {booking_data['checkin']} to {booking_data['checkout']} ({booking_data['days_spent']} nights). My name is {booking_data['fname']} {booking_data['lname']}."
         wa_url = f"https://wa.me/{admin_number}?text={urllib.parse.quote(msg)}"
