@@ -63,8 +63,8 @@ CREATE TABLE contacts (
 
 -- Rooms Seed Data
 INSERT INTO rooms (id, name, description, price, image, capacity, amenities) VALUES
-(1, 'Main Cabana (Eury Nature Cabana)', 'Our spacious signature cabana, offering ample room with 3 comfortable triple beds. Perfect for larger groups or families.', 25000, 'room4.jpg', 9, '["3x Triple Beds", "Garden View", "Private Deck", "Free Wi-Fi", "TV Support", "Carrom & Chess"]'),
-(2, 'Little Eury Nature Cabana', 'A private, charming sanctuary. Featuring 2 comfortable double beds and stunning views of the surrounding misty hills.', 15000, 'room2.jpg', 4, '["2x Double Beds", "Veranda", "Mountain View", "Free Wi-Fi", "TV Support", "Hot Water"]');
+(1, 'Main Cabana (Eury Nature Cabana)', 'Our spacious signature cabana, offering ample room with 3 comfortable triple beds. Perfect for larger groups or families.', 25000, 'room4.jpg', 9, '["3x Triple Beds", "Garden View", "Private Deck", "TV Support", "Carrom & Chess"]'),
+(2, 'Little Eury Nature Cabana', 'A private, charming sanctuary. Featuring 2 comfortable double beds and stunning views of the surrounding misty hills.', 15000, 'room2.jpg', 4, '["2x Double Beds", "Veranda", "Mountain View", "TV Support", "Hot Water"]');
 
 -- Adjust the sequence for rooms
 SELECT setval('rooms_id_seq', (SELECT MAX(id) FROM rooms));
