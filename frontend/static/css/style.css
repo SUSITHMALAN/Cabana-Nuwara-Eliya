@@ -1310,7 +1310,15 @@ section { padding: 90px 24px; }
         letter-spacing: 0.18em;
     }
 
-    .nav-links, .nav-social { display: none; }
+    .nav-links { display: none; }
+    .nav-social {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+    }
+    .nav-social a {
+        font-size: 0.85rem;
+    }
     .nav-links.open {
         display: flex;
         flex-direction: column;
@@ -1460,6 +1468,12 @@ section { padding: 90px 24px; }
         letter-spacing: 0.055em;
     }
     .logo-sub { display: none; }
+    .nav-social {
+        gap: 6px;
+    }
+    .nav-social a {
+        font-size: 0.75rem;
+    }
     .nav-actions .btn-book {
         padding: 8px 10px;
         font-size: 0.6rem;
