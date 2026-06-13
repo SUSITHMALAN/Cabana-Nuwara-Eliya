@@ -625,6 +625,39 @@ section { padding: 90px 24px; }
 .room-price-amount { font-size: 1.5rem; color: var(--primary-dark); font-weight: 600; }
 .room-price-night { font-size: 0.75rem; color: var(--gray); }
 
+/* Accommodations Card Styles (accommodations.html) */
+.accomm-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-bottom: 48px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    background: var(--white);
+}
+.accomm-img {
+    background-size: cover;
+    background-position: center;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.accomm-body {
+    padding: 60px 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.accomm-card.alt .accomm-img {
+    order: 2;
+}
+.accomm-card.alt .accomm-body {
+    order: 1;
+}
+
 /* ===================== AMENITIES SECTION ===================== */
 .amenities-section { background: var(--white); }
 .amenities-grid {
@@ -1277,6 +1310,22 @@ section { padding: 90px 24px; }
     :root { --nav-height: 64px; }
     section { padding: 64px 20px; }
 
+    .accomm-card {
+        grid-template-columns: 1fr;
+    }
+    .accomm-img {
+        min-height: 280px;
+    }
+    .accomm-body {
+        padding: 40px 24px;
+    }
+    .accomm-card.alt .accomm-img {
+        order: unset;
+    }
+    .accomm-card.alt .accomm-body {
+        order: unset;
+    }
+
     .announcement-bar {
         padding: 8px 12px;
         font-size: 0.7rem;
@@ -1451,6 +1500,12 @@ section { padding: 90px 24px; }
 }
 
 @media (max-width: 480px) {
+    .accomm-img {
+        min-height: 240px;
+    }
+    .accomm-body {
+        padding: 32px 18px;
+    }
     .announcement-bar {
         font-size: 0.66rem;
         letter-spacing: 0.03em;
