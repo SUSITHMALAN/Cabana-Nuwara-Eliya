@@ -117,7 +117,6 @@ CREATE TABLE IF NOT EXISTS gallery_items (
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
--- Seed Gallery Items
 INSERT INTO gallery_items (url, caption, category) VALUES
 ('static/images/cabana_interior_1.jpg', 'Grand Family Cabana Room', 'cabanas'),
 ('static/images/cabana_interior_2.jpg', 'Main Cabana Kitchen Area', 'cabanas'),
@@ -131,6 +130,11 @@ INSERT INTO gallery_items (url, caption, category) VALUES
 ('static/images/fields_terraced.jpg', 'Terraced Green Fields', 'gardens'),
 ('static/images/little_eury_exterior.jpg', 'Little Eury Picnic Area', 'gardens'),
 ('static/images/cabana_view_patio.jpg', 'Panoramic Patio Overlook', 'views'),
+('static/images/cabana_picnic_table.jpg', 'Cozy A-frame picnic seating area', 'cabanas'),
+('static/images/fields_and_misty_mountains.jpg', 'Panoramic view of agricultural terraced fields and mountains', 'views'),
+('static/images/eury_nature_cabana_signboard.jpg', 'Eury Nature Cabana welcome signboard', 'views'),
+('static/images/barbecue_chicken_grill.jpg', 'Sizzling evening barbecue grill', 'dining'),
+('static/images/scenic_highland_fields.jpg', 'Scenic terraced fields and pine forests', 'views'),
 ('static/videos/cabana_tour_1.mp4', 'Highland Mist Tour', 'videos'),
 ('static/videos/cabana_tour_2.mp4', 'Cabana & Garden Walk', 'videos');
 
