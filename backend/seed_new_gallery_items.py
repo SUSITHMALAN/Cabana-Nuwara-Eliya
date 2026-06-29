@@ -33,6 +33,26 @@ images = [
         "url": "static/images/scenic_highland_fields.jpg",
         "caption": "Scenic terraced fields and pine forests",
         "category": "views"
+    },
+    {
+        "url": "static/videos/V1.mp4",
+        "caption": "Cabana Video 1",
+        "category": "videos"
+    },
+    {
+        "url": "static/videos/V2.mp4",
+        "caption": "Cabana Video 2",
+        "category": "videos"
+    },
+    {
+        "url": "static/videos/V3.mp4",
+        "caption": "Cabana Video 3",
+        "category": "videos"
+    },
+    {
+        "url": "static/videos/V4.mp4",
+        "caption": "Cabana Video 4",
+        "category": "videos"
     }
 ]
 

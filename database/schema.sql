@@ -136,5 +136,9 @@ INSERT INTO gallery_items (url, caption, category) VALUES
 ('static/images/barbecue_chicken_grill.jpg', 'Sizzling evening barbecue grill', 'dining'),
 ('static/images/scenic_highland_fields.jpg', 'Scenic terraced fields and pine forests', 'views'),
 ('static/videos/cabana_tour_1.mp4', 'Highland Mist Tour', 'videos'),
-('static/videos/cabana_tour_2.mp4', 'Cabana & Garden Walk', 'videos');
+('static/videos/cabana_tour_2.mp4', 'Cabana & Garden Walk', 'videos'),
+('static/videos/V1.mp4', 'Cabana Video 1', 'videos'),
+('static/videos/V2.mp4', 'Cabana Video 2', 'videos'),
+('static/videos/V3.mp4', 'Cabana Video 3', 'videos'),
+('static/videos/V4.mp4', 'Cabana Video 4', 'videos');
 
