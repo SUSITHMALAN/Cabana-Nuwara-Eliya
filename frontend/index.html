@@ -56,62 +56,33 @@
     <div class="loader-bar"><div class="loader-fill"></div></div>
 </div>
 
-<!-- ===================== HERO SLIDER ===================== -->
+<!-- ===================== HERO VIDEO ===================== -->
 <section class="hero">
-    <div class="hero-slide slide-1 active">
-        <div class="hero-slide-content">
-            <span class="hero-badge">Nuwara Eliya, Sri Lanka</span>
-            <h1 class="hero-title">A Highland<br><em>Escape Like</em><br>No Other</h1>
-            <p class="hero-sub">Nestled among misty mountains &amp; lush tea gardens — Est. 2024</p>
-            <div class="hero-actions">
-                <a href="accommodations.html" class="btn-outline">Explore Cabanas</a>
-                <a href="book.html" class="btn-gold">Book Your Stay</a>
-            </div>
+    <!-- Full-screen video background -->
+    <div class="hero-video-wrap">
+        <video class="hero-video" autoplay muted loop playsinline poster="static/images/cabanas_landscape.jpg">
+            <source src="static/videos/cabana_tour_2.mp4" type="video/mp4">
+            <source src="static/videos/cabana_tour_1.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="hero-video-overlay"></div>
+
+    <!-- Centred content -->
+    <div class="hero-video-content">
+        <span class="hero-badge">Nuwara Eliya, Sri Lanka</span>
+        <h1 class="hero-title">A Highland<br><em>Escape Like</em><br>No Other</h1>
+        <p class="hero-sub">Nestled among misty mountains &amp; lush tea gardens — Est. 2024</p>
+        <div class="hero-actions">
+            <a href="accommodations.html" class="btn-outline">Explore Cabanas</a>
+            <a href="book.html" class="btn-gold">Book Your Stay</a>
+        </div>
+        <!-- Scroll indicator -->
+        <div class="hero-scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
         </div>
     </div>
-    <div class="hero-slide slide-2">
-        <div class="hero-slide-content">
-            <span class="hero-badge">Boutique &amp; Cozy</span>
-            <h1 class="hero-title">Where Serenity<br><em>Meets</em><br>Nature</h1>
-            <p class="hero-sub">Private verandas with breathtaking tea plantation views</p>
-            <div class="hero-actions">
-                <a href="accommodations.html" class="btn-outline">Our Cabanas</a>
-                <a href="book.html" class="btn-gold">Reserve Now</a>
-            </div>
-        </div>
-    </div>
-    <div class="hero-slide slide-3">
-        <div class="hero-slide-content">
-            <span class="hero-badge">Authentic Sri Lanka</span>
-            <h1 class="hero-title">Ceylon Tea<br><em>&amp; Cozy</em><br>Hospitality</h1>
-            <p class="hero-sub">Complimentary fresh Ceylon tea served daily at your door</p>
-            <div class="hero-actions">
-                <a href="dining.html" class="btn-outline">View Dining</a>
-                <a href="book.html" class="btn-gold">Book Now</a>
-            </div>
-        </div>
-    </div>
-    <div class="hero-slide slide-4">
-        <div class="hero-slide-content">
-            <span class="hero-badge">Exclusive Cabanas</span>
-            <h1 class="hero-title">Your Private<br><em>Mountain</em><br>Sanctuary</h1>
-            <p class="hero-sub">Two exclusive handcrafted cabanas — Just 12km from Nuwara Eliya</p>
-            <div class="hero-actions">
-                <a href="accommodations.html" class="btn-outline">View Cabanas</a>
-                <a href="book.html" class="btn-gold">Book Now</a>
-            </div>
-        </div>
-    </div>
-    <div class="slider-arrows">
-        <button class="slider-arrow" id="heroPrev"><i class="fas fa-chevron-left"></i></button>
-        <button class="slider-arrow" id="heroNext"><i class="fas fa-chevron-right"></i></button>
-    </div>
-    <div class="slider-dots">
-        <button class="slider-dot active"></button>
-        <button class="slider-dot"></button>
-        <button class="slider-dot"></button>
-        <button class="slider-dot"></button>
-    </div>
+
     <!-- Booking Bar -->
     <div class="hero-booking-bar">
         <form id="heroBookingBar" style="display:flex;align-items:flex-end;gap:16px;width:100%;flex-wrap:wrap;">
@@ -159,7 +130,7 @@
 <!-- ===================== ABOUT SECTION ===================== -->
 <section class="about-section">
     <div class="about-grid">
-        <div class="about-image reveal-left">
+        <div class="about-image reveal-zoom">
             <div style="width:100%;height:100%;background:url('static/images/cabanas_landscape.jpg') center/cover;min-height:500px;display:flex;align-items:center;justify-content:center;">
             </div>
             <div class="about-img-overlay">

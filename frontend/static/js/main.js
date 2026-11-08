@@ -79,65 +79,23 @@ if (backToTop) {
     });
 }
 
-// ===================== HERO SLIDER =====================
-const heroSlides = document.querySelectorAll('.hero-slide');
-const heroDots = document.querySelectorAll('.slider-dot');
-let currentSlide = 0;
-let slideInterval;
-
-function goToSlide(n) {
-    heroSlides.forEach(s => s.classList.remove('active'));
-    heroDots.forEach(d => d.classList.remove('active'));
-    currentSlide = (n + heroSlides.length) % heroSlides.length;
-    const slide = heroSlides[currentSlide];
-    // Force re-trigger CSS animations on content children
-    slide.querySelectorAll('.hero-slide-content > *').forEach(el => {
-        el.style.animation = 'none';
-        el.offsetHeight; // reflow
-        el.style.animation = '';
-    });
-    slide.classList.add('active');
-    heroDots[currentSlide]?.classList.add('active');
-}
-
-function nextSlide() { goToSlide(currentSlide + 1); }
-function prevSlide() { goToSlide(currentSlide - 1); }
-
-function startSlider() {
-    slideInterval = setInterval(nextSlide, 5000);
-}
-
-if (heroSlides.length > 0) {
-    goToSlide(0);
-    startSlider();
-
-    heroDots.forEach((dot, i) => {
-        dot.addEventListener('click', () => {
-            clearInterval(slideInterval);
-            goToSlide(i);
-            startSlider();
-        });
-    });
-
-    const prevBtn = document.getElementById('heroPrev');
-    const nextBtn = document.getElementById('heroNext');
-    if (prevBtn) prevBtn.addEventListener('click', () => { clearInterval(slideInterval); prevSlide(); startSlider(); });
-    if (nextBtn) nextBtn.addEventListener('click', () => { clearInterval(slideInterval); nextSlide(); startSlider(); });
-
-    // Touch/swipe support
-    let touchStartX = 0;
-    const heroEl = document.querySelector('.hero');
-    if (heroEl) {
-        heroEl.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-        heroEl.addEventListener('touchend', e => {
-            const diff = touchStartX - e.changedTouches[0].clientX;
-            if (Math.abs(diff) > 50) {
-                clearInterval(slideInterval);
-                diff > 0 ? nextSlide() : prevSlide();
-                startSlider();
-            }
-        });
+// ===================== HERO VIDEO =====================
+// Pause video on mobile to save bandwidth; show poster instead
+const heroVideo = document.querySelector('.hero-video');
+if (heroVideo) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        heroVideo.pause();
+        heroVideo.removeAttribute('autoplay');
     }
+}
+
+// Hide scroll indicator once user starts scrolling
+const scrollIndicator = document.querySelector('.hero-scroll-indicator');
+if (scrollIndicator) {
+    window.addEventListener('scroll', () => {
+        scrollIndicator.style.opacity = window.scrollY > 60 ? '0' : '1';
+        scrollIndicator.style.transition = 'opacity 0.5s ease';
+    }, { passive: true, once: false });
 }
 
 // ===================== TESTIMONIALS SLIDER =====================
@@ -180,22 +138,24 @@ function closeBooking() {
 
 // ===================== SCROLL REVEAL =====================
 const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
+    entries.forEach(entry => {
         if (entry.isIntersecting) {
             setTimeout(() => {
                 entry.target.classList.add('visible');
-            }, entry.target.dataset.delay || 0);
+            }, parseInt(entry.target.dataset.delay) || 0);
             revealObserver.unobserve(entry.target);
         }
     });
-}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach((el, i) => {
-    // Stagger siblings
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-zoom').forEach(el => {
     const parent = el.parentElement;
-    const siblings = [...parent.children].filter(c => c.classList.contains('reveal') || c.classList.contains('reveal-left') || c.classList.contains('reveal-right'));
+    const siblings = [...parent.children].filter(c =>
+        c.classList.contains('reveal') || c.classList.contains('reveal-left') ||
+        c.classList.contains('reveal-right') || c.classList.contains('reveal-zoom')
+    );
     const idx = siblings.indexOf(el);
-    el.dataset.delay = idx * 100;
+    el.dataset.delay = idx * 110;
     revealObserver.observe(el);
 });
 
