@@ -4,10 +4,10 @@
 
 // ===================== PAGE LOADER =====================
 window.addEventListener('load', () => {
-    setTimeout(() => {
-        const loader = document.getElementById('pageLoader');
-        if (loader) loader.classList.add('hidden');
-    }, 1400);
+    const loader = document.getElementById('pageLoader');
+    if (loader) {
+        setTimeout(() => loader.classList.add('hidden'), 450);
+    }
 });
 
 // ===================== SCROLL PROGRESS BAR =====================
@@ -26,15 +26,21 @@ window.addEventListener('scroll', () => {
 const navbar = document.getElementById('navbar');
 const backToTop = document.getElementById('backToTop');
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 80) {
-        navbar.classList.add('scrolled');
-        backToTop.classList.add('visible');
-    } else {
-        navbar.classList.remove('scrolled');
-        backToTop.classList.remove('visible');
-    }
-});
+// Transparent navbar — applied on homepage (pages with a full-screen hero)
+const isHomepage = document.querySelector('.hero') !== null;
+if (isHomepage) {
+    navbar.classList.add('transparent');
+    document.body.classList.add('has-transparent-nav');
+}
+
+function updateNavbar() {
+    const scrolled = window.scrollY > 60;
+    navbar.classList.toggle('scrolled', scrolled);
+    if (backToTop) backToTop.classList.toggle('visible', window.scrollY > 300);
+}
+
+window.addEventListener('scroll', updateNavbar, { passive: true });
+updateNavbar();
 
 // Hamburger Menu
 const hamburger = document.getElementById('hamburger');
@@ -83,7 +89,14 @@ function goToSlide(n) {
     heroSlides.forEach(s => s.classList.remove('active'));
     heroDots.forEach(d => d.classList.remove('active'));
     currentSlide = (n + heroSlides.length) % heroSlides.length;
-    heroSlides[currentSlide].classList.add('active');
+    const slide = heroSlides[currentSlide];
+    // Force re-trigger CSS animations on content children
+    slide.querySelectorAll('.hero-slide-content > *').forEach(el => {
+        el.style.animation = 'none';
+        el.offsetHeight; // reflow
+        el.style.animation = '';
+    });
+    slide.classList.add('active');
     heroDots[currentSlide]?.classList.add('active');
 }
 
