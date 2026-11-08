@@ -121,23 +121,29 @@
         </div>
 
         <!-- Room 1: Main Cabana -->
-        <div class="accomm-card reveal">
-            <div class="accomm-img" style="background-image:url('static/images/cabin_exterior_mountain.jpg');">
-                <div style="text-align:center;color:rgba(255,255,255,0);font-size:8rem;"></div>
-                <div style="position:absolute;top:24px;left:24px;background:var(--gold);color:white;padding:6px 16px;font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;border-radius:2px;">
-                    From LKR 25,000/night
-                </div>
-                <div style="position:absolute;bottom:24px;left:24px;right:24px;">
-                    <div style="display:flex;gap:8px;flex-wrap:wrap;">
-                        <span style="background:rgba(255,255,255,0.15);color:white;padding:4px 10px;border-radius:20px;font-size:0.72rem;backdrop-filter:blur(4px);">👥 Up to 9 guests</span>
-                    </div>
+        <div class="reveal" style="background:var(--white);border-radius:16px;overflow:hidden;box-shadow:var(--shadow-lg);margin-bottom:56px;">
+            <!-- Main Photo -->
+            <div style="position:relative;height:420px;overflow:hidden;">
+                <img src="static/images/cabin_exterior_mountain.jpg" alt="Eury Nature Cabana exterior" style="width:100%;height:100%;object-fit:cover;display:block;">
+                <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.5) 0%,transparent 50%);"></div>
+                <div style="position:absolute;top:24px;left:24px;background:var(--gold);color:white;padding:7px 18px;font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;border-radius:3px;">Main Cabana</div>
+                <div style="position:absolute;bottom:24px;left:24px;">
+                    <span style="background:rgba(255,255,255,0.18);color:white;padding:5px 12px;border-radius:20px;font-size:0.78rem;backdrop-filter:blur(6px);">👥 Up to 9 guests</span>
                 </div>
             </div>
-            <div class="accomm-body">
-                <span style="font-size:0.72rem;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">Room 1</span>
-                <h3 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--primary-dark);margin-bottom:16px;">Main Cabana (Eury Nature Cabana)</h3>
-                <p style="color:var(--gray);font-weight:300;line-height:1.8;margin-bottom:24px;">Our spacious signature cabana, offering ample room with 3 comfortable triple beds. Perfect for larger groups or families.</p>
-                <div style="margin-bottom:28px;">
+            <!-- Photo Strip -->
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;background:var(--border);">
+                <div style="height:140px;overflow:hidden;"><img src="static/images/cabin_bedroom_green.jpg" alt="Bedroom" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                <div style="height:140px;overflow:hidden;"><img src="static/images/cabin_kitchen.jpg" alt="Kitchen" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                <div style="height:140px;overflow:hidden;"><img src="static/images/cabin_dining_area.jpg" alt="Dining area" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                <div style="height:140px;overflow:hidden;"><img src="static/images/cabin_bbq.jpg" alt="BBQ" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+            </div>
+            <!-- Details -->
+            <div style="padding:48px 48px 40px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:start;">
+                <div>
+                    <span style="font-size:0.72rem;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);">Room 1</span>
+                    <h3 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--primary-dark);margin:10px 0 14px;">Eury Nature Cabana</h3>
+                    <p style="color:var(--gray);font-weight:300;line-height:1.8;margin-bottom:28px;">Our spacious signature cabana with 3 comfortable bedrooms — perfect for families and groups. Includes a fully equipped kitchen, dining area, BBQ machine, and a cosy living room set against stunning highland views.</p>
                     <h5 style="font-size:0.72rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);margin-bottom:12px;">Room Amenities</h5>
                     <div style="display:flex;flex-wrap:wrap;gap:8px;">
                         <span style="background:var(--cream);color:var(--primary);padding:6px 14px;border-radius:20px;font-size:0.78rem;font-weight:500;border:1px solid var(--border);">3 Bedrooms</span>
@@ -149,35 +155,39 @@
                         <span style="background:var(--cream);color:var(--primary);padding:6px 14px;border-radius:20px;font-size:0.78rem;font-weight:500;border:1px solid var(--border);">Carrom & Games</span>
                     </div>
                 </div>
-                <div style="display:flex;align-items:center;gap:16px;padding-top:24px;border-top:1px solid var(--border);">
-                    <div>
-                        <span style="font-size:0.72rem;color:var(--gray);display:block;">Starting from</span>
-                        <span style="font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--primary-dark);font-weight:400;">LKR 25,000</span>
-                        <span style="font-size:0.78rem;color:var(--gray);">/night</span>
-                    </div>
-                    <a href="book.html?cabana_id=1" class="btn-primary" style="margin-left:auto;">Book This Room</a>
+                <div style="text-align:right;min-width:200px;">
+                    <span style="font-size:0.72rem;color:var(--gray);display:block;margin-bottom:4px;">Starting from</span>
+                    <span style="font-family:'Cormorant Garamond',serif;font-size:2.4rem;color:var(--primary-dark);font-weight:400;display:block;line-height:1;">LKR 25,000</span>
+                    <span style="font-size:0.78rem;color:var(--gray);display:block;margin-bottom:20px;">/night</span>
+                    <a href="book.html?cabana_id=1" class="btn-primary">Book This Room</a>
                 </div>
             </div>
         </div>
 
         <!-- Room 2: Little Eury Nature Cabana -->
-        <div class="accomm-card alt reveal">
-            <div class="accomm-img" style="background-image:url('static/images/cabin_twin_window.jpg');">
-                <div style="text-align:center;color:rgba(255,255,255,0);font-size:8rem;"></div>
-                <div style="position:absolute;top:24px;left:24px;background:var(--gold);color:white;padding:6px 16px;font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;border-radius:2px;">
-                    From LKR 15,000/night
-                </div>
-                <div style="position:absolute;bottom:24px;left:24px;right:24px;">
-                    <div style="display:flex;gap:8px;flex-wrap:wrap;">
-                        <span style="background:rgba(255,255,255,0.15);color:white;padding:4px 10px;border-radius:20px;font-size:0.72rem;backdrop-filter:blur(4px);">👥 Up to 4 guests</span>
-                    </div>
+        <div class="reveal" style="background:var(--white);border-radius:16px;overflow:hidden;box-shadow:var(--shadow-lg);margin-bottom:56px;">
+            <!-- Main Photo -->
+            <div style="position:relative;height:420px;overflow:hidden;">
+                <img src="static/images/cabin_twin_window.jpg" alt="Little Eury Nature Cabana bedroom" style="width:100%;height:100%;object-fit:cover;display:block;">
+                <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.5) 0%,transparent 50%);"></div>
+                <div style="position:absolute;top:24px;left:24px;background:var(--gold);color:white;padding:7px 18px;font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;border-radius:3px;">Little Cabana</div>
+                <div style="position:absolute;bottom:24px;left:24px;">
+                    <span style="background:rgba(255,255,255,0.18);color:white;padding:5px 12px;border-radius:20px;font-size:0.78rem;backdrop-filter:blur(6px);">👥 Up to 4 guests</span>
                 </div>
             </div>
-            <div class="accomm-body">
-                <span style="font-size:0.72rem;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">Room 2</span>
-                <h3 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--primary-dark);margin-bottom:16px;">Little Eury Nature Cabana</h3>
-                <p style="color:var(--gray);font-weight:300;line-height:1.8;margin-bottom:24px;">A private, charming sanctuary. Featuring 2 comfortable double beds and stunning views of the surrounding misty hills.</p>
-                <div style="margin-bottom:28px;">
+            <!-- Photo Strip -->
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;background:var(--border);">
+                <div style="height:140px;overflow:hidden;"><img src="static/images/cabin_bedroom_blue.jpg" alt="Bedroom" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                <div style="height:140px;overflow:hidden;"><img src="static/images/cabin_bathroom.jpg" alt="Bathroom" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                <div style="height:140px;overflow:hidden;"><img src="static/images/highland_view_cloudy.jpg" alt="Highland view" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                <div style="height:140px;overflow:hidden;"><img src="static/images/cabin_games.jpg" alt="Games room" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+            </div>
+            <!-- Details -->
+            <div style="padding:48px 48px 40px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:start;">
+                <div>
+                    <span style="font-size:0.72rem;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);">Room 2</span>
+                    <h3 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--primary-dark);margin:10px 0 14px;">Little Eury Nature Cabana</h3>
+                    <p style="color:var(--gray);font-weight:300;line-height:1.8;margin-bottom:28px;">A private, charming sanctuary for couples and small families. Featuring 2 comfortable double beds with a beautiful A-frame window framing misty highland views, plus a hot water bathroom and peaceful veranda.</p>
                     <h5 style="font-size:0.72rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);margin-bottom:12px;">Room Amenities</h5>
                     <div style="display:flex;flex-wrap:wrap;gap:8px;">
                         <span style="background:var(--cream);color:var(--primary);padding:6px 14px;border-radius:20px;font-size:0.78rem;font-weight:500;border:1px solid var(--border);">2x Double Beds</span>
@@ -187,13 +197,11 @@
                         <span style="background:var(--cream);color:var(--primary);padding:6px 14px;border-radius:20px;font-size:0.78rem;font-weight:500;border:1px solid var(--border);">Hot Water</span>
                     </div>
                 </div>
-                <div style="display:flex;align-items:center;gap:16px;padding-top:24px;border-top:1px solid var(--border);">
-                    <div>
-                        <span style="font-size:0.72rem;color:var(--gray);display:block;">Starting from</span>
-                        <span style="font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--primary-dark);font-weight:400;">LKR 15,000</span>
-                        <span style="font-size:0.78rem;color:var(--gray);">/night</span>
-                    </div>
-                    <a href="book.html?cabana_id=2" class="btn-primary" style="margin-left:auto;">Book This Room</a>
+                <div style="text-align:right;min-width:200px;">
+                    <span style="font-size:0.72rem;color:var(--gray);display:block;margin-bottom:4px;">Starting from</span>
+                    <span style="font-family:'Cormorant Garamond',serif;font-size:2.4rem;color:var(--primary-dark);font-weight:400;display:block;line-height:1;">LKR 15,000</span>
+                    <span style="font-size:0.78rem;color:var(--gray);display:block;margin-bottom:20px;">/night</span>
+                    <a href="book.html?cabana_id=2" class="btn-primary">Book This Room</a>
                 </div>
             </div>
         </div>
