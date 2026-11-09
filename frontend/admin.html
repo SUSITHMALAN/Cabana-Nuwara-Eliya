@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -142,7 +142,7 @@
         <input type="password" class="login-input" id="loginPassword" placeholder="Password" autocomplete="current-password" onkeypress="if(event.key==='Enter')doLogin()">
         <button class="login-btn" onclick="doLogin()"><i class="fas fa-sign-in-alt" style="margin-right:8px;"></i>Sign In</button>
         <p style="text-align:center;margin-top:24px;font-size:0.78rem;color:var(--gray);">
-            <a href="index.html" style="color:var(--primary);">← Back to Website</a>
+            <a href="index.html" style="color:var(--primary);">â† Back to Website</a>
         </p>
     </div>
 </div>
@@ -168,23 +168,23 @@
         <!-- Stats Row -->
         <div class="stats-grid" id="statsGrid">
             <div class="stat-card">
-                <div class="stat-icon" style="background:#d1fae5;">📅</div>
-                <div class="stat-value" id="statTotal">–</div>
+                <div class="stat-icon" style="background:#d1fae5;">ðŸ“…</div>
+                <div class="stat-value" id="statTotal">â€“</div>
                 <div class="stat-label">Total Bookings</div>
             </div>
             <div class="stat-card">
-                <div class="stat-icon" style="background:#fef3c7;">⏳</div>
-                <div class="stat-value" id="statPending">–</div>
+                <div class="stat-icon" style="background:#fef3c7;">â³</div>
+                <div class="stat-value" id="statPending">â€“</div>
                 <div class="stat-label">Pending</div>
             </div>
             <div class="stat-card">
-                <div class="stat-icon" style="background:#d1fae5;">✅</div>
-                <div class="stat-value" id="statConfirmed">–</div>
+                <div class="stat-icon" style="background:#d1fae5;">âœ…</div>
+                <div class="stat-value" id="statConfirmed">â€“</div>
                 <div class="stat-label">Confirmed</div>
             </div>
             <div class="stat-card">
-                <div class="stat-icon" style="background:#fee2e2;">❌</div>
-                <div class="stat-value" id="statCancelled">–</div>
+                <div class="stat-icon" style="background:#fee2e2;">âŒ</div>
+                <div class="stat-value" id="statCancelled">â€“</div>
                 <div class="stat-label">Cancelled</div>
             </div>
         </div>
@@ -442,7 +442,7 @@
             <div class="modal-detail"><span class="modal-label">Cabana</span><span class="modal-value">${cabanName}</span></div>
             <div class="modal-detail"><span class="modal-label">Check-in</span><span class="modal-value">${b.checkin} ${b.checkin_time || ''}</span></div>
             <div class="modal-detail"><span class="modal-label">Check-out</span><span class="modal-value">${b.checkout} ${b.checkout_time || ''}</span></div>
-            <div class="modal-detail"><span class="modal-label">Nights</span><span class="modal-value">${b.days_spent || '–'}</span></div>
+            <div class="modal-detail"><span class="modal-label">Nights</span><span class="modal-value">${b.days_spent || 'â€“'}</span></div>
             <div class="modal-detail"><span class="modal-label">Guests</span><span class="modal-value">${b.guests}</span></div>
             ${b.notes ? `<div class="modal-detail"><span class="modal-label">Notes</span><span class="modal-value">${b.notes}</span></div>` : ''}
             <div class="modal-detail"><span class="modal-label">Booked On</span><span class="modal-value">${new Date(b.created_at).toLocaleString()}</span></div>
@@ -494,8 +494,8 @@
                 <td style="color:var(--gray);font-size:0.75rem;">#${c.id}</td>
                 <td><strong>${c.fname} ${c.lname}</strong></td>
                 <td><a href="mailto:${c.email}">${c.email}</a></td>
-                <td>${c.phone || '–'}</td>
-                <td>${c.subject || '–'}</td>
+                <td>${c.phone || 'â€“'}</td>
+                <td>${c.subject || 'â€“'}</td>
                 <td style="max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${c.message}</td>
                 <td style="font-size:0.78rem;color:var(--gray);">${new Date(c.created_at).toLocaleDateString()}</td>
                 <td>
@@ -521,3 +521,4 @@
 </script>
 </body>
 </html>
+

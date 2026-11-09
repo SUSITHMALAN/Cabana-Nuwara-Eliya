@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,14 +9,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="static/css/style.css?v=2">
+    <link rel="stylesheet" href="static/css/style.css?v=3">
     
 </head>
 <body>
 
 <!-- Announcement Bar -->
 <div class="announcement-bar">
-    <p>🍃 Now Accepting Reservations for 2025 &nbsp;|&nbsp; <a href="contact.html">Contact Us</a> &nbsp;|&nbsp; 12km from Nuwara Eliya &nbsp;|&nbsp; Est. 2024</p>
+    <p>ðŸƒ Now Accepting Reservations for 2025 &nbsp;|&nbsp; <a href="contact.html">Contact Us</a> &nbsp;|&nbsp; 12km from Nuwara Eliya &nbsp;|&nbsp; Est. 2024</p>
 </div>
 
 <!-- Navigation -->
@@ -36,6 +36,7 @@
             <li><a href="discover.html">Discover NE</a></li>
             <li><a href="gallery.html">Gallery</a></li>
             <li><a href="contact.html">Contact</a></li>
+            <li><a href="faq.html">FAQ</a></li>
         </ul>
 
         <div class="nav-actions">
@@ -59,14 +60,14 @@
     <div class="page-hero-content">
         <span class="section-tag">Reservations</span>
         <h1>Book Your Cabana</h1>
-        <div class="breadcrumb"><a href="index.html">Home</a> › Book</div>
+        <div class="breadcrumb"><a href="index.html">Home</a> â€º Book</div>
     </div>
 </div>
 
 <section style="background: var(--cream); padding: 60px 0;">
     <div class="container">
         <div class="alert-banner">
-            <strong>🍃 Misty Highland Retreat:</strong> We have only <strong>two exclusive cabanas</strong> on our property. Please secure your reservation in advance for an intimate nature experience.
+            <strong>ðŸƒ Misty Highland Retreat:</strong> We have only <strong>two exclusive cabanas</strong> on our property. Please secure your reservation in advance for an intimate nature experience.
         </div>
 
         <div class="booking-container">
@@ -104,8 +105,8 @@
                         <div class="full-width-field">
                             <label for="cabana_select">Select Your Cabana *</label>
                             <select id="cabana_select" name="cabana_id" class="input-field" style="height: 50px;">
-                                <option value="1" data-price="25000" data-capacity="9">Main Cabana (Eury Nature Cabana) — LKR 25,000 / night (Max 9 guests)</option>
-                                <option value="2" data-price="15000" data-capacity="4">Little Eury Nature Cabana — LKR 15,000 / night (Max 4 guests)</option>
+                                <option value="1" data-price="25000" data-capacity="9">Main Cabana (Eury Nature Cabana) â€” LKR 25,000 / night (Max 9 guests)</option>
+                                <option value="2" data-price="15000" data-capacity="4">Little Eury Nature Cabana â€” LKR 15,000 / night (Max 4 guests)</option>
                             </select>
                         </div>
 
@@ -235,6 +236,7 @@
                 <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="discover.html">Discover NE</a></li>
                 <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="faq.html">FAQ</a></li>
             </ul>
         </div>
         <div class="footer-col">
@@ -246,16 +248,16 @@
         <div class="footer-col">
             <h4>Weather</h4>
             <div class="weather-widget">
-                <div class="weather-icon">⛅</div>
+                <div class="weather-icon">â›…</div>
                 <div class="weather-info">
-                    <span class="temp" id="footerTemp">18°C</span>
+                    <span class="temp" id="footerTemp">18Â°C</span>
                     <span class="weather-desc">Nuwara Eliya</span>
                     <span class="weather-sub">Cool &amp; Misty</span>
                 </div>
             </div>
             <div class="footer-awards">
-                <span class="award-badge">⭐ TripAdvisor Choice</span>
-                <span class="award-badge">🏆 Best Boutique Hotel 2024</span>
+                <span class="award-badge">â­ TripAdvisor Choice</span>
+                <span class="award-badge">ðŸ† Best Boutique Hotel 2024</span>
             </div>
         </div>
     </div>
@@ -275,7 +277,7 @@
     <i class="fas fa-chevron-up"></i>
 </button>
 
-<script src="static/js/main.js"></script>
+<script src="static/js/main.js?v=3"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const API_BASE = 'https://cabana-nuwara-eliya.onrender.com';
@@ -334,7 +336,7 @@
         function updateCalculations() {
             const selectedOption = cabanaSelect.options[cabanaSelect.selectedIndex];
             if (!selectedOption) return;
-            const cabanaName = selectedOption.textContent.split(' — ')[0];
+            const cabanaName = selectedOption.textContent.split(' â€” ')[0];
             const pricePerNight = parseFloat(selectedOption.dataset.price) || 0;
 
             const checkinDate = new Date(checkinInput.value);
@@ -482,3 +484,4 @@
 </script>
 </body>
 </html>
+

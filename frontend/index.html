@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,8 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="static/css/style.css?v=2">
+    <link rel="stylesheet" href="static/css/style.css?v=3">
 </head>
 <body>
 
@@ -34,6 +35,7 @@
             <li><a href="discover.html">Discover NE</a></li>
             <li><a href="gallery.html">Gallery</a></li>
             <li><a href="contact.html">Contact</a></li>
+            <li><a href="faq.html">FAQ</a></li>
         </ul>
         <div class="nav-actions">
             <div class="nav-social">
@@ -131,7 +133,7 @@
 <section class="about-section">
     <div class="about-grid">
         <div class="about-image reveal-zoom">
-            <div style="width:100%;height:100%;background:url('static/images/cabanas_landscape.jpg') center/cover;min-height:500px;display:flex;align-items:center;justify-content:center;">
+            <div style="width:100%;height:100%;background:url('static/images/cabin_exterior_mountain.jpg') center/cover;min-height:540px;display:flex;align-items:center;justify-content:center;">
             </div>
             <div class="about-img-overlay">
                 <div>Est. 2024 &nbsp;·&nbsp; 12km from Nuwara Eliya</div>
@@ -152,117 +154,93 @@
 </section>
 
 <!-- ===================== STATS ===================== -->
-<div class="stats-section" style="background:var(--cream);padding:60px 40px;">
+<div class="stats-section">
     <div class="container">
-        <div class="stats-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center;">
-            <div class="reveal">
-                <div style="font-family:'Cormorant Garamond',serif;font-size:3.5rem;color:var(--primary-dark);font-weight:300;line-height:1;">2</div>
-                <div style="font-size:0.78rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);margin-top:8px;">Exclusive Cabanas</div>
+        <div class="stats-grid">
+            <div class="stat-item reveal">
+                <span class="stat-number">2</span>
+                <span class="stat-label">Exclusive Cabanas</span>
             </div>
-            <div class="reveal">
-                <div style="font-family:'Cormorant Garamond',serif;font-size:3.5rem;color:var(--primary-dark);font-weight:300;line-height:1;">13</div>
-                <div style="font-size:0.78rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);margin-top:8px;">Max Guests</div>
+            <div class="stat-item reveal">
+                <span class="stat-number">13</span>
+                <span class="stat-label">Max Guests</span>
             </div>
-            <div class="reveal">
-                <div style="font-family:'Cormorant Garamond',serif;font-size:3.5rem;color:var(--primary-dark);font-weight:300;line-height:1;">12km</div>
-                <div style="font-size:0.78rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);margin-top:8px;">From Nuwara Eliya</div>
+            <div class="stat-item reveal">
+                <span class="stat-number">12km</span>
+                <span class="stat-label">From Nuwara Eliya</span>
             </div>
-            <div class="reveal">
-                <div style="font-family:'Cormorant Garamond',serif;font-size:3.5rem;color:var(--primary-dark);font-weight:300;line-height:1;">2024</div>
-                <div style="font-size:0.78rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);margin-top:8px;">Established</div>
+            <div class="stat-item reveal">
+                <span class="stat-number">2024</span>
+                <span class="stat-label">Established</span>
             </div>
         </div>
     </div>
 </div>
 
 <!-- ===================== CINEMATIC VIDEO TOUR ===================== -->
-<section class="video-tour-section" style="background:var(--white);padding:80px 0;text-align:center;">
+<section class="video-tour-section">
     <div class="container" style="max-width:1100px;">
-        <span class="section-tag">Cinematic Experience</span>
-        <h2 class="section-title">Take a <em>Virtual Tour</em></h2>
-        <div class="section-divider"><span></span><i class="fas fa-leaf"></i><span></span></div>
-        <p class="section-desc" style="margin-bottom:48px;max-width:650px;margin-left:auto;margin-right:auto;">Experience the misty hills, fresh mountain air, and handcrafted wooden charm of Eury Nature Cabana through these short cinematic tours.</p>
-        
-        <div class="video-tour-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:32px;text-align:left;">
-            
-            <!-- Video Card 1 -->
-            <div class="reveal" style="background:var(--cream);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border);transition:all 0.3s;"
-                onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='var(--shadow-lg)'"
-                onmouseout="this.style.transform='';this.style.boxShadow='var(--shadow)'">
+        <div class="section-header">
+            <span class="section-tag">Cinematic Experience</span>
+            <h2 class="section-title">Take a <em>Virtual Tour</em></h2>
+            <div class="section-divider"><span></span><i class="fas fa-leaf"></i><span></span></div>
+            <p class="section-desc">Experience the misty hills, fresh mountain air, and handcrafted wooden charm of Eury Nature Cabana through these short cinematic tours.</p>
+        </div>
+        <div class="video-tour-grid">
+            <div class="video-card reveal">
                 <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;background:#000;">
-                    <video id="tourVideo1" src="static/videos/cabana_tour_1.mp4" controls preload="metadata" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;border:none;" poster="static/images/cabanas_landscape.jpg"></video>
+                    <video src="static/videos/cabana_tour_1.mp4" controls preload="metadata" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;border:none;" poster="static/images/cabanas_landscape.jpg"></video>
                 </div>
-                <div style="padding:24px;">
-                    <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--primary-dark);margin-bottom:8px;">Experience the Highland Mist</h4>
-                    <p style="color:var(--gray);font-size:0.88rem;font-weight:300;line-height:1.6;margin:0;">A gorgeous panoramic look at the rolling mist flowing over the green A-frame cabanas and terraced hillsides.</p>
+                <div class="video-card-body">
+                    <h4>Experience the Highland Mist</h4>
+                    <p>A gorgeous panoramic look at the rolling mist flowing over the green A-frame cabanas and terraced hillsides.</p>
                 </div>
             </div>
-            
-            <!-- Video Card 2 -->
-            <div class="reveal" style="background:var(--cream);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border);transition:all 0.3s;"
-                onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='var(--shadow-lg)'"
-                onmouseout="this.style.transform='';this.style.boxShadow='var(--shadow)'">
+            <div class="video-card reveal">
                 <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;background:#000;">
-                    <video id="tourVideo2" src="static/videos/cabana_tour_2.mp4" controls preload="metadata" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;border:none;" poster="static/images/little_eury_exterior.jpg"></video>
+                    <video src="static/videos/cabana_tour_2.mp4" controls preload="metadata" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;border:none;" poster="static/images/highland_view_cloudy.jpg"></video>
                 </div>
-                <div style="padding:24px;">
-                    <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--primary-dark);margin-bottom:8px;">Cozy Cabana & Garden Walk</h4>
-                    <p style="color:var(--gray);font-size:0.88rem;font-weight:300;line-height:1.6;margin:0;">A scenic close-up look at the handcrafted wooden exterior, private picnic bench area, and lush flower gardens.</p>
+                <div class="video-card-body">
+                    <h4>Cozy Cabana &amp; Garden Walk</h4>
+                    <p>A scenic close-up look at the handcrafted wooden exterior, private picnic bench area, and lush flower gardens.</p>
                 </div>
             </div>
-
-            <!-- Video Card 3 -->
-            <div class="reveal" style="background:var(--cream);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border);transition:all 0.3s;"
-                onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='var(--shadow-lg)'"
-                onmouseout="this.style.transform='';this.style.boxShadow='var(--shadow)'">
+            <div class="video-card reveal">
                 <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;background:#000;">
-                    <video id="tourVideo3" src="static/videos/V1.mp4" controls preload="metadata" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;border:none;" poster="static/images/cabana_exterior_1.png"></video>
+                    <video src="static/videos/V1.mp4" controls preload="metadata" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;border:none;"></video>
                 </div>
-                <div style="padding:24px;">
-                    <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--primary-dark);margin-bottom:8px;">Cabana Video 1</h4>
-                    <p style="color:var(--gray);font-size:0.88rem;font-weight:300;line-height:1.6;margin:0;">A short look at the peaceful cabana setting and highland atmosphere.</p>
+                <div class="video-card-body">
+                    <h4>Sunrise over the Hills</h4>
+                    <p>A short look at the peaceful cabana setting and the golden highland atmosphere at dawn.</p>
                 </div>
             </div>
-
-            <!-- Video Card 4 -->
-            <div class="reveal" style="background:var(--cream);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border);transition:all 0.3s;"
-                onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='var(--shadow-lg)'"
-                onmouseout="this.style.transform='';this.style.boxShadow='var(--shadow)'">
+            <div class="video-card reveal">
                 <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;background:#000;">
-                    <video id="tourVideo4" src="static/videos/V2.mp4" controls preload="metadata" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;border:none;" poster="static/images/cabana_view_patio.jpg"></video>
+                    <video src="static/videos/V2.mp4" controls preload="metadata" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;border:none;"></video>
                 </div>
-                <div style="padding:24px;">
-                    <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--primary-dark);margin-bottom:8px;">Cabana Video 2</h4>
-                    <p style="color:var(--gray);font-size:0.88rem;font-weight:300;line-height:1.6;margin:0;">A closer glimpse of the property views and relaxing outdoor spaces.</p>
+                <div class="video-card-body">
+                    <h4>The Outdoor Spaces</h4>
+                    <p>A closer glimpse of the property views and relaxing outdoor spaces perfect for evening BBQs.</p>
                 </div>
             </div>
-
-            <!-- Video Card 5 -->
-            <div class="reveal" style="background:var(--cream);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border);transition:all 0.3s;"
-                onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='var(--shadow-lg)'"
-                onmouseout="this.style.transform='';this.style.boxShadow='var(--shadow)'">
+            <div class="video-card reveal">
                 <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;background:#000;">
-                    <video id="tourVideo5" src="static/videos/V3.mp4" controls preload="metadata" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;border:none;" poster="static/images/cabanas_landscape.jpg"></video>
+                    <video src="static/videos/V3.mp4" controls preload="metadata" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;border:none;"></video>
                 </div>
-                <div style="padding:24px;">
-                    <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--primary-dark);margin-bottom:8px;">Cabana Video 3</h4>
-                    <p style="color:var(--gray);font-size:0.88rem;font-weight:300;line-height:1.6;margin:0;">A scenic moment from Eury Nature Cabana surrounded by misty hills.</p>
+                <div class="video-card-body">
+                    <h4>Misty Highland Scenery</h4>
+                    <p>A scenic moment from Eury Nature Cabana surrounded by rolling misty hills and tea estates.</p>
                 </div>
             </div>
-
-            <!-- Video Card 6 -->
-            <div class="reveal" style="background:var(--cream);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border);transition:all 0.3s;"
-                onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='var(--shadow-lg)'"
-                onmouseout="this.style.transform='';this.style.boxShadow='var(--shadow)'">
+            <div class="video-card reveal">
                 <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;background:#000;">
-                    <video id="tourVideo6" src="static/videos/V4.mp4" controls preload="metadata" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;border:none;" poster="static/images/eury_nature_cabana_signboard.jpg"></video>
+                    <video src="static/videos/V4.mp4" controls preload="metadata" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;border:none;"></video>
                 </div>
-                <div style="padding:24px;">
-                    <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--primary-dark);margin-bottom:8px;">Cabana Video 4</h4>
-                    <p style="color:var(--gray);font-size:0.88rem;font-weight:300;line-height:1.6;margin:0;">A fresh view of the cabana experience for guests planning their stay.</p>
+                <div class="video-card-body">
+                    <h4>Your Highland Home</h4>
+                    <p>A fresh view of the cabana experience for guests planning their perfect highland escape.</p>
                 </div>
             </div>
-            
         </div>
     </div>
 </section>
@@ -326,29 +304,35 @@
 </section>
 
 <!-- ===================== DINING TEASER ===================== -->
-<section style="background:var(--dark);padding:80px 40px;text-align:center;">
-    <div class="container">
-        <span class="section-tag" style="color:var(--gold-light);">Dining</span>
-        <h2 class="section-title" style="color:white;margin:12px 0;">Fresh Home-Cooked<br><em>Sri Lankan Meals</em></h2>
-        <div class="section-divider"><span style="background:rgba(255,255,255,0.2);"></span><i class="fas fa-leaf" style="color:var(--gold-light);"></i><span style="background:rgba(255,255,255,0.2);"></span></div>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin:48px 0;max-width:700px;margin-left:auto;margin-right:auto;">
-            <div style="color:white;">
-                <div style="font-size:2.5rem;margin-bottom:8px;">🍳</div>
-                <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--gold-light);margin-bottom:4px;">Breakfast</h4>
-                <p style="color:rgba(255,255,255,0.6);font-size:0.85rem;">7:00 AM – 8:30 AM</p>
-            </div>
-            <div style="color:white;">
-                <div style="font-size:2.5rem;margin-bottom:8px;">🍛</div>
-                <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--gold-light);margin-bottom:4px;">Lunch</h4>
-                <p style="color:rgba(255,255,255,0.6);font-size:0.85rem;">12:00 PM – 2:00 PM</p>
-            </div>
-            <div style="color:white;">
-                <div style="font-size:2.5rem;margin-bottom:8px;">🌙</div>
-                <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--gold-light);margin-bottom:4px;">Dinner</h4>
-                <p style="color:rgba(255,255,255,0.6);font-size:0.85rem;">6:00 PM – 9:00 PM</p>
-            </div>
+<section style="padding:0;background:var(--forest-800);">
+    <div style="display:grid;grid-template-columns:1fr 1fr;min-height:520px;">
+        <div style="position:relative;overflow:hidden;">
+            <img src="static/images/cabin_dining_area.jpg" alt="Dining at Eury Nature Cabana" style="width:100%;height:100%;object-fit:cover;display:block;min-height:380px;">
+            <div style="position:absolute;inset:0;background:linear-gradient(to right, transparent 60%, var(--forest-800));"></div>
         </div>
-        <a href="dining.html" class="btn-gold">See Full Menu Details</a>
+        <div style="padding:72px 64px;display:flex;flex-direction:column;justify-content:center;">
+            <span class="section-tag" style="color:var(--amber-200);">Dining</span>
+            <h2 class="section-title" style="color:var(--white);margin:14px 0 12px;">Fresh Home-Cooked<br><em style="color:var(--amber-200);">Sri Lankan Meals</em></h2>
+            <p style="color:rgba(255,255,255,0.65);font-weight:300;line-height:1.8;margin-bottom:36px;font-size:0.98rem;">We prepare all meals fresh to order using local ingredients. From hearty rice &amp; curry breakfasts to dinner specialties like devilled chicken and kottu roti.</p>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px;">
+                <div style="text-align:center;padding:20px 12px;background:rgba(255,255,255,0.06);border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
+                    <div style="font-size:1.8rem;margin-bottom:8px;">🍳</div>
+                    <div style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--amber-200);margin-bottom:2px;">Breakfast</div>
+                    <div style="color:rgba(255,255,255,0.45);font-size:0.72rem;letter-spacing:0.06em;">7:00 – 8:30 AM</div>
+                </div>
+                <div style="text-align:center;padding:20px 12px;background:rgba(255,255,255,0.06);border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
+                    <div style="font-size:1.8rem;margin-bottom:8px;">🍛</div>
+                    <div style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--amber-200);margin-bottom:2px;">Lunch</div>
+                    <div style="color:rgba(255,255,255,0.45);font-size:0.72rem;letter-spacing:0.06em;">12:00 – 2:00 PM</div>
+                </div>
+                <div style="text-align:center;padding:20px 12px;background:rgba(255,255,255,0.06);border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
+                    <div style="font-size:1.8rem;margin-bottom:8px;">🌙</div>
+                    <div style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--amber-200);margin-bottom:2px;">Dinner</div>
+                    <div style="color:rgba(255,255,255,0.45);font-size:0.72rem;letter-spacing:0.06em;">6:00 – 9:00 PM</div>
+                </div>
+            </div>
+            <a href="dining.html" class="btn-gold" style="align-self:flex-start;">View Full Menu</a>
+        </div>
     </div>
 </section>
 
@@ -484,6 +468,21 @@
     </div>
 </section>
 
+<!-- ===================== BOOK DIRECT BANNER ===================== -->
+<section style="padding:72px 40px;background:var(--parchment);text-align:center;border-top:1px solid var(--border);">
+    <div class="container" style="max-width:720px;">
+        <div style="display:inline-flex;align-items:center;gap:8px;background:var(--amber-100);border:1px solid var(--amber-200);border-radius:40px;padding:6px 18px;font-size:0.72rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--amber-700);margin-bottom:20px;">
+            <i class="fas fa-star"></i> Best Rate Guarantee
+        </div>
+        <h2 class="section-title" style="margin-bottom:16px;">Book Direct &amp; Save</h2>
+        <p style="color:var(--slate);font-weight:300;line-height:1.8;margin-bottom:36px;font-size:1.02rem;">Book directly with us via WhatsApp or our form for the best available rates. No booking fees, flexible dates, and a personal welcome from our team.</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+            <a href="book.html" class="btn-primary">Reserve Your Cabana</a>
+            <a href="https://wa.me/94701731443?text=Hello%2C%20I%27d%20like%20to%20book%20at%20Eury%20Nature%20Cabana" target="_blank" class="btn-gold"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+        </div>
+    </div>
+</section>
+
 <!-- Footer -->
 <footer class="footer">
     <div class="footer-top">
@@ -508,6 +507,7 @@
                 <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="discover.html">Discover NE</a></li>
                 <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="faq.html">FAQ</a></li>
             </ul>
         </div>
         <div class="footer-col">
@@ -556,7 +556,7 @@
     <i class="fas fa-chevron-up"></i>
 </button>
 
-<script src="static/js/main.js?v=2"></script>
+<script src="static/js/main.js?v=3"></script>
 <script>
     // Hero Booking Bar redirect
     document.getElementById('heroBookingBar').addEventListener('submit', function(e){

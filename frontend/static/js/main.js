@@ -271,6 +271,24 @@ document.querySelectorAll('.nav-links a').forEach(link => {
     }
 });
 
+// ===================== FAQ ACCORDION =====================
+document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        // Close all open items
+        document.querySelectorAll('.faq-item.open').forEach(openItem => {
+            openItem.classList.remove('open');
+            openItem.querySelector('.faq-icon').textContent = '+';
+        });
+        // Open clicked item if it was closed
+        if (!isOpen) {
+            item.classList.add('open');
+            btn.querySelector('.faq-icon').textContent = '×';
+        }
+    });
+});
+
 // Make openBooking and closeBooking global
 window.openBooking = openBooking;
 window.closeBooking = closeBooking;
