@@ -16,7 +16,7 @@
 
 <!-- Announcement Bar -->
 <div class="announcement-bar">
-    <p>ðŸƒ Now Accepting Reservations for 2025 &nbsp;|&nbsp; <a href="contact.html">Contact Us</a> &nbsp;|&nbsp; 12km from Nuwara Eliya &nbsp;|&nbsp; Est. 2024</p>
+    <p><i class="fas fa-leaf" style="color:var(--forest-500)"></i> Now Accepting Reservations for 2025 &nbsp;|&nbsp; <a href="contact.html">Contact Us</a> &nbsp;|&nbsp; 12km from Nuwara Eliya &nbsp;|&nbsp; Est. 2024</p>
 </div>
 
 <!-- Navigation -->
@@ -60,14 +60,14 @@
     <div class="page-hero-content">
         <span class="section-tag">Reservations</span>
         <h1>Book Your Cabana</h1>
-        <div class="breadcrumb"><a href="index.html">Home</a> â€º Book</div>
+        <div class="breadcrumb"><a href="index.html">Home</a> &#x203A; Book</div>
     </div>
 </div>
 
 <section style="background: var(--cream); padding: 60px 0;">
     <div class="container">
         <div class="alert-banner">
-            <strong>ðŸƒ Misty Highland Retreat:</strong> We have only <strong>two exclusive cabanas</strong> on our property. Please secure your reservation in advance for an intimate nature experience.
+            <strong><i class="fas fa-leaf" style="color:var(--forest-500)"></i> Misty Highland Retreat:</strong> We have only <strong>two exclusive cabanas</strong> on our property. Please secure your reservation in advance for an intimate nature experience.
         </div>
 
         <div class="booking-container">
@@ -105,8 +105,8 @@
                         <div class="full-width-field">
                             <label for="cabana_select">Select Your Cabana *</label>
                             <select id="cabana_select" name="cabana_id" class="input-field" style="height: 50px;">
-                                <option value="1" data-price="25000" data-capacity="9">Main Cabana (Eury Nature Cabana) â€” LKR 25,000 / night (Max 9 guests)</option>
-                                <option value="2" data-price="15000" data-capacity="4">Little Eury Nature Cabana â€” LKR 15,000 / night (Max 4 guests)</option>
+                                <option value="1" data-price="25000" data-capacity="9">Main Cabana (Eury Nature Cabana) &mdash; LKR 25,000 / night (Max 9 guests)</option>
+                                <option value="2" data-price="15000" data-capacity="4">Little Eury Nature Cabana &mdash; LKR 15,000 / night (Max 4 guests)</option>
                             </select>
                         </div>
 
@@ -248,16 +248,16 @@
         <div class="footer-col">
             <h4>Weather</h4>
             <div class="weather-widget">
-                <div class="weather-icon">â›…</div>
+                <div class="weather-icon"><i class="fas fa-cloud-sun" style="color:var(--amber-400)"></i></div>
                 <div class="weather-info">
-                    <span class="temp" id="footerTemp">18Â°C</span>
+                    <span class="temp" id="footerTemp">18&deg;C</span>
                     <span class="weather-desc">Nuwara Eliya</span>
                     <span class="weather-sub">Cool &amp; Misty</span>
                 </div>
             </div>
             <div class="footer-awards">
-                <span class="award-badge">â­ TripAdvisor Choice</span>
-                <span class="award-badge">ðŸ† Best Boutique Hotel 2024</span>
+                <span class="award-badge"><i class="fas fa-star" style="color:var(--amber-500)"></i> TripAdvisor Choice</span>
+                <span class="award-badge"><i class="fas fa-trophy" style="color:var(--amber-500)"></i> Best Boutique Hotel 2024</span>
             </div>
         </div>
     </div>
@@ -336,7 +336,7 @@
         function updateCalculations() {
             const selectedOption = cabanaSelect.options[cabanaSelect.selectedIndex];
             if (!selectedOption) return;
-            const cabanaName = selectedOption.textContent.split(' â€” ')[0];
+            const cabanaName = selectedOption.textContent.split(' &mdash; ')[0];
             const pricePerNight = parseFloat(selectedOption.dataset.price) || 0;
 
             const checkinDate = new Date(checkinInput.value);
