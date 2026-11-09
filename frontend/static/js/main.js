@@ -6,16 +6,6 @@
 // ===== GSAP SETUP =====
 gsap.registerPlugin(ScrollTrigger);
 
-const lenis = new Lenis({
-    lerp: 0.1,
-    smoothTouch: false,
-    touchMultiplier: 1.5,
-});
-
-gsap.ticker.add((time) => lenis.raf(time * 1000));
-gsap.ticker.lagSmoothing(0);
-lenis.on('scroll', ScrollTrigger.update);
-
 // ===== PAGE LOADER =====
 window.addEventListener('load', () => {
     const loader = document.getElementById('pageLoader');
@@ -26,9 +16,10 @@ window.addEventListener('load', () => {
 const progressBar = document.createElement('div');
 progressBar.className = 'scroll-progress';
 document.body.prepend(progressBar);
-lenis.on('scroll', ({ progress }) => {
-    progressBar.style.width = (progress * 100) + '%';
-});
+window.addEventListener('scroll', () => {
+    const docH = document.documentElement.scrollHeight - window.innerHeight;
+    if (docH > 0) progressBar.style.width = (window.scrollY / docH * 100) + '%';
+}, { passive: true });
 
 // ===== NAVBAR =====
 const navbar = document.getElementById('navbar');
@@ -77,7 +68,7 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 });
 
 if (backToTop) {
-    backToTop.addEventListener('click', () => lenis.scrollTo(0, { duration: 1.4 }));
+    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 }
 
 // ===== HERO VIDEO =====
